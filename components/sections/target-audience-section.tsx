@@ -51,8 +51,9 @@ const iconMap: Record<IconName, LucideIcon> = {
   Lock,
 }
 
-function getIcon(name: IconName): LucideIcon {
-  return iconMap[name] || Shield
+function getIcon(name: string): LucideIcon {
+  const icon = iconMap[name as keyof typeof iconMap]
+  return icon ?? Shield
 }
 
 export function TargetAudienceSection() {
