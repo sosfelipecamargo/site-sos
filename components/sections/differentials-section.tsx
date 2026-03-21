@@ -2,19 +2,7 @@
 
 import { motion } from "framer-motion"
 import { 
-  Monitor, 
-  Shield, 
-  Users, 
-  Building2, 
-  Car, 
-  Camera, 
-  Wifi,
-  Bell,
-  Home,
-  Building,
-  Factory,
-  Store,
-  Landmark,
+  Shield,
   Clock,
   HeartHandshake,
   Settings,
@@ -23,34 +11,52 @@ import {
   CheckCircle,
   Zap,
   Lock,
-  type LucideIcon
 } from "lucide-react"
-import { differentials, type IconName } from "@/lib/data"
 import { cn } from "@/lib/utils"
 
-const iconMap: Record<IconName, LucideIcon> = {
-  Monitor,
-  Shield,
-  Users,
-  Building2,
-  Car,
-  Camera,
-  Wifi,
-  Bell,
-  Home,
-  Building,
-  Factory,
-  Store,
-  Landmark,
-  Clock,
-  HeartHandshake,
-  Settings,
-  Wrench,
-  Award,
-  CheckCircle,
-  Zap,
-  Lock,
-}
+// Define differentials data directly with icon components
+const differentialsData = [
+  {
+    Icon: Award,
+    title: "Mais de 46 anos de mercado",
+    description: "Tradição e experiência acumulada desde 1980 em segurança e tecnologia."
+  },
+  {
+    Icon: Clock,
+    title: "Operação 24/7 estruturada",
+    description: "Central de monitoramento com equipe treinada e processos definidos."
+  },
+  {
+    Icon: Settings,
+    title: "Tecnologia confiável",
+    description: "Equipamentos de qualidade e infraestrutura redundante para sua segurança."
+  },
+  {
+    Icon: Lock,
+    title: "Portfólio completo",
+    description: "Segurança eletrônica, portaria, vigilância, monitoramento e telecom."
+  },
+  {
+    Icon: HeartHandshake,
+    title: "Atendimento humano",
+    description: "Suporte próximo e comunicação direta com nossa equipe."
+  },
+  {
+    Icon: Wrench,
+    title: "Projetos sob medida",
+    description: "Cada solução é desenhada conforme a realidade do cliente."
+  },
+  {
+    Icon: CheckCircle,
+    title: "Conformidade e estrutura",
+    description: "Empresa regularizada com processos operacionais definidos."
+  },
+  {
+    Icon: Zap,
+    title: "Eficiência operacional",
+    description: "Redução de custos com aumento de controle e padronização."
+  }
+]
 
 // Bento Grid Item Component
 function BentoItem({ 
@@ -59,12 +65,12 @@ function BentoItem({
   className,
   featured = false
 }: { 
-  item: { icon: string; title: string; description: string }
+  item: typeof differentialsData[0]
   index: number
   className?: string
   featured?: boolean
 }) {
-  const Icon = iconMap[item.icon as IconName] ?? Shield
+  const { Icon } = item
   
   return (
     <motion.div
@@ -128,7 +134,7 @@ export function DifferentialsSection() {
           {/* Row 1 */}
           {/* Featured: 46 anos - spans 2 cols */}
           <BentoItem 
-            item={differentials[0]} 
+            item={differentialsData[0]} 
             index={0} 
             className="col-span-2 row-span-1"
             featured
@@ -136,7 +142,7 @@ export function DifferentialsSection() {
           
           {/* Featured: 24/7 - spans 2 cols */}
           <BentoItem 
-            item={differentials[1]} 
+            item={differentialsData[1]} 
             index={1} 
             className="col-span-2 row-span-1"
             featured
@@ -145,21 +151,21 @@ export function DifferentialsSection() {
           {/* Row 2 */}
           {/* Tecnologia confiável */}
           <BentoItem 
-            item={differentials[2]} 
+            item={differentialsData[2]} 
             index={2} 
             className="col-span-1"
           />
           
           {/* Portfólio completo - spans 2 cols */}
           <BentoItem 
-            item={differentials[3]} 
+            item={differentialsData[3]} 
             index={3} 
             className="col-span-2"
           />
           
           {/* Atendimento humano */}
           <BentoItem 
-            item={differentials[4]} 
+            item={differentialsData[4]} 
             index={4} 
             className="col-span-1"
           />
@@ -167,21 +173,21 @@ export function DifferentialsSection() {
           {/* Row 3 */}
           {/* Projetos sob medida - spans 2 cols */}
           <BentoItem 
-            item={differentials[5]} 
+            item={differentialsData[5]} 
             index={5} 
             className="col-span-2"
           />
           
           {/* Conformidade */}
           <BentoItem 
-            item={differentials[6]} 
+            item={differentialsData[6]} 
             index={6} 
             className="col-span-1"
           />
           
           {/* Eficiência */}
           <BentoItem 
-            item={differentials[7]} 
+            item={differentialsData[7]} 
             index={7} 
             className="col-span-1"
           />
