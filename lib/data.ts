@@ -641,7 +641,7 @@ export const services: Service[] = [
       { title: "Fibra óptica", description: "Velocidade e estabilidade de conexão.", icon: "Wifi" },
       { title: "Suporte local", description: "Atendimento próximo em Americana e região.", icon: "HeartHandshake" },
       { title: "Integração", description: "Conectividade otimizada para sistemas SOS.", icon: "Monitor" },
-      { title: "Telefonia IP", description: "Comunicação profissional e econômica.", icon: Phone },
+      { title: "Telefonia IP", description: "Comunicação profissional e econômica.", icon: "Bell" },
       { title: "Infraestrutura", description: "Projeto e cabeamento estruturado.", icon: "Settings" },
       { title: "Monitoramento", description: "Acompanhamento proativo da conexão.", icon: "Clock" }
     ],
