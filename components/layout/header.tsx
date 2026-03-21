@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, ChevronDown, Phone } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const services = [
@@ -62,7 +62,7 @@ export function Header() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
-            {/* Logo */}
+            {/* Logo - Left */}
             <Link href="/" className="relative z-10 flex-shrink-0">
               <Image
                 src={isScrolled ? "/images/logo-sos-preto.png" : "/images/logo-sos-branco.png"}
@@ -75,94 +75,84 @@ export function Header() {
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navigation.map((item) => (
-                <div key={item.name} className="relative">
-                  {item.hasDropdown ? (
-                    <div
-                      className="relative"
-                      onMouseEnter={() => setIsDropdownOpen(true)}
-                      onMouseLeave={() => setIsDropdownOpen(false)}
-                    >
-                      <button
+            {/* Desktop Navigation - Centered */}
+            <nav className="hidden lg:flex items-center justify-center absolute left-1/2 -translate-x-1/2">
+              <div className="flex items-center gap-1">
+                {navigation.map((item) => (
+                  <div key={item.name} className="relative">
+                    {item.hasDropdown ? (
+                      <div
+                        className="relative"
+                        onMouseEnter={() => setIsDropdownOpen(true)}
+                        onMouseLeave={() => setIsDropdownOpen(false)}
+                      >
+                        <button
+                          className={cn(
+                            "relative flex items-center gap-1 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
+                            isScrolled
+                              ? "text-foreground/70 hover:text-foreground"
+                              : "text-white/70 hover:text-white"
+                          )}
+                        >
+                          <span className="relative z-10">{item.name}</span>
+                          <ChevronDown className={cn(
+                            "h-4 w-4 transition-transform duration-200 relative z-10",
+                            isDropdownOpen && "rotate-180"
+                          )} />
+                          {/* Glow effect */}
+                          <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/20 transition-colors duration-200" />
+                        </button>
+                        
+                        <AnimatePresence>
+                          {isDropdownOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              transition={{ duration: 0.2 }}
+                              className="absolute left-1/2 -translate-x-1/2 top-full pt-2"
+                            >
+                              <div className="w-64 rounded-xl bg-white border border-border shadow-xl p-2">
+                                {services.map((service) => (
+                                  <Link
+                                    key={service.href}
+                                    href={service.href}
+                                    className="relative block px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground rounded-lg transition-colors group"
+                                  >
+                                    <span className="relative z-10">{service.name}</span>
+                                    <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/10 transition-colors duration-200" />
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
                         className={cn(
-                          "relative flex items-center gap-1 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
+                          "relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
                           isScrolled
                             ? "text-foreground/70 hover:text-foreground"
                             : "text-white/70 hover:text-white"
                         )}
                       >
                         <span className="relative z-10">{item.name}</span>
-                        <ChevronDown className={cn(
-                          "h-4 w-4 transition-transform duration-200 relative z-10",
-                          isDropdownOpen && "rotate-180"
-                        )} />
                         {/* Glow effect */}
                         <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/20 transition-colors duration-200" />
-                      </button>
-                      
-                      <AnimatePresence>
-                        {isDropdownOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute left-0 top-full pt-2"
-                          >
-                            <div className="w-64 rounded-xl bg-white border border-border shadow-xl p-2">
-                              {services.map((service) => (
-                                <Link
-                                  key={service.href}
-                                  href={service.href}
-                                  className="relative block px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground rounded-lg transition-colors group"
-                                >
-                                  <span className="relative z-10">{service.name}</span>
-                                  <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/10 transition-colors duration-200" />
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
-                        isScrolled
-                          ? "text-foreground/70 hover:text-foreground"
-                          : "text-white/70 hover:text-white"
-                      )}
-                    >
-                      <span className="relative z-10">{item.name}</span>
-                      {/* Glow effect */}
-                      <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/20 transition-colors duration-200" />
-                    </Link>
-                  )}
-                </div>
-              ))}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
             </nav>
 
-            {/* CTA Button */}
-            <div className="hidden lg:flex items-center gap-4">
-              <Link 
-                href="tel:1934714515" 
-                className={cn(
-                  "flex items-center gap-2 text-sm font-medium transition-colors",
-                  isScrolled
-                    ? "text-foreground/70 hover:text-foreground"
-                    : "text-white/70 hover:text-white"
-                )}
-              >
-                <Phone className="h-4 w-4" />
-                <span>19 3471-4515</span>
-              </Link>
+            {/* CTA Button - Right */}
+            <div className="hidden lg:block">
               <Link 
                 href="/contato"
-                className="inline-flex items-center px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
               >
                 Fale Conosco
               </Link>
@@ -261,14 +251,7 @@ export function Header() {
                   ))}
                 </nav>
 
-                <div className="mt-auto pt-8 space-y-4">
-                  <Link 
-                    href="tel:1934714515" 
-                    className="flex items-center justify-center gap-2 px-4 py-3 text-base font-medium text-foreground border border-border rounded-full hover:bg-secondary/50 transition-colors"
-                  >
-                    <Phone className="h-5 w-5" />
-                    <span>19 3471-4515</span>
-                  </Link>
+                <div className="mt-auto pt-8">
                   <Link 
                     href="/contato" 
                     onClick={() => setIsMobileMenuOpen(false)}
