@@ -688,44 +688,44 @@ export const services: Service[] = [
   }
 ]
 
-export const differentials = [
+export const differentials: { icon: IconName; title: string; description: string }[] = [
   {
-    icon: "Award" as IconName,
+    icon: "Award",
     title: "Mais de 46 anos de mercado",
     description: "Tradição e experiência acumulada desde 1980 em segurança e tecnologia."
   },
   {
-    icon: "Clock" as IconName,
+    icon: "Clock",
     title: "Operação 24/7 estruturada",
     description: "Central de monitoramento com equipe treinada e processos definidos."
   },
   {
-    icon: "Settings" as IconName,
+    icon: "Settings",
     title: "Tecnologia confiável",
     description: "Equipamentos de qualidade e infraestrutura redundante para sua segurança."
   },
   {
-    icon: "Lock" as IconName,
+    icon: "Lock",
     title: "Portfólio completo",
     description: "Segurança eletrônica, portaria, vigilância, monitoramento e telecom."
   },
   {
-    icon: "HeartHandshake" as IconName,
+    icon: "HeartHandshake",
     title: "Atendimento humano",
     description: "Suporte próximo e comunicação direta com nossa equipe."
   },
   {
-    icon: "Wrench" as IconName,
+    icon: "Wrench",
     title: "Projetos sob medida",
     description: "Cada solução é desenhada conforme a realidade do cliente."
   },
   {
-    icon: "CheckCircle" as IconName,
+    icon: "CheckCircle",
     title: "Conformidade e estrutura",
     description: "Empresa regularizada com processos operacionais definidos."
   },
   {
-    icon: "Zap" as IconName,
+    icon: "Zap",
     title: "Eficiência operacional",
     description: "Redução de custos com aumento de controle e padronização."
   }
@@ -739,13 +739,13 @@ export const timeline = [
   { year: "2025", title: "Modernização", description: "Renovação tecnológica do monitoramento e sistemas." }
 ]
 
-export const targetAudiences = [
-  { icon: "Home" as IconName, title: "Residências", description: "Soluções para casas e apartamentos com tecnologia e monitoramento." },
-  { icon: "Building" as IconName, title: "Condomínios", description: "Portaria virtual, controle de acesso e segurança integrada." },
-  { icon: "Building2" as IconName, title: "Empresas", description: "Proteção patrimonial com projetos sob medida." },
-  { icon: "Store" as IconName, title: "Comércios", description: "Alarmes, câmeras e monitoramento para lojas e estabelecimentos." },
-  { icon: "Factory" as IconName, title: "Indústrias", description: "Vigilância, controle de acesso e segurança perimetral." },
-  { icon: "Landmark" as IconName, title: "Prédios comerciais", description: "Portaria, CFTV e controle de acesso para edifícios empresariais." }
+export const targetAudiences: { icon: IconName; title: string; description: string }[] = [
+  { icon: "Home", title: "Residências", description: "Soluções para casas e apartamentos com tecnologia e monitoramento." },
+  { icon: "Building", title: "Condomínios", description: "Portaria virtual, controle de acesso e segurança integrada." },
+  { icon: "Building2", title: "Empresas", description: "Proteção patrimonial com projetos sob medida." },
+  { icon: "Store", title: "Comércios", description: "Alarmes, câmeras e monitoramento para lojas e estabelecimentos." },
+  { icon: "Factory", title: "Indústrias", description: "Vigilância, controle de acesso e segurança perimetral." },
+  { icon: "Landmark", title: "Prédios comerciais", description: "Portaria, CFTV e controle de acesso para edifícios empresariais." }
 ]
 
 export const testimonials = [

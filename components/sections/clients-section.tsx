@@ -1,9 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Building2 } from "lucide-react"
 
-// Placeholder client logos - in production these would be real logos
 const clients = [
   { name: "Metalúrgica Ferreira" },
   { name: "Condomínio Aurora" },
@@ -15,9 +13,12 @@ const clients = [
   { name: "Indústria Textil Nova" },
 ]
 
+// Duplicate for seamless loop
+const duplicatedClients = [...clients, ...clients]
+
 export function ClientsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-card border-y border-border">
+    <section className="py-16 lg:py-20 bg-gray-50 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,27 +38,50 @@ export function ClientsSection() {
             cuidar da sua segurança.
           </p>
         </motion.div>
+      </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-8">
-          {clients.map((client, index) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group flex flex-col items-center justify-center p-6 bg-background rounded-xl border border-border hover:border-primary/20 transition-all duration-300"
+      {/* Marquee Container */}
+      <div className="relative">
+        {/* Left Gradient Fade */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
+        
+        {/* Right Gradient Fade */}
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
+        
+        {/* Scrolling Track */}
+        <div className="flex animate-marquee">
+          {duplicatedClients.map((client, index) => (
+            <div
+              key={`${client.name}-${index}`}
+              className="flex-shrink-0 mx-6"
             >
-              <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-3 grayscale group-hover:grayscale-0 transition-all duration-300">
-                <Building2 className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+              <div className="flex items-center justify-center px-8 py-4 bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-colors duration-300 min-w-[200px]">
+                <span className="text-gray-500 font-medium text-sm tracking-wide whitespace-nowrap">
+                  {client.name}
+                </span>
               </div>
-              <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground text-center transition-colors">
-                {client.name}
-              </span>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
+
+      {/* CSS Animation */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-marquee {
+          animation: marquee 30s linear infinite;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   )
 }

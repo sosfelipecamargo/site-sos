@@ -64,8 +64,7 @@ function BentoItem({
   className?: string
   featured?: boolean
 }) {
-  const iconName = typeof item.icon === 'string' ? item.icon : 'Shield'
-  const Icon = iconMap[iconName as IconName] || Shield
+  const Icon = iconMap[item.icon as IconName] ?? Shield
   
   return (
     <motion.div

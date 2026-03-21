@@ -1,92 +1,51 @@
 "use client"
 
+import { useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
-import { 
-  Monitor, 
-  Shield, 
-  Users, 
-  Building2, 
-  Car, 
-  Camera, 
-  Wifi,
-  Bell,
-  Home,
-  Building,
-  Factory,
-  Store,
-  Landmark,
-  Clock,
-  HeartHandshake,
-  Settings,
-  Wrench,
-  Award,
-  CheckCircle,
-  Zap,
-  Lock,
-  type LucideIcon
-} from "lucide-react"
-import { targetAudiences, type IconName } from "@/lib/data"
 
-const iconMap: Record<IconName, LucideIcon> = {
-  Monitor,
-  Shield,
-  Users,
-  Building2,
-  Car,
-  Camera,
-  Wifi,
-  Bell,
-  Home,
-  Building,
-  Factory,
-  Store,
-  Landmark,
-  Clock,
-  HeartHandshake,
-  Settings,
-  Wrench,
-  Award,
-  CheckCircle,
-  Zap,
-  Lock,
-}
-
-function AudienceCard({ audience, index }: { audience: { icon: string; title: string; description: string }; index: number }) {
-  const iconName = typeof audience.icon === 'string' ? audience.icon : 'Shield'
-  const Icon = iconMap[iconName as IconName] || Shield
-  
-  return (
-    <motion.div
-      key={audience.title}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="group relative bg-card rounded-xl p-8 border border-border overflow-hidden hover:border-primary/20 hover:shadow-lg transition-all duration-300"
-    >
-      {/* Background Icon */}
-      <div className="absolute -right-6 -bottom-6 opacity-5 group-hover:opacity-10 transition-opacity">
-        <Icon className="h-32 w-32 text-foreground" />
-      </div>
-      
-      <div className="relative">
-        <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
-          <Icon className="h-7 w-7 text-foreground group-hover:text-primary transition-colors" />
-        </div>
-        
-        <h3 className="text-xl font-semibold text-foreground mb-3">
-          {audience.title}
-        </h3>
-        
-        <p className="text-muted-foreground text-pretty">
-          {audience.description}
-        </p>
-      </div>
-    </motion.div>
-  )
-}
+const audiences = [
+  { 
+    id: "residencias",
+    title: "Residências", 
+    description: "Soluções para casas e apartamentos com tecnologia e monitoramento.",
+    image: "/images/audiences/residencias.jpg"
+  },
+  { 
+    id: "condominios",
+    title: "Condomínios", 
+    description: "Portaria virtual, controle de acesso e segurança integrada.",
+    image: "/images/audiences/condominios.jpg"
+  },
+  { 
+    id: "empresas",
+    title: "Empresas", 
+    description: "Proteção patrimonial com projetos sob medida.",
+    image: "/images/audiences/empresas.jpg"
+  },
+  { 
+    id: "comercios",
+    title: "Comércios", 
+    description: "Alarmes, câmeras e monitoramento para lojas e estabelecimentos.",
+    image: "/images/audiences/comercios.jpg"
+  },
+  { 
+    id: "industrias",
+    title: "Indústrias", 
+    description: "Vigilância, controle de acesso e segurança perimetral.",
+    image: "/images/audiences/industrias.jpg"
+  },
+  { 
+    id: "predios",
+    title: "Prédios Comerciais", 
+    description: "Portaria, CFTV e controle de acesso para edifícios empresariais.",
+    image: "/images/audiences/predios-comerciais.jpg"
+  },
+]
 
 export function TargetAudienceSection() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
   return (
     <section className="py-20 lg:py-28 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -95,7 +54,7 @@ export function TargetAudienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12"
         >
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Quem Atendemos
@@ -109,10 +68,68 @@ export function TargetAudienceSection() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {targetAudiences.map((audience, index) => (
-            <AudienceCard key={audience.title} audience={audience} index={index} />
-          ))}
+        {/* Interactive Image Accordion */}
+        <div className="flex flex-col lg:flex-row gap-2 h-[500px] lg:h-[600px]">
+          {audiences.map((audience, index) => {
+            const isActive = activeIndex === index
+            
+            return (
+              <motion.div
+                key={audience.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="relative overflow-hidden rounded-2xl cursor-pointer group"
+                style={{
+                  flex: isActive ? 4 : 1,
+                  transition: "flex 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+                onMouseEnter={() => setActiveIndex(index)}
+                onMouseLeave={() => setActiveIndex(null)}
+              >
+                {/* Background Image */}
+                <Image
+                  src={audience.image}
+                  alt={audience.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 25vw"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                
+                {/* Red Accent Line */}
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-1 bg-primary transform origin-left transition-transform duration-500"
+                  style={{ transform: isActive ? "scaleX(1)" : "scaleX(0)" }}
+                />
+                
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 
+                    className="text-white font-bold text-xl lg:text-2xl transition-all duration-500"
+                    style={{ 
+                      transform: isActive ? "translateY(0)" : "translateY(0)",
+                    }}
+                  >
+                    {audience.title}
+                  </h3>
+                  
+                  <p 
+                    className="text-white/80 text-sm lg:text-base mt-2 transition-all duration-500 overflow-hidden"
+                    style={{ 
+                      maxHeight: isActive ? "100px" : "0",
+                      opacity: isActive ? 1 : 0,
+                    }}
+                  >
+                    {audience.description}
+                  </p>
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
