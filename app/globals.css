@@ -5,57 +5,57 @@
 
 :root {
   /* SOS Brand Colors */
-  --background: #f4f4f4;
-  --foreground: #070707;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
   --card: #ffffff;
-  --card-foreground: #070707;
+  --card-foreground: #0a0a0a;
   --popover: #ffffff;
-  --popover-foreground: #070707;
-  --primary: #ab0101;
+  --popover-foreground: #0a0a0a;
+  --primary: #E30613;
   --primary-foreground: #ffffff;
-  --secondary: #e8e8e8;
-  --secondary-foreground: #070707;
-  --muted: #e8e8e8;
-  --muted-foreground: #5a5a5a;
-  --accent: #1a1a1a;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #0a0a0a;
   --accent-foreground: #ffffff;
-  --destructive: #ab0101;
+  --destructive: #E30613;
   --destructive-foreground: #ffffff;
-  --border: #d4d4d4;
-  --input: #d4d4d4;
-  --ring: #ab0101;
-  --chart-1: #ab0101;
-  --chart-2: #070707;
-  --chart-3: #5a5a5a;
-  --chart-4: #8a8a8a;
-  --chart-5: #b0b0b0;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #E30613;
+  --chart-1: #E30613;
+  --chart-2: #0a0a0a;
+  --chart-3: #737373;
+  --chart-4: #a3a3a3;
+  --chart-5: #d4d4d4;
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: #070707;
-  --foreground: #f4f4f4;
-  --card: #1a1a1a;
-  --card-foreground: #f4f4f4;
-  --popover: #1a1a1a;
-  --popover-foreground: #f4f4f4;
-  --primary: #ab0101;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #171717;
+  --card-foreground: #fafafa;
+  --popover: #171717;
+  --popover-foreground: #fafafa;
+  --primary: #E30613;
   --primary-foreground: #ffffff;
-  --secondary: #2a2a2a;
-  --secondary-foreground: #f4f4f4;
-  --muted: #2a2a2a;
-  --muted-foreground: #8a8a8a;
-  --accent: #f4f4f4;
-  --accent-foreground: #070707;
-  --destructive: #ab0101;
+  --secondary: #262626;
+  --secondary-foreground: #fafafa;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #fafafa;
+  --accent-foreground: #0a0a0a;
+  --destructive: #E30613;
   --destructive-foreground: #ffffff;
-  --border: #3a3a3a;
-  --input: #3a3a3a;
-  --ring: #ab0101;
+  --border: #262626;
+  --input: #262626;
+  --ring: #E30613;
 }
 
 @theme inline {
-  --font-sans: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);

@@ -5,7 +5,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown, Phone } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const services = [
@@ -57,7 +56,7 @@ export function Header() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-card/95 backdrop-blur-md shadow-sm border-b border-border"
+            ? "bg-white/95 backdrop-blur-md shadow-sm"
             : "bg-transparent"
         )}
       >
@@ -66,11 +65,12 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="relative z-10 flex-shrink-0">
               <Image
-                src="/images/logo-sos-preto.png"
+                src={isScrolled ? "/images/logo-sos-preto.png" : "/images/logo-sos-branco.png"}
                 alt="SOS Segurança Inteligente"
                 width={120}
                 height={48}
-                className="h-10 w-auto object-contain"
+                className="object-contain"
+                style={{ height: 40, width: 'auto' }}
                 priority
               />
             </Link>
@@ -87,15 +87,19 @@ export function Header() {
                     >
                       <button
                         className={cn(
-                          "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg",
-                          "text-foreground/80 hover:text-foreground hover:bg-secondary/50"
+                          "relative flex items-center gap-1 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
+                          isScrolled
+                            ? "text-foreground/70 hover:text-foreground"
+                            : "text-white/70 hover:text-white"
                         )}
                       >
-                        {item.name}
+                        <span className="relative z-10">{item.name}</span>
                         <ChevronDown className={cn(
-                          "h-4 w-4 transition-transform duration-200",
+                          "h-4 w-4 transition-transform duration-200 relative z-10",
                           isDropdownOpen && "rotate-180"
                         )} />
+                        {/* Glow effect */}
+                        <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/20 transition-colors duration-200" />
                       </button>
                       
                       <AnimatePresence>
@@ -107,14 +111,15 @@ export function Header() {
                             transition={{ duration: 0.2 }}
                             className="absolute left-0 top-full pt-2"
                           >
-                            <div className="w-64 rounded-xl bg-card border border-border shadow-xl p-2">
+                            <div className="w-64 rounded-xl bg-white border border-border shadow-xl p-2">
                               {services.map((service) => (
                                 <Link
                                   key={service.href}
                                   href={service.href}
-                                  className="block px-4 py-2.5 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+                                  className="relative block px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground rounded-lg transition-colors group"
                                 >
-                                  {service.name}
+                                  <span className="relative z-10">{service.name}</span>
+                                  <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/10 transition-colors duration-200" />
                                 </Link>
                               ))}
                             </div>
@@ -126,11 +131,15 @@ export function Header() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "px-4 py-2 text-sm font-medium transition-colors rounded-lg",
-                        "text-foreground/80 hover:text-foreground hover:bg-secondary/50"
+                        "relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
+                        isScrolled
+                          ? "text-foreground/70 hover:text-foreground"
+                          : "text-white/70 hover:text-white"
                       )}
                     >
-                      {item.name}
+                      <span className="relative z-10">{item.name}</span>
+                      {/* Glow effect */}
+                      <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/20 transition-colors duration-200" />
                     </Link>
                   )}
                 </div>
@@ -139,19 +148,33 @@ export function Header() {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
-              <Link href="tel:1934714515" className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <Link 
+                href="tel:1934714515" 
+                className={cn(
+                  "flex items-center gap-2 text-sm font-medium transition-colors",
+                  isScrolled
+                    ? "text-foreground/70 hover:text-foreground"
+                    : "text-white/70 hover:text-white"
+                )}
+              >
                 <Phone className="h-4 w-4" />
                 <span>19 3471-4515</span>
               </Link>
-              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6">
-                <Link href="/contato">Fale Conosco</Link>
-              </Button>
+              <Link 
+                href="/contato"
+                className="inline-flex items-center px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
+              >
+                Fale Conosco
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden relative z-10 p-2 text-foreground"
+              className={cn(
+                "lg:hidden relative z-10 p-2",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
               aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             >
               {isMobileMenuOpen ? (
@@ -174,14 +197,14 @@ export function Header() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-accent/20 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
             
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-card shadow-xl"
+              className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-xl"
             >
               <div className="flex flex-col h-full pt-24 pb-8 px-6 overflow-y-auto">
                 <nav className="flex flex-col gap-2">
@@ -215,7 +238,7 @@ export function Header() {
                                       key={service.href}
                                       href={service.href}
                                       onClick={() => setIsMobileMenuOpen(false)}
-                                      className="block px-4 py-2.5 text-base text-foreground/80 hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+                                      className="block px-4 py-2.5 text-base text-foreground/70 hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
                                     >
                                       {service.name}
                                     </Link>
@@ -241,16 +264,18 @@ export function Header() {
                 <div className="mt-auto pt-8 space-y-4">
                   <Link 
                     href="tel:1934714515" 
-                    className="flex items-center justify-center gap-2 px-4 py-3 text-base font-medium text-foreground border border-border rounded-lg hover:bg-secondary/50 transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-3 text-base font-medium text-foreground border border-border rounded-full hover:bg-secondary/50 transition-colors"
                   >
                     <Phone className="h-5 w-5" />
                     <span>19 3471-4515</span>
                   </Link>
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-base">
-                    <Link href="/contato" onClick={() => setIsMobileMenuOpen(false)}>
-                      Fale Conosco
-                    </Link>
-                  </Button>
+                  <Link 
+                    href="/contato" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-center w-full px-4 py-3 bg-primary text-white text-base font-medium rounded-full hover:bg-primary/90 transition-colors"
+                  >
+                    Fale Conosco
+                  </Link>
                 </div>
               </div>
             </motion.div>
