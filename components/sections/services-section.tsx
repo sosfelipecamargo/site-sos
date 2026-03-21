@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { 
   ArrowRight,
@@ -54,54 +55,71 @@ const iconMap: Record<IconName, LucideIcon> = {
   Lock,
 }
 
-function getIcon(name: IconName | string): LucideIcon {
-  if (typeof name === 'string' && name in iconMap) {
-    return iconMap[name as IconName]
-  }
-  return Shield
+// Map service slugs to their images
+const serviceImages: Record<string, string> = {
+  "portaria-virtual": "/images/services/portaria-virtual.jpg",
+  "monitoramento-de-alarmes": "/images/services/monitoramento.jpg",
+  "portaria-hibrida": "/images/services/portaria-hibrida.jpg",
+  "portaria-presencial": "/images/services/portaria-presencial.jpg",
+  "vigilancia-patrimonial": "/images/services/vigilancia.jpg",
+  "viaturas-pronta-resposta": "/images/services/viaturas.jpg",
+  "seguranca-eletronica": "/images/services/seguranca-eletronica.jpg",
+  "sos-telecom": "/images/services/sos-telecom.jpg",
+}
+
+function getIcon(name: string): LucideIcon {
+  const icon = iconMap[name as keyof typeof iconMap]
+  return icon ?? Shield
 }
 
 function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
   const Icon = getIcon(service.icon)
+  const imageUrl = serviceImages[service.slug] || "/images/services/portaria-virtual.jpg"
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       className="group relative"
     >
-      {/* Glow effect container */}
-      <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 opacity-0 blur-sm transition-all duration-500 group-hover:opacity-100 group-hover:from-primary/60 group-hover:via-primary/40 group-hover:to-primary/60" />
-      
-      {/* Card border glow */}
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-transparent via-transparent to-transparent opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:from-primary/50 group-hover:via-primary/30 group-hover:to-primary/50" />
-      
-      {/* Card content */}
       <Link
         href={`/solucoes/${service.slug}`}
-        className="relative flex h-full flex-col bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/10"
+        className="relative flex flex-col overflow-hidden rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-primary"
+        style={{ aspectRatio: '3/4' }}
       >
-        {/* Icon */}
-        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gray-50 transition-colors duration-300 group-hover:bg-primary/10">
-          <Icon className="h-6 w-6 text-gray-700 transition-colors duration-300 group-hover:text-primary" />
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src={imageUrl}
+            alt={service.name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
         </div>
         
-        {/* Title */}
-        <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors duration-300 group-hover:text-primary">
-          {service.name}
-        </h3>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
         
-        {/* Description */}
-        <p className="mb-4 flex-1 text-sm leading-relaxed text-gray-600">
-          {service.shortDescription}
-        </p>
-        
-        {/* Link */}
-        <div className="flex items-center gap-2 text-sm font-medium text-primary">
-          <span>Saiba mais</span>
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        {/* Content - positioned at bottom */}
+        <div className="relative mt-auto p-6 z-10">
+          {/* Icon */}
+          <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+            <Icon className="h-5 w-5 text-white" />
+          </div>
+          
+          {/* Title */}
+          <h3 className="mb-3 text-xl font-bold text-white leading-tight">
+            {service.name}
+          </h3>
+          
+          {/* Link */}
+          <div className="flex items-center gap-2 text-sm font-medium text-white/90 transition-colors duration-300 group-hover:text-primary">
+            <span>Saiba mais</span>
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </div>
         </div>
       </Link>
     </motion.div>
@@ -110,7 +128,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export function ServicesSection() {
   return (
-    <section className="py-20 lg:py-28 bg-gray-50">
+    <section className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -120,20 +138,20 @@ export function ServicesSection() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
             Soluções
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 text-balance">
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-balance">
             Soluções integradas para sua segurança
           </h2>
-          <p className="mt-4 text-lg text-gray-600 text-pretty">
+          <p className="mt-4 text-lg text-white/70 text-pretty">
             Do monitoramento à conectividade, oferecemos um portfólio completo 
             para proteger o que importa para você.
           </p>
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} />
           ))}
@@ -147,7 +165,7 @@ export function ServicesSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-6 text-base rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30">
+          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-6 text-base rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40">
             <Link href="/contato">
               Solicitar avaliação gratuita
               <ArrowRight className="ml-2 h-5 w-5" />

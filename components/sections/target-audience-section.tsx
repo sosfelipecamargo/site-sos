@@ -51,9 +51,39 @@ const iconMap: Record<IconName, LucideIcon> = {
   Lock,
 }
 
-function getIcon(name: string): LucideIcon {
-  const icon = iconMap[name as keyof typeof iconMap]
-  return icon ?? Shield
+function AudienceCard({ audience, index }: { audience: { icon: string; title: string; description: string }; index: number }) {
+  const iconName = typeof audience.icon === 'string' ? audience.icon : 'Shield'
+  const Icon = iconMap[iconName as IconName] || Shield
+  
+  return (
+    <motion.div
+      key={audience.title}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3, delay: index * 0.05 }}
+      className="group relative bg-card rounded-xl p-8 border border-border overflow-hidden hover:border-primary/20 hover:shadow-lg transition-all duration-300"
+    >
+      {/* Background Icon */}
+      <div className="absolute -right-6 -bottom-6 opacity-5 group-hover:opacity-10 transition-opacity">
+        <Icon className="h-32 w-32 text-foreground" />
+      </div>
+      
+      <div className="relative">
+        <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
+          <Icon className="h-7 w-7 text-foreground group-hover:text-primary transition-colors" />
+        </div>
+        
+        <h3 className="text-xl font-semibold text-foreground mb-3">
+          {audience.title}
+        </h3>
+        
+        <p className="text-muted-foreground text-pretty">
+          {audience.description}
+        </p>
+      </div>
+    </motion.div>
+  )
 }
 
 export function TargetAudienceSection() {
@@ -81,33 +111,7 @@ export function TargetAudienceSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {targetAudiences.map((audience, index) => (
-            <motion.div
-              key={audience.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group relative bg-card rounded-xl p-8 border border-border overflow-hidden hover:border-primary/20 hover:shadow-lg transition-all duration-300"
-            >
-              {/* Background Icon */}
-              <div className="absolute -right-6 -bottom-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                {(() => { const Icon = getIcon(audience.icon); return <Icon className="h-32 w-32 text-foreground" />; })()}
-              </div>
-              
-              <div className="relative">
-                <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
-                  {(() => { const Icon = getIcon(audience.icon); return <Icon className="h-7 w-7 text-foreground group-hover:text-primary transition-colors" />; })()}
-                </div>
-                
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {audience.title}
-                </h3>
-                
-                <p className="text-muted-foreground text-pretty">
-                  {audience.description}
-                </p>
-              </div>
-            </motion.div>
+            <AudienceCard key={audience.title} audience={audience} index={index} />
           ))}
         </div>
       </div>

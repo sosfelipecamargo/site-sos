@@ -52,18 +52,6 @@ const iconMap: Record<IconName, LucideIcon> = {
   Lock,
 }
 
-function getIcon(name: string): LucideIcon {
-  if (!name || typeof name !== 'string') {
-    return Shield
-  }
-  const icon = iconMap[name as keyof typeof iconMap]
-  if (!icon) {
-    console.log("[v0] Icon not found in map:", name, "Type:", typeof name)
-    return Shield
-  }
-  return icon
-}
-
 // Bento Grid Item Component
 function BentoItem({ 
   item, 
@@ -71,12 +59,13 @@ function BentoItem({
   className,
   featured = false
 }: { 
-  item: typeof differentials[0]
+  item: { icon: string; title: string; description: string }
   index: number
   className?: string
   featured?: boolean
 }) {
-  const Icon = getIcon(item.icon)
+  const iconName = typeof item.icon === 'string' ? item.icon : 'Shield'
+  const Icon = iconMap[iconName as IconName] || Shield
   
   return (
     <motion.div
