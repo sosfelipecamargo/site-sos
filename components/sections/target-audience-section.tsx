@@ -1,7 +1,59 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { targetAudiences } from "@/lib/data"
+import { 
+  Monitor, 
+  Shield, 
+  Users, 
+  Building2, 
+  Car, 
+  Camera, 
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+  type LucideIcon
+} from "lucide-react"
+import { targetAudiences, type IconName } from "@/lib/data"
+
+const iconMap: Record<IconName, LucideIcon> = {
+  Monitor,
+  Shield,
+  Users,
+  Building2,
+  Car,
+  Camera,
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+}
+
+function getIcon(name: IconName): LucideIcon {
+  return iconMap[name] || Shield
+}
 
 export function TargetAudienceSection() {
   return (
@@ -38,12 +90,12 @@ export function TargetAudienceSection() {
             >
               {/* Background Icon */}
               <div className="absolute -right-6 -bottom-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                <audience.icon className="h-32 w-32 text-foreground" />
+                {(() => { const Icon = getIcon(audience.icon); return <Icon className="h-32 w-32 text-foreground" />; })()}
               </div>
               
               <div className="relative">
                 <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
-                  <audience.icon className="h-7 w-7 text-foreground group-hover:text-primary transition-colors" />
+                  {(() => { const Icon = getIcon(audience.icon); return <Icon className="h-7 w-7 text-foreground group-hover:text-primary transition-colors" />; })()}
                 </div>
                 
                 <h3 className="text-xl font-semibold text-foreground mb-3">

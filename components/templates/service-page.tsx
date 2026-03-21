@@ -2,11 +2,66 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, MessageCircle, CheckCircle, Phone } from "lucide-react"
+import { 
+  ArrowRight, 
+  MessageCircle, 
+  CheckCircle as CheckCircleIcon, 
+  Phone,
+  Monitor, 
+  Shield, 
+  Users, 
+  Building2, 
+  Car, 
+  Camera, 
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+  type LucideIcon
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import type { Service } from "@/lib/data"
+import type { Service, IconName } from "@/lib/data"
+
+const iconMap: Record<IconName, LucideIcon> = {
+  Monitor,
+  Shield,
+  Users,
+  Building2,
+  Car,
+  Camera,
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+}
+
+function getIcon(name: IconName): LucideIcon {
+  return iconMap[name] || Shield
+}
 
 interface ServicePageProps {
   service: Service
@@ -121,7 +176,7 @@ export function ServicePage({ service }: ServicePageProps) {
                   <ul className="space-y-2">
                     {service.whatIs.forWhom.map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <CheckCircleIcon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                         <span className="text-muted-foreground">{item}</span>
                       </li>
                     ))}
@@ -133,7 +188,7 @@ export function ServicePage({ service }: ServicePageProps) {
                   <ul className="space-y-2">
                     {service.whatIs.problems.map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <CheckCircleIcon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                         <span className="text-muted-foreground">{item}</span>
                       </li>
                     ))}
@@ -176,7 +231,7 @@ export function ServicePage({ service }: ServicePageProps) {
                   className="bg-card rounded-xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <advantage.icon className="h-6 w-6 text-primary" />
+                    {(() => { const Icon = getIcon(advantage.icon); return <Icon className="h-6 w-6 text-primary" />; })()}
                   </div>
                   <h3 className="font-semibold text-foreground mb-2">{advantage.title}</h3>
                   <p className="text-sm text-muted-foreground text-pretty">{advantage.description}</p>
@@ -215,7 +270,7 @@ export function ServicePage({ service }: ServicePageProps) {
                   className="flex items-start gap-4 p-6 bg-background rounded-xl border border-border"
                 >
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <CheckCircleIcon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">{benefit.title}</h3>
@@ -309,7 +364,7 @@ export function ServicePage({ service }: ServicePageProps) {
                   className="text-center p-6 bg-background rounded-xl border border-border"
                 >
                   <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <audience.icon className="h-8 w-8 text-primary" />
+                    {(() => { const Icon = getIcon(audience.icon); return <Icon className="h-8 w-8 text-primary" />; })()}
                   </div>
                   <h3 className="font-semibold text-foreground mb-2">{audience.title}</h3>
                   <p className="text-sm text-muted-foreground">{audience.description}</p>
@@ -358,7 +413,7 @@ export function ServicePage({ service }: ServicePageProps) {
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                         className="flex items-start gap-3"
                       >
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <CheckCircleIcon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                         <span className="text-foreground">{item}</span>
                       </motion.li>
                     ))}
@@ -380,7 +435,7 @@ export function ServicePage({ service }: ServicePageProps) {
               className="max-w-3xl mx-auto text-center"
             >
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                <service.icon className="h-8 w-8 text-primary" />
+                {(() => { const ServiceIcon = getIcon(service.icon); return <ServiceIcon className="h-8 w-8 text-primary" />; })()}
               </div>
               
               <blockquote className="text-xl sm:text-2xl font-medium text-foreground italic text-pretty">

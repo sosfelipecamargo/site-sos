@@ -1,34 +1,32 @@
-import { 
-  Monitor, 
-  Shield, 
-  Users, 
-  Building2, 
-  Car, 
-  Camera, 
-  Wifi,
-  Bell,
-  Home,
-  Building,
-  Factory,
-  Store,
-  Landmark,
-  Clock,
-  HeartHandshake,
-  Settings,
-  Wrench,
-  Award,
-  CheckCircle,
-  Zap,
-  Lock,
-  type LucideIcon
-} from "lucide-react"
+export type IconName = 
+  | "Monitor" 
+  | "Shield" 
+  | "Users" 
+  | "Building2" 
+  | "Car" 
+  | "Camera" 
+  | "Wifi"
+  | "Bell"
+  | "Home"
+  | "Building"
+  | "Factory"
+  | "Store"
+  | "Landmark"
+  | "Clock"
+  | "HeartHandshake"
+  | "Settings"
+  | "Wrench"
+  | "Award"
+  | "CheckCircle"
+  | "Zap"
+  | "Lock"
 
 export interface Service {
   id: string
   name: string
   shortName: string
   slug: string
-  icon: LucideIcon
+  icon: IconName
   description: string
   shortDescription: string
   heroTitle: string
@@ -43,7 +41,7 @@ export interface Service {
   advantages: {
     title: string
     description: string
-    icon: LucideIcon
+    icon: IconName
   }[]
   benefits: {
     title: string
@@ -57,7 +55,7 @@ export interface Service {
   targetAudience: {
     title: string
     description: string
-    icon: LucideIcon
+    icon: IconName
   }[]
   technicalDifferentials: string[]
   testimonial: {
@@ -77,7 +75,7 @@ export const services: Service[] = [
     name: "Portaria Virtual",
     shortName: "Portaria Virtual",
     slug: "portaria-virtual",
-    icon: Monitor,
+    icon: "Monitor",
     description: "Controle de acesso remoto 24 horas com operação estruturada, redução de custos e padronização de processos.",
     shortDescription: "Controle de acesso remoto 24h com tecnologia e operação estruturada.",
     heroTitle: "Portaria Virtual",
@@ -102,12 +100,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Mais de 46 anos de experiência", description: "Tradição e conhecimento acumulado em segurança e operação.", icon: Award },
-      { title: "Operação 24/7 estruturada", description: "Central de monitoramento com equipe treinada e processos definidos.", icon: Clock },
-      { title: "Atendimento humano", description: "Suporte próximo e comunicação direta com síndicos e gestores.", icon: HeartHandshake },
-      { title: "Tecnologia confiável", description: "Equipamentos de qualidade e infraestrutura redundante.", icon: Settings },
-      { title: "Projeto sob medida", description: "Cada implantação é planejada conforme a realidade do cliente.", icon: Wrench },
-      { title: "Implantação orientada", description: "Acompanhamento técnico e operacional desde o início.", icon: CheckCircle }
+      { title: "Mais de 46 anos de experiência", description: "Tradição e conhecimento acumulado em segurança e operação.", icon: "Award" },
+      { title: "Operação 24/7 estruturada", description: "Central de monitoramento com equipe treinada e processos definidos.", icon: "Clock" },
+      { title: "Atendimento humano", description: "Suporte próximo e comunicação direta com síndicos e gestores.", icon: "HeartHandshake" },
+      { title: "Tecnologia confiável", description: "Equipamentos de qualidade e infraestrutura redundante.", icon: "Settings" },
+      { title: "Projeto sob medida", description: "Cada implantação é planejada conforme a realidade do cliente.", icon: "Wrench" },
+      { title: "Implantação orientada", description: "Acompanhamento técnico e operacional desde o início.", icon: "CheckCircle" }
     ],
     benefits: [
       { title: "Redução de custos", description: "Economia significativa em comparação à portaria presencial tradicional." },
@@ -126,10 +124,10 @@ export const services: Service[] = [
       { step: 6, title: "Acompanhamento", description: "Suporte contínuo e ajustes conforme necessário." }
     ],
     targetAudience: [
-      { title: "Condomínios residenciais", description: "Desde pequenos prédios até grandes loteamentos.", icon: Building },
-      { title: "Prédios comerciais", description: "Escritórios e empreendimentos empresariais.", icon: Building2 },
-      { title: "Indústrias", description: "Controle de acesso para colaboradores e fornecedores.", icon: Factory },
-      { title: "Loteamentos fechados", description: "Gestão de múltiplas entradas e perfis de acesso.", icon: Home }
+      { title: "Condomínios residenciais", description: "Desde pequenos prédios até grandes loteamentos.", icon: "Building" },
+      { title: "Prédios comerciais", description: "Escritórios e empreendimentos empresariais.", icon: "Building2" },
+      { title: "Indústrias", description: "Controle de acesso para colaboradores e fornecedores.", icon: "Factory" },
+      { title: "Loteamentos fechados", description: "Gestão de múltiplas entradas e perfis de acesso.", icon: "Home" }
     ],
     technicalDifferentials: [
       "Câmeras IP de alta resolução com visão noturna",
@@ -155,7 +153,7 @@ export const services: Service[] = [
     name: "Monitoramento de Alarmes",
     shortName: "Monitoramento",
     slug: "monitoramento-de-alarmes",
-    icon: Bell,
+    icon: "Bell",
     description: "Acompanhamento 24 horas de sistemas de alarme com resposta rápida, suporte técnico e pronta resposta.",
     shortDescription: "Monitoramento 24h com resposta rápida e suporte especializado.",
     heroTitle: "Monitoramento de Alarmes",
@@ -180,12 +178,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Central 24/7", description: "Equipe de monitoramento ativa a todo momento.", icon: Clock },
-      { title: "Protocolos definidos", description: "Procedimentos claros para cada tipo de evento.", icon: CheckCircle },
-      { title: "Pronta resposta", description: "Viaturas próprias para verificação presencial.", icon: Car },
-      { title: "Suporte técnico", description: "Manutenção preventiva e corretiva dos sistemas.", icon: Wrench },
-      { title: "Histórico completo", description: "Registro de todos os eventos e ações tomadas.", icon: Settings },
-      { title: "Atendimento próximo", description: "Comunicação direta com a equipe SOS.", icon: HeartHandshake }
+      { title: "Central 24/7", description: "Equipe de monitoramento ativa a todo momento.", icon: "Clock" },
+      { title: "Protocolos definidos", description: "Procedimentos claros para cada tipo de evento.", icon: "CheckCircle" },
+      { title: "Pronta resposta", description: "Viaturas próprias para verificação presencial.", icon: "Car" },
+      { title: "Suporte técnico", description: "Manutenção preventiva e corretiva dos sistemas.", icon: "Wrench" },
+      { title: "Histórico completo", description: "Registro de todos os eventos e ações tomadas.", icon: "Settings" },
+      { title: "Atendimento próximo", description: "Comunicação direta com a equipe SOS.", icon: "HeartHandshake" }
     ],
     benefits: [
       { title: "Segurança ativa", description: "Seu patrimônio monitorado 24 horas por dia." },
@@ -203,10 +201,10 @@ export const services: Service[] = [
       { step: 5, title: "Suporte", description: "Acompanhamento contínuo e manutenção preventiva." }
     ],
     targetAudience: [
-      { title: "Residências", description: "Casas e apartamentos com sistema de alarme.", icon: Home },
-      { title: "Comércios", description: "Lojas, restaurantes e estabelecimentos comerciais.", icon: Store },
-      { title: "Empresas", description: "Escritórios e unidades empresariais.", icon: Building2 },
-      { title: "Indústrias", description: "Galpões, fábricas e áreas industriais.", icon: Factory }
+      { title: "Residências", description: "Casas e apartamentos com sistema de alarme.", icon: "Home" },
+      { title: "Comércios", description: "Lojas, restaurantes e estabelecimentos comerciais.", icon: "Store" },
+      { title: "Empresas", description: "Escritórios e unidades empresariais.", icon: "Building2" },
+      { title: "Indústrias", description: "Galpões, fábricas e áreas industriais.", icon: "Factory" }
     ],
     technicalDifferentials: [
       "Comunicação via GPRS, IP e linha telefônica",
@@ -232,7 +230,7 @@ export const services: Service[] = [
     name: "Portaria Híbrida",
     shortName: "Portaria Híbrida",
     slug: "portaria-hibrida",
-    icon: Users,
+    icon: "Users",
     description: "Combinação inteligente de portaria presencial e virtual, unindo o melhor dos dois modelos.",
     shortDescription: "O equilíbrio entre tecnologia e presença física no controle de acesso.",
     heroTitle: "Portaria Híbrida",
@@ -255,12 +253,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Flexibilidade", description: "Modelo adaptável à realidade de cada cliente.", icon: Settings },
-      { title: "Redução de custos", description: "Economia em comparação à portaria 100% presencial.", icon: Zap },
-      { title: "Presença quando necessário", description: "Porteiros físicos nos horários de maior demanda.", icon: Users },
-      { title: "Tecnologia nos demais períodos", description: "Operação remota eficiente e padronizada.", icon: Monitor },
-      { title: "Transição suave", description: "Modelo ideal para adaptação gradual.", icon: CheckCircle },
-      { title: "Suporte integrado", description: "Gestão unificada pela SOS.", icon: HeartHandshake }
+      { title: "Flexibilidade", description: "Modelo adaptável à realidade de cada cliente.", icon: "Settings" },
+      { title: "Redução de custos", description: "Economia em comparação à portaria 100% presencial.", icon: "Zap" },
+      { title: "Presença quando necessário", description: "Porteiros físicos nos horários de maior demanda.", icon: "Users" },
+      { title: "Tecnologia nos demais períodos", description: "Operação remota eficiente e padronizada.", icon: "Monitor" },
+      { title: "Transição suave", description: "Modelo ideal para adaptação gradual.", icon: "CheckCircle" },
+      { title: "Suporte integrado", description: "Gestão unificada pela SOS.", icon: "HeartHandshake" }
     ],
     benefits: [
       { title: "Economia inteligente", description: "Custos otimizados sem perder qualidade." },
@@ -278,10 +276,10 @@ export const services: Service[] = [
       { step: 5, title: "Ajustes", description: "Refinamento do modelo conforme a operação." }
     ],
     targetAudience: [
-      { title: "Condomínios tradicionais", description: "Que valorizam a presença do porteiro.", icon: Building },
-      { title: "Empreendimentos mistos", description: "Com fluxo variável ao longo do dia.", icon: Building2 },
-      { title: "Clientes em transição", description: "Que buscam modernização gradual.", icon: Home },
-      { title: "Locais com alto fluxo", description: "Que precisam de atendimento presencial em picos.", icon: Users }
+      { title: "Condomínios tradicionais", description: "Que valorizam a presença do porteiro.", icon: "Building" },
+      { title: "Empreendimentos mistos", description: "Com fluxo variável ao longo do dia.", icon: "Building2" },
+      { title: "Clientes em transição", description: "Que buscam modernização gradual.", icon: "Home" },
+      { title: "Locais com alto fluxo", description: "Que precisam de atendimento presencial em picos.", icon: "Users" }
     ],
     technicalDifferentials: [
       "Gestão unificada presencial e remota",
@@ -307,7 +305,7 @@ export const services: Service[] = [
     name: "Portaria Presencial",
     shortName: "Portaria Presencial",
     slug: "portaria-presencial",
-    icon: Shield,
+    icon: "Shield",
     description: "Porteiros profissionais treinados e supervisionados, com postura, atendimento e apoio operacional.",
     shortDescription: "Porteiros profissionais com treinamento e supervisão SOS.",
     heroTitle: "Portaria Presencial",
@@ -332,12 +330,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Profissionais treinados", description: "Porteiros capacitados em atendimento e segurança.", icon: Award },
-      { title: "Supervisão SOS", description: "Acompanhamento contínuo da equipe.", icon: CheckCircle },
-      { title: "Uniformes e postura", description: "Apresentação profissional e padronizada.", icon: Shield },
-      { title: "Cobertura de ausências", description: "Substituição garantida em faltas ou férias.", icon: Users },
-      { title: "Gestão trabalhista", description: "Toda a parte burocrática com a SOS.", icon: Settings },
-      { title: "Integração tecnológica", description: "Sistemas de apoio para registro de acessos.", icon: Monitor }
+      { title: "Profissionais treinados", description: "Porteiros capacitados em atendimento e segurança.", icon: "Award" },
+      { title: "Supervisão SOS", description: "Acompanhamento contínuo da equipe.", icon: "CheckCircle" },
+      { title: "Uniformes e postura", description: "Apresentação profissional e padronizada.", icon: "Shield" },
+      { title: "Cobertura de ausências", description: "Substituição garantida em faltas ou férias.", icon: "Users" },
+      { title: "Gestão trabalhista", description: "Toda a parte burocrática com a SOS.", icon: "Settings" },
+      { title: "Integração tecnológica", description: "Sistemas de apoio para registro de acessos.", icon: "Monitor" }
     ],
     benefits: [
       { title: "Atendimento humanizado", description: "Contato pessoal com moradores e visitantes." },
@@ -355,10 +353,10 @@ export const services: Service[] = [
       { step: 5, title: "Supervisão", description: "Visitas periódicas e acompanhamento contínuo." }
     ],
     targetAudience: [
-      { title: "Condomínios residenciais", description: "Que valorizam o contato humano.", icon: Building },
-      { title: "Prédios comerciais", description: "Com necessidade de recepção.", icon: Building2 },
-      { title: "Empresas", description: "Com atendimento ao público.", icon: Landmark },
-      { title: "Alto padrão", description: "Empreendimentos que exigem excelência.", icon: Award }
+      { title: "Condomínios residenciais", description: "Que valorizam o contato humano.", icon: "Building" },
+      { title: "Prédios comerciais", description: "Com necessidade de recepção.", icon: "Building2" },
+      { title: "Empresas", description: "Com atendimento ao público.", icon: "Landmark" },
+      { title: "Alto padrão", description: "Empreendimentos que exigem excelência.", icon: "Award" }
     ],
     technicalDifferentials: [
       "Processo seletivo rigoroso",
@@ -384,7 +382,7 @@ export const services: Service[] = [
     name: "Vigilância Patrimonial",
     shortName: "Vigilância",
     slug: "vigilancia-patrimonial",
-    icon: Shield,
+    icon: "Shield",
     description: "Vigilantes armados e desarmados para proteção ostensiva de patrimônios, eventos e operações especiais.",
     shortDescription: "Proteção ostensiva com vigilantes treinados e autorizados.",
     heroTitle: "Vigilância Patrimonial",
@@ -409,12 +407,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Profissionais habilitados", description: "Vigilantes com formação e autorização da PF.", icon: Award },
-      { title: "Armados ou desarmados", description: "Conforme a necessidade do cliente.", icon: Shield },
-      { title: "Supervisão", description: "Acompanhamento e coordenação pela SOS.", icon: CheckCircle },
-      { title: "Cobertura", description: "Substituição garantida em ausências.", icon: Users },
-      { title: "Equipamentos", description: "Rádios, coletes e itens de segurança.", icon: Settings },
-      { title: "Relatórios", description: "Registro de rondas e ocorrências.", icon: Monitor }
+      { title: "Profissionais habilitados", description: "Vigilantes com formação e autorização da PF.", icon: "Award" },
+      { title: "Armados ou desarmados", description: "Conforme a necessidade do cliente.", icon: "Shield" },
+      { title: "Supervisão", description: "Acompanhamento e coordenação pela SOS.", icon: "CheckCircle" },
+      { title: "Cobertura", description: "Substituição garantida em ausências.", icon: "Users" },
+      { title: "Equipamentos", description: "Rádios, coletes e itens de segurança.", icon: "Settings" },
+      { title: "Relatórios", description: "Registro de rondas e ocorrências.", icon: "Monitor" }
     ],
     benefits: [
       { title: "Proteção ostensiva", description: "Presença que inibe ações criminosas." },
@@ -432,10 +430,10 @@ export const services: Service[] = [
       { step: 5, title: "Operação", description: "Início da vigilância com supervisão." }
     ],
     targetAudience: [
-      { title: "Indústrias", description: "Proteção de áreas fabris e estoques.", icon: Factory },
-      { title: "Empresas", description: "Segurança de sedes e unidades.", icon: Building2 },
-      { title: "Eventos", description: "Proteção de participantes e patrimônio.", icon: Users },
-      { title: "Operações especiais", description: "Segurança de cargas e operações.", icon: Car }
+      { title: "Indústrias", description: "Proteção de áreas fabris e estoques.", icon: "Factory" },
+      { title: "Empresas", description: "Segurança de sedes e unidades.", icon: "Building2" },
+      { title: "Eventos", description: "Proteção de participantes e patrimônio.", icon: "Users" },
+      { title: "Operações especiais", description: "Segurança de cargas e operações.", icon: "Car" }
     ],
     technicalDifferentials: [
       "Vigilantes com CNV ativa",
@@ -461,7 +459,7 @@ export const services: Service[] = [
     name: "Viaturas de Pronta Resposta",
     shortName: "Pronta Resposta",
     slug: "viaturas-pronta-resposta",
-    icon: Car,
+    icon: "Car",
     description: "Viaturas próprias com equipe treinada para verificação presencial e resposta rápida a ocorrências.",
     shortDescription: "Resposta rápida com viaturas próprias e equipe treinada.",
     heroTitle: "Viaturas de Pronta Resposta",
@@ -484,12 +482,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Frota própria", description: "Viaturas identificadas e rastreadas.", icon: Car },
-      { title: "Equipes treinadas", description: "Profissionais capacitados para verificação.", icon: Users },
+      { title: "Frota própria", description: "Viaturas identificadas e rastreadas.", icon: "Car" },
+      { title: "Equipes treinadas", description: "Profissionais capacitados para verificação.", icon: "Users" },
       { title: "Cobertura regional", description: "Atuação em Americana e região.", icon: MapPin },
-      { title: "Integração", description: "Acionamento direto pela central de monitoramento.", icon: Monitor },
-      { title: "Rapidez", description: "Tempo de resposta otimizado.", icon: Zap },
-      { title: "Rondas", description: "Passagens periódicas programadas.", icon: Clock }
+      { title: "Integração", description: "Acionamento direto pela central de monitoramento.", icon: "Monitor" },
+      { title: "Rapidez", description: "Tempo de resposta otimizado.", icon: "Zap" },
+      { title: "Rondas", description: "Passagens periódicas programadas.", icon: "Clock" }
     ],
     benefits: [
       { title: "Verificação presencial", description: "Confirmação visual de ocorrências." },
@@ -508,10 +506,10 @@ export const services: Service[] = [
       { step: 6, title: "Relatório", description: "Comunicação à central e ao cliente." }
     ],
     targetAudience: [
-      { title: "Clientes monitorados", description: "Que contam com resposta presencial.", icon: Home },
-      { title: "Empresas", description: "Que precisam de rondas e verificações.", icon: Building2 },
-      { title: "Condomínios", description: "Com portaria virtual ou monitoramento.", icon: Building },
-      { title: "Comércios", description: "Que necessitam de apoio rápido.", icon: Store }
+      { title: "Clientes monitorados", description: "Que contam com resposta presencial.", icon: "Home" },
+      { title: "Empresas", description: "Que precisam de rondas e verificações.", icon: "Building2" },
+      { title: "Condomínios", description: "Com portaria virtual ou monitoramento.", icon: "Building" },
+      { title: "Comércios", description: "Que necessitam de apoio rápido.", icon: "Store" }
     ],
     technicalDifferentials: [
       "Viaturas identificadas e rastreadas via GPS",
@@ -537,7 +535,7 @@ export const services: Service[] = [
     name: "Segurança Eletrônica",
     shortName: "Seg. Eletrônica",
     slug: "seguranca-eletronica",
-    icon: Camera,
+    icon: "Camera",
     description: "Projetos sob medida em CFTV, alarmes, controle de acesso, cercas elétricas e integração de sistemas.",
     shortDescription: "Projetos personalizados em câmeras, alarmes e controle de acesso.",
     heroTitle: "Segurança Eletrônica",
@@ -562,12 +560,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Projeto personalizado", description: "Cada solução é desenhada para o local.", icon: Wrench },
-      { title: "Equipamentos de qualidade", description: "Marcas confiáveis e tecnologia atualizada.", icon: Settings },
-      { title: "Instalação profissional", description: "Equipe técnica especializada.", icon: CheckCircle },
-      { title: "Integração", description: "Sistemas que conversam entre si.", icon: Monitor },
-      { title: "Manutenção", description: "Suporte técnico e preventiva.", icon: Wrench },
-      { title: "Monitoramento", description: "Possibilidade de conexão com a central SOS.", icon: Clock }
+      { title: "Projeto personalizado", description: "Cada solução é desenhada para o local.", icon: "Wrench" },
+      { title: "Equipamentos de qualidade", description: "Marcas confiáveis e tecnologia atualizada.", icon: "Settings" },
+      { title: "Instalação profissional", description: "Equipe técnica especializada.", icon: "CheckCircle" },
+      { title: "Integração", description: "Sistemas que conversam entre si.", icon: "Monitor" },
+      { title: "Manutenção", description: "Suporte técnico e preventiva.", icon: "Wrench" },
+      { title: "Monitoramento", description: "Possibilidade de conexão com a central SOS.", icon: "Clock" }
     ],
     benefits: [
       { title: "Visibilidade", description: "Câmeras em pontos estratégicos." },
@@ -586,10 +584,10 @@ export const services: Service[] = [
       { step: 6, title: "Treinamento", description: "Orientação para uso dos equipamentos." }
     ],
     targetAudience: [
-      { title: "Residências", description: "Câmeras, alarmes e cercas elétricas.", icon: Home },
-      { title: "Condomínios", description: "CFTV, controle de acesso, interfonia.", icon: Building },
-      { title: "Empresas", description: "Sistemas integrados de segurança.", icon: Building2 },
-      { title: "Indústrias", description: "Proteção de perímetro e áreas críticas.", icon: Factory }
+      { title: "Residências", description: "Câmeras, alarmes e cercas elétricas.", icon: "Home" },
+      { title: "Condomínios", description: "CFTV, controle de acesso, interfonia.", icon: "Building" },
+      { title: "Empresas", description: "Sistemas integrados de segurança.", icon: "Building2" },
+      { title: "Indústrias", description: "Proteção de perímetro e áreas críticas.", icon: "Factory" }
     ],
     technicalDifferentials: [
       "Câmeras IP de alta resolução",
@@ -615,7 +613,7 @@ export const services: Service[] = [
     name: "SOS Telecom",
     shortName: "Telecom",
     slug: "sos-telecom",
-    icon: Wifi,
+    icon: "Wifi",
     description: "Internet fibra, telefonia e infraestrutura de comunicação para suportar operações e sistemas de segurança.",
     shortDescription: "Conectividade estável para sua operação e sistemas de segurança.",
     heroTitle: "SOS Telecom",
@@ -640,12 +638,12 @@ export const services: Service[] = [
       ]
     },
     advantages: [
-      { title: "Fibra óptica", description: "Velocidade e estabilidade de conexão.", icon: Wifi },
-      { title: "Suporte local", description: "Atendimento próximo em Americana e região.", icon: HeartHandshake },
-      { title: "Integração", description: "Conectividade otimizada para sistemas SOS.", icon: Monitor },
+      { title: "Fibra óptica", description: "Velocidade e estabilidade de conexão.", icon: "Wifi" },
+      { title: "Suporte local", description: "Atendimento próximo em Americana e região.", icon: "HeartHandshake" },
+      { title: "Integração", description: "Conectividade otimizada para sistemas SOS.", icon: "Monitor" },
       { title: "Telefonia IP", description: "Comunicação profissional e econômica.", icon: Phone },
-      { title: "Infraestrutura", description: "Projeto e cabeamento estruturado.", icon: Settings },
-      { title: "Monitoramento", description: "Acompanhamento proativo da conexão.", icon: Clock }
+      { title: "Infraestrutura", description: "Projeto e cabeamento estruturado.", icon: "Settings" },
+      { title: "Monitoramento", description: "Acompanhamento proativo da conexão.", icon: "Clock" }
     ],
     benefits: [
       { title: "Estabilidade", description: "Conexão confiável para operações críticas." },
@@ -664,10 +662,10 @@ export const services: Service[] = [
       { step: 6, title: "Suporte", description: "Acompanhamento contínuo." }
     ],
     targetAudience: [
-      { title: "Empresas", description: "Conexão estável para operações.", icon: Building2 },
-      { title: "Condomínios", description: "Fibra para portaria e áreas comuns.", icon: Building },
-      { title: "Comércios", description: "Internet e telefonia para o negócio.", icon: Store },
-      { title: "Indústrias", description: "Conectividade para sistemas e gestão.", icon: Factory }
+      { title: "Empresas", description: "Conexão estável para operações.", icon: "Building2" },
+      { title: "Condomínios", description: "Fibra para portaria e áreas comuns.", icon: "Building" },
+      { title: "Comércios", description: "Internet e telefonia para o negócio.", icon: "Store" },
+      { title: "Indústrias", description: "Conectividade para sistemas e gestão.", icon: "Factory" }
     ],
     technicalDifferentials: [
       "Fibra óptica com alta disponibilidade",
@@ -690,47 +688,44 @@ export const services: Service[] = [
   }
 ]
 
-// Fake MapPin for data that doesn't have it imported
-const MapPin = Zap
-
 export const differentials = [
   {
-    icon: Award,
+    icon: "Award" as IconName,
     title: "Mais de 46 anos de mercado",
     description: "Tradição e experiência acumulada desde 1980 em segurança e tecnologia."
   },
   {
-    icon: Clock,
+    icon: "Clock" as IconName,
     title: "Operação 24/7 estruturada",
     description: "Central de monitoramento com equipe treinada e processos definidos."
   },
   {
-    icon: Settings,
+    icon: "Settings" as IconName,
     title: "Tecnologia confiável",
     description: "Equipamentos de qualidade e infraestrutura redundante para sua segurança."
   },
   {
-    icon: Lock,
+    icon: "Lock" as IconName,
     title: "Portfólio completo",
     description: "Segurança eletrônica, portaria, vigilância, monitoramento e telecom."
   },
   {
-    icon: HeartHandshake,
+    icon: "HeartHandshake" as IconName,
     title: "Atendimento humano",
     description: "Suporte próximo e comunicação direta com nossa equipe."
   },
   {
-    icon: Wrench,
+    icon: "Wrench" as IconName,
     title: "Projetos sob medida",
     description: "Cada solução é desenhada conforme a realidade do cliente."
   },
   {
-    icon: CheckCircle,
+    icon: "CheckCircle" as IconName,
     title: "Conformidade e estrutura",
     description: "Empresa regularizada com processos operacionais definidos."
   },
   {
-    icon: Zap,
+    icon: "Zap" as IconName,
     title: "Eficiência operacional",
     description: "Redução de custos com aumento de controle e padronização."
   }
@@ -745,12 +740,12 @@ export const timeline = [
 ]
 
 export const targetAudiences = [
-  { icon: Home, title: "Residências", description: "Soluções para casas e apartamentos com tecnologia e monitoramento." },
-  { icon: Building, title: "Condomínios", description: "Portaria virtual, controle de acesso e segurança integrada." },
-  { icon: Building2, title: "Empresas", description: "Proteção patrimonial com projetos sob medida." },
-  { icon: Store, title: "Comércios", description: "Alarmes, câmeras e monitoramento para lojas e estabelecimentos." },
-  { icon: Factory, title: "Indústrias", description: "Vigilância, controle de acesso e segurança perimetral." },
-  { icon: Landmark, title: "Prédios comerciais", description: "Portaria, CFTV e controle de acesso para edifícios empresariais." }
+  { icon: "Home" as IconName, title: "Residências", description: "Soluções para casas e apartamentos com tecnologia e monitoramento." },
+  { icon: "Building" as IconName, title: "Condomínios", description: "Portaria virtual, controle de acesso e segurança integrada." },
+  { icon: "Building2" as IconName, title: "Empresas", description: "Proteção patrimonial com projetos sob medida." },
+  { icon: "Store" as IconName, title: "Comércios", description: "Alarmes, câmeras e monitoramento para lojas e estabelecimentos." },
+  { icon: "Factory" as IconName, title: "Indústrias", description: "Vigilância, controle de acesso e segurança perimetral." },
+  { icon: "Landmark" as IconName, title: "Prédios comerciais", description: "Portaria, CFTV e controle de acesso para edifícios empresariais." }
 ]
 
 export const testimonials = [

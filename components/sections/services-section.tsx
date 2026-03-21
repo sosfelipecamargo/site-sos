@@ -2,9 +2,61 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import { services } from "@/lib/data"
+import { 
+  ArrowRight,
+  Monitor, 
+  Shield, 
+  Users, 
+  Building2, 
+  Car, 
+  Camera, 
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+  type LucideIcon
+} from "lucide-react"
+import { services, type IconName } from "@/lib/data"
 import { Button } from "@/components/ui/button"
+
+const iconMap: Record<IconName, LucideIcon> = {
+  Monitor,
+  Shield,
+  Users,
+  Building2,
+  Car,
+  Camera,
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+}
+
+function getIcon(name: IconName): LucideIcon {
+  return iconMap[name] || Shield
+}
 
 export function ServicesSection() {
   return (
@@ -43,7 +95,7 @@ export function ServicesSection() {
                 className="group block h-full bg-background rounded-xl p-6 border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-14 h-14 rounded-xl bg-accent flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300">
-                  <service.icon className="h-7 w-7 text-accent-foreground group-hover:text-primary-foreground transition-colors duration-300" />
+                  {(() => { const Icon = getIcon(service.icon); return <Icon className="h-7 w-7 text-accent-foreground group-hover:text-primary-foreground transition-colors duration-300" />; })()}
                 </div>
                 
                 <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">

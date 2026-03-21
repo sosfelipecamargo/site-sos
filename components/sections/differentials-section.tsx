@@ -1,7 +1,59 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { differentials } from "@/lib/data"
+import { 
+  Monitor, 
+  Shield, 
+  Users, 
+  Building2, 
+  Car, 
+  Camera, 
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+  type LucideIcon
+} from "lucide-react"
+import { differentials, type IconName } from "@/lib/data"
+
+const iconMap: Record<IconName, LucideIcon> = {
+  Monitor,
+  Shield,
+  Users,
+  Building2,
+  Car,
+  Camera,
+  Wifi,
+  Bell,
+  Home,
+  Building,
+  Factory,
+  Store,
+  Landmark,
+  Clock,
+  HeartHandshake,
+  Settings,
+  Wrench,
+  Award,
+  CheckCircle,
+  Zap,
+  Lock,
+}
+
+function getIcon(name: IconName): LucideIcon {
+  return iconMap[name] || Shield
+}
 
 export function DifferentialsSection() {
   return (
@@ -37,7 +89,7 @@ export function DifferentialsSection() {
               className="group bg-card rounded-xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <item.icon className="h-6 w-6 text-primary" />
+                {(() => { const Icon = getIcon(item.icon); return <Icon className="h-6 w-6 text-primary" />; })()}
               </div>
               <h3 className="font-semibold text-foreground mb-2">
                 {item.title}
