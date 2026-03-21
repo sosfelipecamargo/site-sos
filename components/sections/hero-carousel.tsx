@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -54,8 +54,9 @@ const textVariants = {
 
 export function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [scrollY, setScrollY] = useState(0)
+  const [parallaxY, setParallaxY] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const heroRef = useRef<HTMLElement>(null)
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -80,56 +81,68 @@ export function HeroCarousel() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Parallax scroll effect (disabled on mobile)
+  // Parallax scroll effect using JavaScript scroll event
   useEffect(() => {
     if (isMobile) return
 
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      const scrollY = window.scrollY
+      // Move image at 30% of scroll speed
+      setParallaxY(scrollY * 0.3)
     }
+
     window.addEventListener('scroll', handleScroll, { passive: true })
+    // Initial call
+    handleScroll()
+    
     return () => window.removeEventListener('scroll', handleScroll)
   }, [isMobile])
 
-  const parallaxOffset = isMobile ? 0 : scrollY * 0.3
   const slide = slides[currentSlide]
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Images with Parallax */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-          className="absolute inset-0"
-          style={{
-            transform: isMobile ? 'none' : `translateY(${parallaxOffset}px)`,
-          }}
-        >
-          <Image
-            src={slide.image}
-            alt=""
-            fill
-            className="object-cover"
-            style={{ 
-              objectPosition: 'center',
-              transform: isMobile ? 'none' : 'scale(1.3)',
-              transformOrigin: 'center center',
+    <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
+      {/* Background Images Container - All images stacked with position absolute */}
+      <div className="absolute inset-0">
+        {slides.map((s, index) => (
+          <div
+            key={s.id}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{
+              opacity: index === currentSlide ? 1 : 0,
+              zIndex: index === currentSlide ? 1 : 0,
             }}
-            priority
-            sizes="100vw"
-          />
-        </motion.div>
-      </AnimatePresence>
+          >
+            <div
+              className="absolute inset-0 w-full h-full"
+              style={{
+                transform: isMobile ? 'none' : `translateY(${parallaxY}px)`,
+              }}
+            >
+              <Image
+                src={s.image}
+                alt=""
+                fill
+                className="object-cover"
+                style={{ 
+                  objectPosition: 'center',
+                  // Scale up to allow parallax movement without showing edges
+                  transform: isMobile ? 'none' : 'scale(1.3)',
+                  transformOrigin: 'center top',
+                }}
+                priority={index === 0}
+                sizes="100vw"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/60 z-[2]" />
 
       {/* Main Content - Centralized */}
-      <div className="relative h-full flex items-center justify-center">
+      <div className="relative h-full flex items-center justify-center z-[3]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -198,7 +211,7 @@ export function HeroCarousel() {
       </div>
 
       {/* Navigation Dots */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-[4]">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -219,7 +232,7 @@ export function HeroCarousel() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-10 right-10 hidden md:block"
+        className="absolute bottom-10 right-10 hidden md:block z-[4]"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
