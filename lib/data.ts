@@ -484,7 +484,7 @@ export const services: Service[] = [
     advantages: [
       { title: "Frota própria", description: "Viaturas identificadas e rastreadas.", icon: "Car" },
       { title: "Equipes treinadas", description: "Profissionais capacitados para verificação.", icon: "Users" },
-      { title: "Cobertura regional", description: "Atuação em Americana e região.", icon: MapPin },
+      { title: "Cobertura regional", description: "Atuação em Americana e região.", icon: "Landmark" },
       { title: "Integração", description: "Acionamento direto pela central de monitoramento.", icon: "Monitor" },
       { title: "Rapidez", description: "Tempo de resposta otimizado.", icon: "Zap" },
       { title: "Rondas", description: "Passagens periódicas programadas.", icon: "Clock" }
