@@ -61,13 +61,9 @@ export function BlogSection() {
                     {post.category}
                   </span>
                   <span className="text-muted-foreground">•</span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <span className="flex items-center gap-1 text-xs text-muted-foreground" suppressHydrationWarning>
                     <Calendar className="h-3 w-3" />
-                    {new Date(post.date).toLocaleDateString('pt-BR', { 
-                      day: '2-digit', 
-                      month: 'short', 
-                      year: 'numeric' 
-                    })}
+                    {post.date}
                   </span>
                 </div>
                 

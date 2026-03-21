@@ -286,7 +286,7 @@ export const services: Service[] = [
       "Sistemas integrados de controle de acesso",
       "Equipe de porteiros treinados pela SOS",
       "Central de monitoramento como backup",
-      "Relatórios consolidados",
+      "Relat��rios consolidados",
       "Flexibilidade para ajustes"
     ],
     testimonial: {
@@ -777,7 +777,7 @@ export const blogPosts = [
     excerpt: "Descubra como a portaria virtual pode reduzir custos e aumentar a segurança do seu condomínio ou empresa.",
     category: "Portaria Virtual",
     image: "/images/blog/portaria-virtual.jpg",
-    date: "2024-01-15"
+    date: "15 jan 2024"
   },
   {
     id: 2,
@@ -786,7 +786,7 @@ export const blogPosts = [
     excerpt: "Conheça as principais inovações e tecnologias que estão transformando o mercado de segurança.",
     category: "Tecnologia",
     image: "/images/blog/tendencias.jpg",
-    date: "2024-01-10"
+    date: "10 jan 2024"
   },
   {
     id: 3,
@@ -795,7 +795,7 @@ export const blogPosts = [
     excerpt: "Guia prático para entender os tipos de alarme e escolher a melhor opção para seu negócio.",
     category: "Segurança Eletrônica",
     image: "/images/blog/alarmes.jpg",
-    date: "2024-01-05"
+    date: "05 jan 2024"
   }
 ]
 
