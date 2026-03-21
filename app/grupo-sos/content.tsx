@@ -18,8 +18,15 @@ import {
   ArrowRight
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { timeline, differentials } from "@/lib/data"
+import { timeline } from "@/lib/data"
 import { CtaSection } from "@/components/sections/cta-section"
+
+const differentialsLocal = [
+  { Icon: Award, title: "Mais de 46 anos de mercado", description: "Tradição e experiência acumulada desde 1980 em segurança e tecnologia." },
+  { Icon: Clock, title: "Operação 24/7 estruturada", description: "Central de monitoramento com equipe treinada e processos definidos." },
+  { Icon: HeartHandshake, title: "Atendimento humano", description: "Suporte próximo e comunicação direta com nossa equipe." },
+  { Icon: CheckCircle, title: "Conformidade e estrutura", description: "Empresa regularizada com processos operacionais definidos." },
+]
 
 const frentes = [
   { icon: Bell, title: "Monitoramento 24h", description: "Central de monitoramento de alarmes com resposta estruturada e viaturas próprias." },
@@ -337,7 +344,7 @@ export function GrupoSosContent() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {differentials.map((item, index) => (
+            {differentialsLocal.map((item, index) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -347,7 +354,7 @@ export function GrupoSosContent() {
                 className="bg-background rounded-xl p-6 border border-border"
               >
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <item.icon className="h-6 w-6 text-primary" />
+                  <item.Icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground text-pretty">{item.description}</p>
