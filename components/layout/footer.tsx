@@ -1,5 +1,6 @@
+"use client"
+
 import Link from "next/link"
-import Image from "next/image"
 import { Phone, Mail, MapPin, Clock, Instagram, Linkedin, Facebook, Youtube } from "lucide-react"
 
 const services = [
@@ -28,23 +29,33 @@ const socialLinks = [
   { name: "YouTube", href: "https://youtube.com/sosseguranca", Icon: Youtube },
 ]
 
+// Logo component with red dot in the O
+function SOSLogo() {
+  return (
+    <div className="flex items-center">
+      <span className="text-3xl font-bold tracking-tight text-white">S</span>
+      <span className="relative text-3xl font-bold tracking-tight text-white">
+        O
+        <span 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary"
+          aria-hidden="true"
+        />
+      </span>
+      <span className="text-3xl font-bold tracking-tight text-white">S</span>
+    </div>
+  )
+}
+
 export function Footer() {
   return (
     <footer className="bg-accent text-accent-foreground">
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-4">
             <Link href="/" className="inline-block mb-6">
-              <Image
-                src="/images/logo-sos-branco.png"
-                alt="SOS Segurança Inteligente"
-                width={100}
-                height={40}
-                className="object-contain brightness-0 invert"
-                style={{ height: 40, width: 'auto' }}
-              />
+              <SOSLogo />
             </Link>
             <p className="text-accent-foreground/70 text-sm leading-relaxed mb-6">
               Desde 1980, unindo tecnologia confiável, operação estruturada e atendimento humano para entregar segurança de verdade.
@@ -66,7 +77,7 @@ export function Footer() {
           </div>
 
           {/* Services Column */}
-          <div>
+          <div className="lg:col-span-2">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-6">Soluções</h3>
             <ul className="space-y-3">
               {services.map((service) => (
@@ -83,7 +94,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links Column */}
-          <div>
+          <div className="lg:col-span-2">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-6">Links Rápidos</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -100,7 +111,7 @@ export function Footer() {
           </div>
 
           {/* Contact Column */}
-          <div>
+          <div className="lg:col-span-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-6">Contato</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
