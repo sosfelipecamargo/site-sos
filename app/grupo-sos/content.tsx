@@ -29,20 +29,20 @@ const differentialsLocal = [
 ]
 
 const frentes = [
-  { icon: Bell, title: "Monitoramento 24h", description: "Central de monitoramento de alarmes com resposta estruturada e viaturas próprias." },
-  { icon: Monitor, title: "Portaria Virtual", description: "Controle de acesso remoto com operação 24 horas e tecnologia de ponta." },
-  { icon: Users, title: "Portaria Presencial e Híbrida", description: "Porteiros treinados e supervisionados, com ou sem apoio remoto." },
-  { icon: Shield, title: "Vigilância Patrimonial", description: "Vigilantes armados e desarmados para proteção ostensiva." },
-  { icon: Car, title: "Pronta Resposta", description: "Viaturas próprias para verificação presencial e apoio em ocorrências." },
-  { icon: Camera, title: "Segurança Eletrônica", description: "Projetos sob medida em CFTV, alarmes, cercas e controle de acesso." },
-  { icon: Wifi, title: "SOS Telecom", description: "Internet fibra e telefonia para suportar operações e sistemas de segurança." },
+  { Icon: Bell, title: "Monitoramento 24h", description: "Central de monitoramento de alarmes com resposta estruturada e viaturas próprias." },
+  { Icon: Monitor, title: "Portaria Virtual", description: "Controle de acesso remoto com operação 24 horas e tecnologia de ponta." },
+  { Icon: Users, title: "Portaria Presencial e Híbrida", description: "Porteiros treinados e supervisionados, com ou sem apoio remoto." },
+  { Icon: Shield, title: "Vigilância Patrimonial", description: "Vigilantes armados e desarmados para proteção ostensiva." },
+  { Icon: Car, title: "Pronta Resposta", description: "Viaturas próprias para verificação presencial e apoio em ocorrências." },
+  { Icon: Camera, title: "Segurança Eletrônica", description: "Projetos sob medida em CFTV, alarmes, cercas e controle de acesso." },
+  { Icon: Wifi, title: "SOS Telecom", description: "Internet fibra e telefonia para suportar operações e sistemas de segurança." },
 ]
 
 const valores = [
-  { icon: Award, title: "Tradição", description: "Mais de 46 anos de mercado com conhecimento acumulado e reputação construída." },
-  { icon: Clock, title: "Operação estruturada", description: "Processos definidos, equipes treinadas e tecnologia que funciona." },
-  { icon: HeartHandshake, title: "Atendimento humano", description: "Suporte próximo, comunicação direta e compromisso com cada cliente." },
-  { icon: CheckCircle, title: "Confiabilidade", description: "Entregamos o que prometemos, com consistência e seriedade." },
+  { Icon: Award, title: "Tradição", description: "Mais de 46 anos de mercado com conhecimento acumulado e reputação construída." },
+  { Icon: Clock, title: "Operação estruturada", description: "Processos definidos, equipes treinadas e tecnologia que funciona." },
+  { Icon: HeartHandshake, title: "Atendimento humano", description: "Suporte próximo, comunicação direta e compromisso com cada cliente." },
+  { Icon: CheckCircle, title: "Confiabilidade", description: "Entregamos o que prometemos, com consistência e seriedade." },
 ]
 
 export function GrupoSosContent() {
@@ -186,7 +186,7 @@ export function GrupoSosContent() {
                 className="bg-card rounded-xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <frente.icon className="h-6 w-6 text-primary" />
+                  <frente.Icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">{frente.title}</h3>
                 <p className="text-sm text-muted-foreground text-pretty">{frente.description}</p>
@@ -240,7 +240,7 @@ export function GrupoSosContent() {
                 className="text-center"
               >
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                  <valor.icon className="h-8 w-8 text-primary" />
+                  <valor.Icon className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">{valor.title}</h3>
                 <p className="text-muted-foreground text-pretty">{valor.description}</p>
