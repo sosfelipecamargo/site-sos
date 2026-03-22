@@ -1,5 +1,5 @@
 "use client"
-
+// v2 - Pure CSS fog animation, no Three.js dependencies
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, MessageCircle } from "lucide-react"

@@ -18,9 +18,9 @@ export default function HomePage() {
       <main>
         <HeroCarousel />
         <AboutSection />
+        <TargetAudienceSection />
         <DifferentialsSection />
         <ServicesSection />
-        <TargetAudienceSection />
         <ClientsSection />
         <TestimonialsSection />
         <BlogSection />

@@ -79,7 +79,7 @@ export function Footer() {
           {/* Services Column */}
           <div className="lg:col-span-2">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-6">Soluções</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1.5">
               {services.map((service) => (
                 <li key={service.href}>
                   <Link
@@ -96,7 +96,7 @@ export function Footer() {
           {/* Quick Links Column */}
           <div className="lg:col-span-2">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-6">Links Rápidos</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1.5">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
