@@ -129,6 +129,7 @@ export function HeroCarousel() {
                   // Scale up to allow parallax movement without showing edges
                   transform: isMobile ? 'none' : 'scale(1.3)',
                   transformOrigin: 'center top',
+                  filter: 'grayscale(100%)',
                 }}
                 priority={index === 0}
                 sizes="100vw"
