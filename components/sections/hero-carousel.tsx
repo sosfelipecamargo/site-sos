@@ -22,7 +22,7 @@ const slides = [
     subtitle: "Portaria Virtual com operação 24h.",
     cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
     ctaSecondary: null,
-    image: "/images/hero-slide-2.jpg",
+    image: "/images/hero/hero-monitoramento.jpg",
   },
   {
     id: 3,
