@@ -15,8 +15,8 @@ function FloatingPaths({ position }: { position: number }) {
     } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
       684 - i * 5 * position
     } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    strokeColor: `rgba(227, 6, 19, ${0.02 + i * 0.01})`,
-    strokeWidth: 0.5 + i * 0.03,
+    strokeColor: `rgba(227, 6, 19, ${0.1 + i * 0.02})`,
+    strokeWidth: 0.8 + i * 0.05,
     duration: 20 + i * 0.5,
   }))
 
@@ -35,11 +35,11 @@ function FloatingPaths({ position }: { position: number }) {
             d={path.d}
             stroke={path.strokeColor}
             strokeWidth={path.strokeWidth}
-            strokeOpacity={0.2 + path.id * 0.02}
-            initial={{ pathLength: 0.3, opacity: 0.4 }}
+            strokeOpacity={0.4 + path.id * 0.03}
+            initial={{ pathLength: 0.3, opacity: 0.6 }}
             animate={{
               pathLength: 1,
-              opacity: [0.2, 0.5, 0.2],
+              opacity: [0.4, 0.8, 0.4],
               pathOffset: [0, 1, 0],
             }}
             transition={{

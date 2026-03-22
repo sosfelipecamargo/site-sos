@@ -46,7 +46,7 @@ export function Footer() {
                 alt="SOS Segurança Inteligente"
                 width={120}
                 height={48}
-                className="h-12 w-auto"
+                style={{ height: 48, width: 'auto' }}
               />
             </Link>
             <p className="text-accent-foreground/70 text-sm leading-relaxed mb-6">
