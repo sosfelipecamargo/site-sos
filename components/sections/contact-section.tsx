@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Send, CheckCircle, Loader2, User, Phone, Mail, MessageSquare } from "lucide-react"
+import { Send, CheckCircle, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
@@ -37,9 +37,9 @@ export function ContactSection() {
 
   return (
     <section id="contato" className="relative">
-      <div className="flex flex-col lg:flex-row min-h-[800px]">
+      <div className="flex flex-col lg:flex-row">
         {/* Left Column - Image (hidden on mobile) */}
-        <div className="hidden lg:block lg:w-[40%] relative">
+        <div className="hidden lg:block lg:w-[40%] relative min-h-[500px]">
           <Image
             src="/images/contact-bg.jpg"
             alt="Central de monitoramento SOS"
@@ -47,114 +47,102 @@ export function ContactSection() {
             className="object-cover"
             sizes="40vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0a0a0a]/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#f4f4f4]/30" />
         </div>
 
         {/* Right Column - Form */}
-        <div className="w-full lg:w-[60%] bg-[#0a0a0a] px-6 sm:px-10 lg:px-16 xl:px-24 py-16 lg:py-20">
+        <div className="w-full lg:w-[60%] bg-[#f4f4f4] px-6 sm:px-10 lg:px-14 xl:px-20 py-10 lg:py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="max-w-xl"
+            className="max-w-lg"
           >
-            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-3">
-              Contato
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               Fale com a SOS
             </h2>
-            <p className="text-gray-400 text-lg mb-10">
+            <p className="text-gray-600 mb-6">
               Entre em contato para tirar dúvidas, solicitar orçamentos ou 
               agendar uma visita técnica.
             </p>
 
             {isSubmitted ? (
-              <div className="py-12 text-center">
+              <div className="py-8 text-center">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-6"
+                  className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4"
                 >
-                  <CheckCircle className="h-10 w-10 text-green-500" />
+                  <CheckCircle className="h-8 w-8 text-green-500" />
                 </motion.div>
-                <h3 className="text-2xl font-semibold text-white mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   Mensagem enviada!
                 </h3>
-                <p className="text-gray-400 text-lg">
+                <p className="text-gray-600">
                   Recebemos sua mensagem e entraremos em contato em breve.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name and Phone */}
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-sm font-medium text-gray-300">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="name" className="text-sm font-medium text-gray-700">
                       Nome <span className="text-primary">*</span>
                     </Label>
-                    <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" />
-                      <input 
-                        id="name" 
-                        type="text"
-                        placeholder="Seu nome completo" 
-                        required 
-                        className="w-full pl-12 pr-4 py-3.5 rounded-lg bg-[#141414] border border-gray-800 text-white placeholder:text-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
-                      />
-                    </div>
+                    <input 
+                      id="name" 
+                      type="text"
+                      placeholder="Seu nome completo" 
+                      required 
+                      className="w-full px-3 py-2.5 rounded-md bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-sm font-medium text-gray-300">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
                       Telefone <span className="text-primary">*</span>
                     </Label>
-                    <div className="relative">
-                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" />
-                      <input 
-                        id="phone" 
-                        type="tel" 
-                        placeholder="(00) 00000-0000" 
-                        required 
-                        className="w-full pl-12 pr-4 py-3.5 rounded-lg bg-[#141414] border border-gray-800 text-white placeholder:text-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
-                      />
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Email */}
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-medium text-gray-300">
-                    E-mail <span className="text-primary">*</span>
-                  </Label>
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" />
                     <input 
-                      id="email" 
-                      type="email" 
-                      placeholder="seu@email.com" 
+                      id="phone" 
+                      type="tel" 
+                      placeholder="(00) 00000-0000" 
                       required 
-                      className="w-full pl-12 pr-4 py-3.5 rounded-lg bg-[#141414] border border-gray-800 text-white placeholder:text-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
+                      className="w-full px-3 py-2.5 rounded-md bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
                     />
                   </div>
                 </div>
                 
+                {/* Email */}
+                <div className="space-y-1.5">
+                  <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                    E-mail <span className="text-primary">*</span>
+                  </Label>
+                  <input 
+                    id="email" 
+                    type="email" 
+                    placeholder="seu@email.com" 
+                    required 
+                    className="w-full px-3 py-2.5 rounded-md bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
+                  />
+                </div>
+                
                 {/* Service */}
-                <div className="space-y-2">
-                  <Label htmlFor="service" className="text-sm font-medium text-gray-300">
+                <div className="space-y-1.5">
+                  <Label htmlFor="service" className="text-sm font-medium text-gray-700">
                     Serviço de interesse
                   </Label>
                   <Select>
-                    <SelectTrigger className="w-full px-4 py-3.5 h-auto rounded-lg bg-[#141414] border border-gray-800 text-white focus:border-primary/50 focus:ring-1 focus:ring-primary/50 [&>span]:text-gray-500 data-[state=open]:border-primary/50">
+                    <SelectTrigger className="w-full px-3 py-2.5 h-auto rounded-md bg-white border border-gray-300 text-gray-900 focus:border-primary focus:ring-1 focus:ring-primary [&>span]:text-gray-400 data-[state=open]:border-primary text-sm">
                       <SelectValue placeholder="Selecione um serviço" />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#141414] border-gray-800">
+                    <SelectContent className="bg-white border-gray-200">
                       {services.map((service) => (
                         <SelectItem 
                           key={service} 
                           value={service.toLowerCase().replace(/\s+/g, '-')}
-                          className="text-gray-300 focus:bg-gray-800 focus:text-white"
+                          className="text-gray-700 focus:bg-gray-100 focus:text-gray-900"
                         >
                           {service}
                         </SelectItem>
@@ -164,41 +152,38 @@ export function ContactSection() {
                 </div>
                 
                 {/* Message */}
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-sm font-medium text-gray-300">
+                <div className="space-y-1.5">
+                  <Label htmlFor="message" className="text-sm font-medium text-gray-700">
                     Mensagem <span className="text-primary">*</span>
                   </Label>
-                  <div className="relative">
-                    <MessageSquare className="absolute left-4 top-4 h-5 w-5 text-gray-500" />
-                    <textarea 
-                      id="message" 
-                      placeholder="Como podemos ajudar?" 
-                      rows={4}
-                      required 
-                      className="w-full pl-12 pr-4 py-3.5 rounded-lg bg-[#141414] border border-gray-800 text-white placeholder:text-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all resize-none"
-                    />
-                  </div>
+                  <textarea 
+                    id="message" 
+                    placeholder="Como podemos ajudar?" 
+                    rows={3}
+                    required 
+                    className="w-full px-3 py-2.5 rounded-md bg-white border border-gray-300 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none text-sm"
+                  />
                 </div>
                 
                 {/* Checkboxes */}
-                <div className="space-y-4 pt-2">
-                  <div className="flex items-start gap-3">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2.5">
                     <Checkbox 
                       id="lgpd" 
                       required 
-                      className="mt-0.5 border-gray-600 bg-[#141414] data-[state=checked]:bg-primary data-[state=checked]:border-primary" 
+                      className="mt-0.5 border-gray-400 bg-white data-[state=checked]:bg-primary data-[state=checked]:border-primary" 
                     />
-                    <Label htmlFor="lgpd" className="text-sm text-gray-400 leading-relaxed cursor-pointer">
+                    <Label htmlFor="lgpd" className="text-xs text-gray-600 leading-relaxed cursor-pointer">
                       Concordo com a coleta e uso dos meus dados conforme a Política de Privacidade da SOS (LGPD). <span className="text-primary">*</span>
                     </Label>
                   </div>
                   
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-2.5">
                     <Checkbox 
                       id="marketing" 
-                      className="mt-0.5 border-gray-600 bg-[#141414] data-[state=checked]:bg-primary data-[state=checked]:border-primary" 
+                      className="mt-0.5 border-gray-400 bg-white data-[state=checked]:bg-primary data-[state=checked]:border-primary" 
                     />
-                    <Label htmlFor="marketing" className="text-sm text-gray-400 leading-relaxed cursor-pointer">
+                    <Label htmlFor="marketing" className="text-xs text-gray-600 leading-relaxed cursor-pointer">
                       Aceito receber comunicações sobre novidades, conteúdos e ofertas da SOS.
                     </Label>
                   </div>
@@ -207,19 +192,18 @@ export function ContactSection() {
                 {/* Submit Button */}
                 <Button 
                   type="submit" 
-                  size="lg" 
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-6 text-base rounded-lg mt-4"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5 text-sm rounded-md mt-2"
                   disabled={isLoading}
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Enviando...
                     </>
                   ) : (
                     <>
                       Enviar mensagem
-                      <Send className="ml-2 h-5 w-5" />
+                      <Send className="ml-2 h-4 w-4" />
                     </>
                   )}
                 </Button>
