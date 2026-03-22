@@ -688,49 +688,6 @@ export const services: Service[] = [
   }
 ]
 
-export const differentials: { icon: IconName; title: string; description: string }[] = [
-  {
-    icon: "Award",
-    title: "Mais de 46 anos de mercado",
-    description: "Tradição e experiência acumulada desde 1980 em segurança e tecnologia."
-  },
-  {
-    icon: "Clock",
-    title: "Operação 24/7 estruturada",
-    description: "Central de monitoramento com equipe treinada e processos definidos."
-  },
-  {
-    icon: "Settings",
-    title: "Tecnologia confiável",
-    description: "Equipamentos de qualidade e infraestrutura redundante para sua segurança."
-  },
-  {
-    icon: "Lock",
-    title: "Portfólio completo",
-    description: "Segurança eletrônica, portaria, vigilância, monitoramento e telecom."
-  },
-  {
-    icon: "HeartHandshake",
-    title: "Atendimento humano",
-    description: "Suporte próximo e comunicação direta com nossa equipe."
-  },
-  {
-    icon: "Wrench",
-    title: "Projetos sob medida",
-    description: "Cada solução é desenhada conforme a realidade do cliente."
-  },
-  {
-    icon: "CheckCircle",
-    title: "Conformidade e estrutura",
-    description: "Empresa regularizada com processos operacionais definidos."
-  },
-  {
-    icon: "Zap",
-    title: "Eficiência operacional",
-    description: "Redução de custos com aumento de controle e padronização."
-  }
-]
-
 export const timeline = [
   { year: "1980", title: "Fundação da SOS", description: "Início das atividades em Americana/SP." },
   { year: "1993", title: "Monitoramento 24/7", description: "Implantação da central de monitoramento de alarmes." },
@@ -739,14 +696,7 @@ export const timeline = [
   { year: "2025", title: "Modernização", description: "Renovação tecnológica do monitoramento e sistemas." }
 ]
 
-export const targetAudiences: { icon: IconName; title: string; description: string }[] = [
-  { icon: "Home", title: "Residências", description: "Soluções para casas e apartamentos com tecnologia e monitoramento." },
-  { icon: "Building", title: "Condomínios", description: "Portaria virtual, controle de acesso e segurança integrada." },
-  { icon: "Building2", title: "Empresas", description: "Proteção patrimonial com projetos sob medida." },
-  { icon: "Store", title: "Comércios", description: "Alarmes, câmeras e monitoramento para lojas e estabelecimentos." },
-  { icon: "Factory", title: "Indústrias", description: "Vigilância, controle de acesso e segurança perimetral." },
-  { icon: "Landmark", title: "Prédios comerciais", description: "Portaria, CFTV e controle de acesso para edifícios empresariais." }
-]
+
 
 export const testimonials = [
   {

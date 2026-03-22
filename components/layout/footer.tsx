@@ -22,10 +22,10 @@ const quickLinks = [
 ]
 
 const socialLinks = [
-  { name: "Instagram", href: "https://instagram.com/sosseguranca", icon: Instagram },
-  { name: "LinkedIn", href: "https://linkedin.com/company/sosseguranca", icon: Linkedin },
-  { name: "Facebook", href: "https://facebook.com/sosseguranca", icon: Facebook },
-  { name: "YouTube", href: "https://youtube.com/sosseguranca", icon: Youtube },
+  { name: "Instagram", href: "https://instagram.com/sosseguranca", Icon: Instagram },
+  { name: "LinkedIn", href: "https://linkedin.com/company/sosseguranca", Icon: Linkedin },
+  { name: "Facebook", href: "https://facebook.com/sosseguranca", Icon: Facebook },
+  { name: "YouTube", href: "https://youtube.com/sosseguranca", Icon: Youtube },
 ]
 
 export function Footer() {
@@ -59,7 +59,7 @@ export function Footer() {
                   className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary transition-colors"
                   aria-label={social.name}
                 >
-                  <social.icon className="h-5 w-5" />
+                  <social.Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>

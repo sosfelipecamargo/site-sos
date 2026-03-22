@@ -100,7 +100,7 @@ export function ClientsSection() {
               key={`${client.name}-${index}`}
               className="flex-shrink-0 mx-4"
             >
-              <div className="group flex items-center justify-center px-6 py-4 bg-white rounded-xl border border-gray-100 hover:border-gray-200 transition-all duration-300 h-24 w-40">
+              <div className="group flex items-center justify-center px-4 py-2 h-20 w-36">
                 <Image
                   src={client.logo}
                   alt={client.name}
