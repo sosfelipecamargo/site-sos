@@ -1,106 +1,42 @@
 "use client"
 
 import Link from "next/link"
-import { motion, useMotionValue, useTransform, animate } from "framer-motion"
+import { motion } from "framer-motion"
 import { ArrowRight, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useEffect, useRef } from "react"
-
-// Paper shader background component
-function PaperShaderBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-    
-    const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth * 2
-      canvas.height = canvas.offsetHeight * 2
-      ctx.scale(2, 2)
-    }
-    
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
-    
-    let animationId: number
-    let time = 0
-    
-    const render = () => {
-      time += 0.005
-      
-      const width = canvas.offsetWidth
-      const height = canvas.offsetHeight
-      
-      // Dark gradient base
-      const gradient = ctx.createLinearGradient(0, 0, width, height)
-      gradient.addColorStop(0, '#0a0a0a')
-      gradient.addColorStop(0.5, '#111111')
-      gradient.addColorStop(1, '#0a0a0a')
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, width, height)
-      
-      // Add subtle noise texture
-      const imageData = ctx.getImageData(0, 0, width * 2, height * 2)
-      const data = imageData.data
-      
-      for (let i = 0; i < data.length; i += 4) {
-        const noise = (Math.random() - 0.5) * 15
-        data[i] = Math.max(0, Math.min(255, data[i] + noise))
-        data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + noise))
-        data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + noise))
-      }
-      
-      ctx.putImageData(imageData, 0, 0)
-      
-      // Add subtle flowing lines
-      ctx.strokeStyle = 'rgba(227, 6, 19, 0.03)'
-      ctx.lineWidth = 1
-      
-      for (let i = 0; i < 5; i++) {
-        ctx.beginPath()
-        const yOffset = (i * height / 4) + Math.sin(time + i) * 20
-        ctx.moveTo(0, yOffset)
-        
-        for (let x = 0; x < width; x += 10) {
-          const y = yOffset + Math.sin((x * 0.01) + time + i) * 30
-          ctx.lineTo(x, y)
-        }
-        ctx.stroke()
-      }
-      
-      animationId = requestAnimationFrame(render)
-    }
-    
-    render()
-    
-    return () => {
-      window.removeEventListener('resize', resizeCanvas)
-      cancelAnimationFrame(animationId)
-    }
-  }, [])
-  
-  return (
-    <canvas 
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ filter: 'blur(0.5px)' }}
-    />
-  )
-}
 
 export function CtaSection() {
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden">
-      {/* Paper shader background */}
-      <PaperShaderBackground />
+    <section className="py-20 lg:py-28 relative overflow-hidden bg-[#070707]">
+      {/* White fog pulse effect */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%)',
+          animation: 'fogPulse 6s ease-in-out infinite',
+        }}
+      />
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 60%)',
+          animation: 'fogPulse 8s ease-in-out infinite 2s',
+        }}
+      />
       
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(227,6,19,0.08)_0%,_transparent_70%)]" />
+      {/* Keyframes for fog animation */}
+      <style jsx>{`
+        @keyframes fogPulse {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.1);
+          }
+        }
+      `}</style>
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
