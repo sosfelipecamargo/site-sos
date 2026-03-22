@@ -1,6 +1,5 @@
 "use client"
 
-// CTA Section - Pure CSS fog animation
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, MessageCircle } from "lucide-react"
