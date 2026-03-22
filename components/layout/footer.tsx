@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, Mail, MapPin, Clock, Instagram, Linkedin, Facebook, Youtube } from "lucide-react"
 
 const services = [
@@ -29,22 +30,7 @@ const socialLinks = [
   { name: "YouTube", href: "https://youtube.com/sosseguranca", Icon: Youtube },
 ]
 
-// Logo component with red dot in the O
-function SOSLogo() {
-  return (
-    <div className="flex items-center">
-      <span className="text-3xl font-bold tracking-tight text-white">S</span>
-      <span className="relative text-3xl font-bold tracking-tight text-white">
-        O
-        <span 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary"
-          aria-hidden="true"
-        />
-      </span>
-      <span className="text-3xl font-bold tracking-tight text-white">S</span>
-    </div>
-  )
-}
+
 
 export function Footer() {
   return (
@@ -55,7 +41,13 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <Link href="/" className="inline-block mb-6">
-              <SOSLogo />
+              <Image
+                src="/images/logo-sos-branco.png"
+                alt="SOS Segurança Inteligente"
+                width={120}
+                height={48}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="text-accent-foreground/70 text-sm leading-relaxed mb-6">
               Desde 1980, unindo tecnologia confiável, operação estruturada e atendimento humano para entregar segurança de verdade.
