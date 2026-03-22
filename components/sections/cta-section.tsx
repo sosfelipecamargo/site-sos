@@ -1,36 +1,66 @@
 "use client"
-// v2 - Pure CSS fog animation, no Three.js dependencies
+
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+function FloatingPaths({ position }: { position: number }) {
+  const paths = Array.from({ length: 36 }, (_, i) => ({
+    id: i,
+    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
+      380 - i * 5 * position
+    } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
+      152 - i * 5 * position
+    } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
+      684 - i * 5 * position
+    } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+    strokeColor: `rgba(227, 6, 19, ${0.02 + i * 0.01})`,
+    strokeWidth: 0.5 + i * 0.03,
+    duration: 20 + i * 0.5,
+  }))
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      <svg
+        className="w-full h-full"
+        viewBox="0 0 696 316"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <title>Background Paths</title>
+        {paths.map((path) => (
+          <motion.path
+            key={path.id}
+            d={path.d}
+            stroke={path.strokeColor}
+            strokeWidth={path.strokeWidth}
+            strokeOpacity={0.2 + path.id * 0.02}
+            initial={{ pathLength: 0.3, opacity: 0.4 }}
+            animate={{
+              pathLength: 1,
+              opacity: [0.2, 0.5, 0.2],
+              pathOffset: [0, 1, 0],
+            }}
+            transition={{
+              duration: path.duration,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </svg>
+    </div>
+  )
+}
+
 export function CtaSection() {
   return (
     <section className="relative py-24 lg:py-32 bg-[#070707] overflow-hidden">
-      {/* Animated fog effect - CSS only */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Primary fog layer */}
-        <div 
-          className="absolute inset-0 animate-[fogPulse1_8s_ease-in-out_infinite]"
-          style={{
-            background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 60%)',
-          }}
-        />
-        {/* Secondary fog layer */}
-        <div 
-          className="absolute inset-0 animate-[fogPulse2_10s_ease-in-out_infinite]"
-          style={{
-            background: 'radial-gradient(ellipse 60% 40% at 40% 60%, rgba(255,255,255,0.04) 0%, transparent 50%)',
-          }}
-        />
-        {/* Tertiary fog layer */}
-        <div 
-          className="absolute inset-0 animate-[fogPulse3_12s_ease-in-out_infinite]"
-          style={{
-            background: 'radial-gradient(ellipse 70% 45% at 60% 40%, rgba(255,255,255,0.03) 0%, transparent 55%)',
-          }}
-        />
+      {/* Animated paths background */}
+      <div className="absolute inset-0 z-0">
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
       </div>
 
       {/* Content */}
@@ -64,7 +94,7 @@ export function CtaSection() {
               asChild 
               size="lg" 
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 hover:text-white font-semibold px-8 py-6 text-base"
+              className="border-white text-white bg-transparent hover:bg-white/10 hover:text-white font-semibold px-8 py-6 text-base"
             >
               <Link href="https://wa.me/551932222500" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 h-5 w-5" />
