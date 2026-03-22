@@ -37,7 +37,7 @@ const blogPosts = [
 
 export function BlogSection() {
   return (
-    <section className="py-16 lg:py-24 bg-[#0a0a0a]">
+    <section className="py-16 lg:py-24 bg-[#f4f4f4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-6">
           {blogPosts.map((post, index) => (
@@ -50,8 +50,8 @@ export function BlogSection() {
               className="group"
             >
               <Link href={`/blog/${post.slug}`} className="block">
-                {/* Glass Card */}
-                <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/10">
+                {/* Glass Card - Light Theme */}
+                <div className="relative overflow-hidden rounded-2xl bg-white/70 backdrop-blur-md border border-gray-200/50 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300">
                   {/* Image */}
                   <div className="aspect-[16/10] relative overflow-hidden">
                     <Image
@@ -61,11 +61,11 @@ export function BlogSection() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-xs font-medium bg-white/10 backdrop-blur-sm rounded-full text-white border border-white/20">
+                      <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-gray-800 border border-gray-200">
                         {post.category}
                       </span>
                     </div>
@@ -74,17 +74,17 @@ export function BlogSection() {
                   {/* Content */}
                   <div className="p-5">
                     {/* Date */}
-                    <span className="text-xs text-white/50 uppercase tracking-wider">
+                    <span className="text-xs text-gray-500 uppercase tracking-wider">
                       {post.date}
                     </span>
                     
                     {/* Title */}
-                    <h3 className="mt-2 text-lg font-semibold text-white group-hover:text-primary transition-colors text-balance leading-snug">
+                    <h3 className="mt-2 text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors text-balance leading-snug">
                       {post.title}
                     </h3>
                     
                     {/* Excerpt */}
-                    <p className="mt-2 text-sm text-white/60 line-clamp-2">
+                    <p className="mt-2 text-sm text-gray-600 line-clamp-2">
                       {post.excerpt}
                     </p>
                     
