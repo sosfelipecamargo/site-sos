@@ -22,7 +22,7 @@ const slides = [
     subtitle: "Portaria Virtual com operação 24h.",
     cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
     ctaSecondary: null,
-    image: "/images/hero-slide-2.jpg",
+    image: "/images/hero/hero-monitoramento.jpg",
   },
   {
     id: 3,
@@ -129,6 +129,7 @@ export function HeroCarousel() {
                   // Scale up to allow parallax movement without showing edges
                   transform: isMobile ? 'none' : 'scale(1.3)',
                   transformOrigin: 'center top',
+                  filter: 'grayscale(100%)',
                 }}
                 priority={index === 0}
                 sizes="100vw"
