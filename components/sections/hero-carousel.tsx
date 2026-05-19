@@ -182,18 +182,9 @@ export function HeroCarousel() {
                 {slide.title}
               </motion.h1>
 
-              {/* Subtitle */}
-              <motion.p
-                custom={2}
-                variants={textVariants}
-                className="mt-6 text-lg sm:text-xl text-white/70 max-w-3xl text-pretty"
-              >
-                {slide.subtitle}
-              </motion.p>
-
               {/* CTA */}
               <motion.div
-                custom={3}
+                custom={2}
                 variants={textVariants}
                 className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
               >
