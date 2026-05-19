@@ -9,21 +9,20 @@ import { cn } from "@/lib/utils"
 
 const services = [
   { name: "Portaria Virtual", href: "/solucoes/portaria-virtual" },
-  { name: "Monitoramento de Alarmes", href: "/solucoes/monitoramento-de-alarmes" },
-  { name: "Portaria Híbrida", href: "/solucoes/portaria-hibrida" },
-  { name: "Portaria Presencial", href: "/solucoes/portaria-presencial" },
+  { name: "Monitoramento", href: "/solucoes/monitoramento-de-alarmes" },
   { name: "Vigilância Patrimonial", href: "/solucoes/vigilancia-patrimonial" },
-  { name: "Viaturas de Pronta Resposta", href: "/solucoes/viaturas-pronta-resposta" },
   { name: "Segurança Eletrônica", href: "/solucoes/seguranca-eletronica" },
-  { name: "SOS Telecom", href: "/solucoes/sos-telecom" },
+  { name: "Viaturas", href: "/solucoes/viaturas-pronta-resposta" },
+  { name: "Internet Fibra Óptica", href: "/solucoes/sos-telecom" },
+  { name: "Portaria Presencial", href: "/solucoes/portaria-presencial" },
 ]
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Grupo SOS", href: "/grupo-sos" },
-  { name: "Soluções", href: "#", hasDropdown: true },
-  { name: "Blog", href: "/blog" },
-  { name: "Contato", href: "/contato" },
+  { name: "HOME", href: "/" },
+  { name: "GRUPO SOS", href: "/grupo-sos" },
+  { name: "SOLUÇÕES", href: "#", hasDropdown: true },
+  { name: "BLOG", href: "/blog" },
+  { name: "CONTATO", href: "/contato" },
 ]
 
 export function Header() {
@@ -56,28 +55,28 @@ export function Header() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
+            ? "bg-white/80 backdrop-blur-md border-b border-gray-200/50"
+            : "bg-black/20 backdrop-blur-sm"
         )}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex h-14 items-center justify-between">
             {/* Logo - Left */}
             <Link href="/" className="relative z-10 flex-shrink-0">
               <Image
                 src={isScrolled ? "/images/logo-sos-preto.png" : "/images/logo-sos-branco.png"}
                 alt="SOS Segurança Inteligente"
-                width={120}
-                height={48}
+                width={100}
+                height={40}
                 className="object-contain"
-                style={{ height: 40, width: 'auto' }}
+                style={{ height: 32, width: 'auto' }}
                 priority
               />
             </Link>
 
             {/* Desktop Navigation - Centered */}
             <nav className="hidden lg:flex items-center justify-center absolute left-1/2 -translate-x-1/2">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-8">
                 {navigation.map((item) => (
                   <div key={item.name} className="relative">
                     {item.hasDropdown ? (
@@ -88,41 +87,75 @@ export function Header() {
                       >
                         <button
                           className={cn(
-                            "relative flex items-center gap-1 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
+                            "relative flex items-center gap-1 py-2 text-[13px] font-normal tracking-[0.1em] transition-colors duration-200 group",
                             isScrolled
-                              ? "text-foreground/70 hover:text-foreground"
-                              : "text-white/70 hover:text-white"
+                              ? "text-gray-600 hover:text-gray-900"
+                              : "text-white/80 hover:text-white"
                           )}
                         >
-                          <span className="relative z-10">{item.name}</span>
+                          <span className="relative">
+                            {item.name}
+                            <span className={cn(
+                              "absolute -bottom-0.5 left-0 w-full h-px transition-transform duration-200 origin-left scale-x-0 group-hover:scale-x-100",
+                              isScrolled ? "bg-gray-900" : "bg-white"
+                            )} />
+                          </span>
                           <ChevronDown className={cn(
-                            "h-4 w-4 transition-transform duration-200 relative z-10",
+                            "h-3.5 w-3.5 transition-transform duration-200",
                             isDropdownOpen && "rotate-180"
                           )} />
-                          {/* Glow effect */}
-                          <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/20 transition-colors duration-200" />
                         </button>
                         
                         <AnimatePresence>
                           {isDropdownOpen && (
                             <motion.div
-                              initial={{ opacity: 0, y: 10 }}
+                              initial={{ opacity: 0, y: 8 }}
                               animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: 10 }}
-                              transition={{ duration: 0.2 }}
-                              className="absolute left-1/2 -translate-x-1/2 top-full pt-2"
+                              exit={{ opacity: 0, y: 8 }}
+                              transition={{ duration: 0.15 }}
+                              className="absolute left-1/2 -translate-x-1/2 top-full pt-4"
                             >
-                              <div className="w-64 rounded-xl bg-white border border-border shadow-xl p-2">
-                                {services.map((service) => (
-                                  <Link
-                                    key={service.href}
-                                    href={service.href}
-                                    className="relative block px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground rounded-lg transition-colors group"
-                                  >
-                                    <span className="relative z-10">{service.name}</span>
-                                    <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/10 transition-colors duration-200" />
-                                  </Link>
-                                ))}
+                              <div className="w-[500px] rounded-lg bg-white shadow-lg shadow-black/10 border border-gray-100 p-8">
+                                <div className="flex gap-8">
+                                  {/* Column 1 */}
+                                  <div className="flex-1">
+                                    <p className="text-[11px] font-normal tracking-[0.15em] text-gray-400 uppercase mb-4">
+                                      Por Solução
+                                    </p>
+                                    <div className="space-y-3">
+                                      {services.slice(0, 4).map((service) => (
+                                        <Link
+                                          key={service.href}
+                                          href={service.href}
+                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors"
+                                        >
+                                          {service.name}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Vertical Divider */}
+                                  <div className="w-px bg-gray-200" />
+                                  
+                                  {/* Column 2 */}
+                                  <div className="flex-1">
+                                    <p className="text-[11px] font-normal tracking-[0.15em] text-gray-400 uppercase mb-4">
+                                      Mais Soluções
+                                    </p>
+                                    <div className="space-y-3">
+                                      {services.slice(4).map((service) => (
+                                        <Link
+                                          key={service.href}
+                                          href={service.href}
+                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors"
+                                        >
+                                          {service.name}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             </motion.div>
                           )}
@@ -132,15 +165,19 @@ export function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          "relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group",
+                          "relative py-2 text-[13px] font-normal tracking-[0.1em] transition-colors duration-200 group",
                           isScrolled
-                            ? "text-foreground/70 hover:text-foreground"
-                            : "text-white/70 hover:text-white"
+                            ? "text-gray-600 hover:text-gray-900"
+                            : "text-white/80 hover:text-white"
                         )}
                       >
-                        <span className="relative z-10">{item.name}</span>
-                        {/* Glow effect */}
-                        <span className="absolute inset-0 rounded-lg bg-primary/0 group-hover:bg-primary/20 transition-colors duration-200" />
+                        <span className="relative">
+                          {item.name}
+                          <span className={cn(
+                            "absolute -bottom-0.5 left-0 w-full h-px transition-transform duration-200 origin-left scale-x-0 group-hover:scale-x-100",
+                            isScrolled ? "bg-gray-900" : "bg-white"
+                          )} />
+                        </span>
                       </Link>
                     )}
                   </div>
@@ -152,7 +189,12 @@ export function Header() {
             <div className="hidden lg:block">
               <Link 
                 href="/contato"
-                className="inline-flex items-center px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
+                className={cn(
+                  "inline-flex items-center px-5 py-2 text-[12px] font-normal tracking-[0.1em] uppercase border rounded-sm transition-colors duration-200",
+                  isScrolled
+                    ? "border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
+                    : "border-white text-white hover:bg-white hover:text-gray-900"
+                )}
               >
                 Fale Conosco
               </Link>
@@ -163,14 +205,14 @@ export function Header() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "lg:hidden relative z-10 p-2",
-                isScrolled ? "text-foreground" : "text-white"
+                isScrolled ? "text-gray-900" : "text-white"
               )}
               aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             >
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
+                <X className="h-5 w-5" />
               ) : (
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5" />
               )}
             </button>
           </div>
@@ -187,28 +229,28 @@ export function Header() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
             
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-xl"
+              className="absolute right-0 top-0 bottom-0 w-full max-w-xs bg-white"
             >
-              <div className="flex flex-col h-full pt-24 pb-8 px-6 overflow-y-auto">
-                <nav className="flex flex-col gap-2">
+              <div className="flex flex-col h-full pt-20 pb-8 px-6 overflow-y-auto">
+                <nav className="flex flex-col gap-1">
                   {navigation.map((item) => (
                     <div key={item.name}>
                       {item.hasDropdown ? (
                         <div>
                           <button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="flex items-center justify-between w-full px-4 py-3 text-lg font-medium text-foreground rounded-lg hover:bg-secondary/50 transition-colors"
+                            className="flex items-center justify-between w-full py-3 text-[13px] font-normal tracking-[0.1em] text-gray-900 transition-colors"
                           >
                             {item.name}
                             <ChevronDown className={cn(
-                              "h-5 w-5 transition-transform duration-200",
+                              "h-4 w-4 transition-transform duration-200",
                               isDropdownOpen && "rotate-180"
                             )} />
                           </button>
@@ -222,13 +264,13 @@ export function Header() {
                                 transition={{ duration: 0.2 }}
                                 className="overflow-hidden"
                               >
-                                <div className="pl-4 py-2 space-y-1">
+                                <div className="pl-4 py-2 space-y-2 border-l border-gray-200">
                                   {services.map((service) => (
                                     <Link
                                       key={service.href}
                                       href={service.href}
                                       onClick={() => setIsMobileMenuOpen(false)}
-                                      className="block px-4 py-2.5 text-base text-foreground/70 hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+                                      className="block py-2 text-sm text-gray-600 hover:text-gray-900 hover:underline transition-colors"
                                     >
                                       {service.name}
                                     </Link>
@@ -242,7 +284,7 @@ export function Header() {
                         <Link
                           href={item.href}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block px-4 py-3 text-lg font-medium text-foreground rounded-lg hover:bg-secondary/50 transition-colors"
+                          className="block py-3 text-[13px] font-normal tracking-[0.1em] text-gray-900 hover:underline transition-colors"
                         >
                           {item.name}
                         </Link>
@@ -255,7 +297,7 @@ export function Header() {
                   <Link 
                     href="/contato" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center w-full px-4 py-3 bg-primary text-white text-base font-medium rounded-full hover:bg-primary/90 transition-colors"
+                    className="flex items-center justify-center w-full py-3 text-[12px] font-normal tracking-[0.1em] uppercase border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
                   >
                     Fale Conosco
                   </Link>
