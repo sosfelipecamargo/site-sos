@@ -120,9 +120,6 @@ export function Header() {
                                 <div className="flex gap-8">
                                   {/* Column 1 */}
                                   <div className="flex-1">
-                                    <p className="text-[11px] font-normal tracking-[0.15em] text-gray-400 uppercase mb-4">
-                                      Por Solução
-                                    </p>
                                     <div className="space-y-3">
                                       {services.slice(0, 4).map((service) => (
                                         <Link
@@ -141,9 +138,6 @@ export function Header() {
                                   
                                   {/* Column 2 */}
                                   <div className="flex-1">
-                                    <p className="text-[11px] font-normal tracking-[0.15em] text-gray-400 uppercase mb-4">
-                                      Mais Soluções
-                                    </p>
                                     <div className="space-y-3">
                                       {services.slice(4).map((service) => (
                                         <Link
