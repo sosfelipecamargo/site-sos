@@ -61,7 +61,7 @@ export function Header() {
           )}
         >
           <div className="px-4 sm:px-6 lg:px-8">
-            <div className="flex h-14 items-center justify-between">
+            <div className="flex h-16 items-center justify-between">
             {/* Logo - Left */}
             <Link href="/" className="relative z-10 flex-shrink-0">
               <Image
