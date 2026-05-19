@@ -10,27 +10,35 @@ import { cn } from "@/lib/utils"
 const slides = [
   {
     id: 1,
-    title: "Segurança que resolve.",
-    subtitle: "Tecnologia confiável com atendimento humano.",
-    cta: { text: "Conheça o Grupo SOS", href: "/grupo-sos" },
-    ctaSecondary: { text: "Fale Conosco", href: "/contato" },
-    image: "/images/hero-slide-1.jpg",
+    badge: "Mais segurança, eficiência e economia",
+    title: "O futuro do controle de acesso, hoje.",
+    subtitle: "Portaria Virtual SOS para empresas e condomínios que querem mais controle, economia e segurança, com operação 24/7, atendimento humano e protocolos bem definidos.",
+    cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
+    image: "/images/hero/portaria-virtual.jpg",
   },
   {
     id: 2,
-    title: "Controle total de acesso.",
-    subtitle: "Portaria Virtual com operação 24h.",
-    cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
-    ctaSecondary: null,
-    image: "/images/hero/hero-monitoramento.jpg",
+    badge: "Atenção real para cada disparo",
+    title: "Monitoramento inteligente de verdade",
+    subtitle: "A central SOS acompanha eventos em tempo real, verifica imagens, segue protocolos definidos e aciona os responsáveis com agilidade.",
+    cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
+    image: "/images/hero/monitoramento.jpg",
   },
   {
     id: 3,
-    title: "Conectividade estável.",
-    subtitle: "Internet e telefonia para sua operação.",
+    badge: "+46 anos protegendo o que importa",
+    title: "A segurança da sua rotina começa com uma operação preparada.",
+    subtitle: "A SOS une segurança eletrônica, central de monitoramento, portaria virtual, internet e atendimento humano para proteger casas, empresas e condomínios.",
+    cta: { text: "Conheça a SOS", href: "/grupo-sos" },
+    image: "/images/hero/institucional.jpg",
+  },
+  {
+    id: 4,
+    badge: "Fibra de qualidade",
+    title: "Internet rápida, suporte próximo e conexão confiável.",
+    subtitle: "Internet fibra com velocidade, estabilidade e suporte para quem depende de uma conexão confiável todos os dias.",
     cta: { text: "Conheça a SOS Telecom", href: "/solucoes/sos-telecom" },
-    ctaSecondary: null,
-    image: "/images/hero-slide-3.jpg",
+    image: "/images/hero/sos-telecom.jpg",
   },
 ]
 
@@ -161,7 +169,7 @@ export function HeroCarousel() {
               >
                 <span className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium tracking-wide uppercase text-white/90 border border-white/20 rounded-full backdrop-blur-sm">
                   <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                  +46 anos protegendo o que importa
+                  {slide.badge}
                 </span>
               </motion.div>
 
@@ -169,7 +177,7 @@ export function HeroCarousel() {
               <motion.h1
                 custom={1}
                 variants={textVariants}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white leading-tight tracking-tight max-w-4xl"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white leading-tight tracking-tight max-w-5xl text-balance"
               >
                 {slide.title}
               </motion.h1>
@@ -178,12 +186,12 @@ export function HeroCarousel() {
               <motion.p
                 custom={2}
                 variants={textVariants}
-                className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl"
+                className="mt-6 text-lg sm:text-xl text-white/70 max-w-3xl text-pretty"
               >
                 {slide.subtitle}
               </motion.p>
 
-              {/* CTAs */}
+              {/* CTA */}
               <motion.div
                 custom={3}
                 variants={textVariants}
@@ -196,15 +204,6 @@ export function HeroCarousel() {
                   {slide.cta.text}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
-
-                {slide.ctaSecondary && (
-                  <Link
-                    href={slide.ctaSecondary.href}
-                    className="inline-flex items-center px-8 py-4 text-white text-sm font-medium border border-white/30 rounded-full hover:bg-white/10 transition-colors backdrop-blur-sm"
-                  >
-                    {slide.ctaSecondary.text}
-                  </Link>
-                )}
               </motion.div>
             </motion.div>
           </AnimatePresence>
