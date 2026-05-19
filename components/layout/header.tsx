@@ -116,7 +116,7 @@ export function Header() {
                               transition={{ duration: 0.15 }}
                               className="absolute left-1/2 -translate-x-1/2 top-full pt-4"
                             >
-                              <div className="w-[500px] rounded-lg bg-white shadow-lg shadow-black/10 border border-gray-100 p-8">
+                              <div className="w-[580px] rounded-lg bg-white shadow-lg shadow-black/10 border border-gray-100 p-8">
                                 <div className="flex gap-8">
                                   {/* Column 1 */}
                                   <div className="flex-1">
@@ -125,7 +125,7 @@ export function Header() {
                                         <Link
                                           key={service.href}
                                           href={service.href}
-                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors"
+                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
                                         >
                                           {service.name}
                                         </Link>
@@ -143,7 +143,7 @@ export function Header() {
                                         <Link
                                           key={service.href}
                                           href={service.href}
-                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors"
+                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
                                         >
                                           {service.name}
                                         </Link>
