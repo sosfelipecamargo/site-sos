@@ -11,7 +11,7 @@ const slides = [
   {
     id: 1,
     badge: "Mais segurança, eficiência e economia",
-    title: "O futuro do controle de acesso, hoje.",
+    title: "O FUTURO DO CONTROLE DE ACESSO, HOJE.",
     subtitle: "Portaria Virtual SOS para empresas e condomínios que querem mais controle, economia e segurança, com operação 24/7, atendimento humano e protocolos bem definidos.",
     cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
     image: "/images/hero/portaria-virtual.jpg",
@@ -19,7 +19,7 @@ const slides = [
   {
     id: 2,
     badge: "Atenção real para cada disparo",
-    title: "Monitoramento inteligente de verdade",
+    title: "MONITORAMENTO INTELIGENTE DE VERDADE",
     subtitle: "A central SOS acompanha eventos em tempo real, verifica imagens, segue protocolos definidos e aciona os responsáveis com agilidade.",
     cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
     image: "/images/hero/monitoramento.jpg",
@@ -27,7 +27,7 @@ const slides = [
   {
     id: 3,
     badge: "+46 anos protegendo o que importa",
-    title: "A segurança da sua rotina começa com uma operação preparada.",
+    title: "A SEGURANÇA DA SUA ROTINA COMEÇA COM UMA OPERAÇÃO PREPARADA.",
     subtitle: "A SOS une segurança eletrônica, central de monitoramento, portaria virtual, internet e atendimento humano para proteger casas, empresas e condomínios.",
     cta: { text: "Conheça a SOS", href: "/grupo-sos" },
     image: "/images/hero/institucional.jpg",
@@ -35,7 +35,7 @@ const slides = [
   {
     id: 4,
     badge: "Fibra de qualidade",
-    title: "Internet rápida, suporte próximo e conexão confiável.",
+    title: "INTERNET RÁPIDA, SUPORTE PRÓXIMO E CONEXÃO CONFIÁVEL.",
     subtitle: "Internet fibra com velocidade, estabilidade e suporte para quem depende de uma conexão confiável todos os dias.",
     cta: { text: "Conheça a SOS Telecom", href: "/solucoes/sos-telecom" },
     image: "/images/hero/sos-telecom.jpg",
