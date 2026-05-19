@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { HeroCarousel } from "@/components/sections/hero-carousel"
 import { AboutSection } from "@/components/sections/about-section"
+import { VideoSection } from "@/components/sections/video-section"
 import { DifferentialsSection } from "@/components/sections/differentials-section"
 import { ServicesSection } from "@/components/sections/services-section"
 import { TargetAudienceSection } from "@/components/sections/target-audience-section"
@@ -18,6 +19,7 @@ export default function HomePage() {
       <main>
         <HeroCarousel />
         <AboutSection />
+        <VideoSection />
         <TargetAudienceSection />
         <DifferentialsSection />
         <ServicesSection />
