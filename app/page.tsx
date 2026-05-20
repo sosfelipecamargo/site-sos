@@ -18,11 +18,11 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroCarousel />
+        <ServicesSection />
         <AboutSection />
         <VideoSection />
         <TargetAudienceSection />
         <DifferentialsSection />
-        <ServicesSection />
         <ClientsSection />
         <TestimonialsSection />
         <BlogSection />
