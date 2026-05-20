@@ -57,6 +57,7 @@ const slides: Slide[] = [
     badge: "MONITORAMENTO SOS",
     line1: "Resposta inteligente",
     line1Bold: ["inteligente"],
+    line1BoldColor: "text-primary",
     line2: "em cada disparo",
     cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
     image: "/images/hero/monitoramento-bg.png",
@@ -74,7 +75,7 @@ const slides: Slide[] = [
     cta: { text: "Saiba mais", href: "/grupo-sos" },
     image: "/images/hero/sos-telecom-bg.png",
     objectPosition: "center center",
-    overlayOpacity: 0.55,
+    overlayOpacity: 0.70,
   },
   {
     id: 4,
