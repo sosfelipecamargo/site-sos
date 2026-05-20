@@ -60,9 +60,6 @@ export function TestimonialsSection() {
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">
             O que dizem nossos clientes
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            A satisfação dos nossos clientes é o nosso maior reconhecimento.
-          </p>
         </div>
       </div>
 

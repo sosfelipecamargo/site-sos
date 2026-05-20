@@ -78,10 +78,6 @@ export function ClientsSection() {
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">
             Quem confia na SOS
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
-            Empresas, condomínios e indústrias que escolheram a SOS para 
-            cuidar da sua segurança.
-          </p>
         </motion.div>
       </div>
 
