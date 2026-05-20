@@ -29,34 +29,14 @@ export function VideoSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-semibold tracking-wider uppercase rounded-full mb-4"
-          >
-            Conheça a Central de Segurança SOS
-          </motion.span>
-          
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 max-w-4xl mx-auto text-balance"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900"
           >
-            Veja como funciona nossa estrutura de monitoramento e portaria virtual
+            Central de Segurança SOS
           </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-600 text-lg max-w-2xl mx-auto"
-          >
-            Tecnologia de ponta e equipe especializada trabalhando 24 horas para sua segurança
-          </motion.p>
         </div>
 
         {/* Video Player */}

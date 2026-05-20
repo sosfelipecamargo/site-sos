@@ -53,7 +53,7 @@ function AnimatedNumber({ value, suffix = "", isStatic = false }: { value: numbe
   )
 }
 
-// Timeline Item Component - Line on the RIGHT
+// Timeline Item Component - Line on the RIGHT (continuous line via parent)
 function TimelineItem({ item, index, isLast }: { item: typeof timeline[0]; index: number; isLast: boolean }) {
   const [isHovered, setIsHovered] = useState(false)
   
@@ -91,9 +91,8 @@ function TimelineItem({ item, index, isLast }: { item: typeof timeline[0]; index
         <p className="text-sm text-gray-600 mt-2 leading-relaxed">{item.description}</p>
       </motion.div>
 
-      {/* Timeline Line & Marker - RIGHT side */}
-      <div className="relative flex flex-col items-center">
-        {/* Marker */}
+      {/* Marker only - line is rendered by parent */}
+      <div className="relative flex items-center justify-center w-4">
         <motion.div 
           className={cn(
             "relative z-10 w-4 h-4 rounded-full border-2 transition-all duration-300",
@@ -117,11 +116,6 @@ function TimelineItem({ item, index, isLast }: { item: typeof timeline[0]; index
             />
           )}
         </motion.div>
-        
-        {/* Vertical Line */}
-        {!isLast && (
-          <div className="w-0.5 flex-1 min-h-[60px] bg-gradient-to-b from-gray-300 via-primary/20 to-gray-300" />
-        )}
       </div>
     </motion.div>
   )
@@ -234,7 +228,10 @@ export function AboutSection() {
             </motion.h3>
 
             {/* Timeline - Line on RIGHT */}
-            <div className="flex flex-col gap-4">
+            <div className="relative flex flex-col gap-4">
+              {/* Continuous vertical line - single element */}
+              <div className="absolute right-[7px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-gray-300 via-primary/30 to-primary/50" />
+              
               {timeline.map((item, index) => (
                 <TimelineItem
                   key={item.year}
