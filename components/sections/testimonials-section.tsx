@@ -70,7 +70,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 lg:py-24 bg-background">
+    <section className="py-16 lg:py-24 bg-[#f4f4f4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

@@ -133,7 +133,7 @@ export function DifferentialsSection() {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="py-20 lg:py-28 bg-[#f4f4f4]">
+    <section className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -143,7 +143,7 @@ export function DifferentialsSection() {
           transition={{ duration: 0.5 }}
           className="flex items-end justify-between mb-10"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#070707]">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">
             Por que escolher a SOS?
           </h2>
           

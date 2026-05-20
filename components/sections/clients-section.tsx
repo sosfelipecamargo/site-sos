@@ -63,7 +63,7 @@ const duplicatedClients = [...clients, ...clients]
 
 export function ClientsSection() {
   return (
-    <section className="py-16 lg:py-20 bg-background overflow-hidden">
+    <section className="py-16 lg:py-20 bg-[#f4f4f4] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -84,10 +84,10 @@ export function ClientsSection() {
       {/* Marquee Container */}
       <div className="relative">
         {/* Left Gradient Fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#f4f4f4] to-transparent z-10 pointer-events-none" />
         
         {/* Right Gradient Fade */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#f4f4f4] to-transparent z-10 pointer-events-none" />
         
         {/* Scrolling Track */}
         <div className="flex animate-marquee-clients">
