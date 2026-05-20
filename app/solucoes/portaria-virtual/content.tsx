@@ -49,10 +49,10 @@ const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Olá!%20Quero%20uma%20an
 // ============================================
 
 const trustItems = [
-  { icon: Building2, label: "Central de Segurança própria" },
+  { icon: Building2, label: "Central de Segurança 24h" },
   { icon: Users, label: "Operadores treinados" },
   { icon: FileText, label: "Procedimentos personalizados" },
-  { icon: Lock, label: "Controle remoto de acesso" },
+  { icon: Lock, label: "Controle remoto\nde acesso" },
   { icon: Camera, label: "Integração com câmeras e sistemas" },
   { icon: Wrench, label: "Suporte técnico próximo" },
 ]
@@ -308,6 +308,7 @@ const localTypes = [
 const portariaTypes = [
   "Sim, presencial 24h",
   "Sim, presencial em horário parcial",
+  "Sim, virtual 24h",
   "Não",
   "Não sei informar",
 ]
@@ -320,110 +321,52 @@ const portariaTypes = [
 function HeroSection() {
   return (
     <section className="relative min-h-screen bg-[#070707] overflow-hidden">
-      {/* Background with gradient */}
+      {/* Background Image */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#070707] via-[#0a0a0a] to-[#070707]" />
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-30">
-          <div className="absolute inset-0 bg-gradient-to-l from-primary/20 to-transparent" />
-        </div>
+        <Image
+          src="/images/hero/portaria-virtual-bg.png"
+          alt="Central de Monitoramento SOS"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay with red gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070707]/95 via-[#070707]/85 to-[#070707]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-[#070707]/50" />
         {/* Subtle red glow */}
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* Eyebrow */}
-            <span className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 text-primary text-xs font-medium tracking-wider uppercase rounded-full mb-6">
-              Portaria Virtual para condomínios e empresas
-            </span>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 lg:pt-40 lg:pb-28 flex items-center min-h-screen">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
+          {/* Eyebrow */}
+          <span className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 text-primary text-xs font-medium tracking-wider uppercase rounded-full mb-6">
+            Portaria Virtual
+          </span>
 
-            {/* H1 */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
-              Mais controle, segurança e economia para sua portaria
-            </h1>
+          {/* H1 */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
+            Mais controle, segurança e economia para sua portaria
+          </h1>
 
-            {/* Subtitle */}
-            <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-xl">
-              A Portaria Virtual SOS moderniza o controle de acesso com central 24h, atendimento humano, procedimentos definidos e tecnologia integrada à rotina do seu condomínio ou empresa.
-            </p>
+          {/* Subtitle */}
+          <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-xl">
+            A Portaria Virtual SOS moderniza o controle de acesso com central 24h, atendimento humano, procedimentos definidos e tecnologia integrada à rotina do seu condomínio ou empresa.
+          </p>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <Button asChild size="lg" className="h-12 px-8 text-base">
-                <Link href="#formulario">
-                  Solicitar análise da portaria
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base border-white/20 text-white hover:bg-white/10">
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  Falar pelo WhatsApp
-                </a>
-              </Button>
-            </div>
-
-            {/* Proof Cards */}
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { value: "+40", label: "anos de experiência" },
-                { value: "24h", label: "Central própria" },
-                { value: "100%", label: "Equipe técnica própria" },
-                { value: "Regional", label: "Atendimento próximo" },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4"
-                >
-                  <span className="text-2xl font-bold text-primary">{item.value}</span>
-                  <p className="text-sm text-white/60 mt-1">{item.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Image/Mockup */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
-              <Image
-                src="/images/hero/portaria-virtual-bg.png"
-                alt="Central de Monitoramento SOS"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070707]/80 via-transparent to-transparent" />
-              
-              {/* Floating card */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Shield className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-white font-medium">Operação em tempo real</p>
-                    <p className="text-white/60 text-sm">Central de Segurança 24h</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          {/* Single CTA */}
+          <Button asChild size="lg" className="h-14 px-10 text-base">
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Falar no WhatsApp
+            </a>
+          </Button>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
@@ -468,7 +411,7 @@ function TrustSection() {
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
                 <item.icon className="h-6 w-6 text-primary" />
               </div>
-              <p className="text-sm font-medium text-[#070707]">{item.label}</p>
+              <p className="text-sm font-medium text-[#070707] whitespace-pre-line">{item.label}</p>
             </motion.div>
           ))}
         </div>
@@ -495,7 +438,7 @@ function ProblemSection() {
           className="max-w-3xl mb-12"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-            Sua portaria pode custar caro e ainda assim não entregar o controle que você precisa
+            Sua portaria pode <span className="text-primary">custar caro</span> e ainda assim não entregar o controle que <span className="text-primary">você precisa</span>
           </h2>
           <p className="text-lg text-white/70 leading-relaxed">
             A rotina de uma portaria envolve moradores, visitantes, entregadores, prestadores de serviço, veículos, encomendas e situações inesperadas. Quando não existem processos bem definidos, a segurança fica dependente de improviso, memória e decisões individuais.
@@ -598,30 +541,87 @@ function HowItWorksSection() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {howItWorksSteps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="relative p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-colors group"
-            >
-              <span className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm">
-                {step.number}
-              </span>
-              <h3 className="text-lg font-semibold text-white mt-4 mb-3">{step.title}</h3>
-              <p className="text-sm text-white/60 leading-relaxed">{step.description}</p>
-            </motion.div>
-          ))}
+        {/* Desktop: Horizontal Trail */}
+        <div className="hidden lg:block relative">
+          {/* Connection line - horizontal zigzag */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+            <defs>
+              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#E30613" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#E30613" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#E30613" stopOpacity="0.3" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <div className="grid grid-cols-3 gap-x-8 gap-y-12">
+            {/* Row 1: Steps 1-3 */}
+            <div className="relative">
+              {/* Horizontal line to next */}
+              <div className="absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-primary/30" />
+              <StepCard step={howItWorksSteps[0]} index={0} />
+            </div>
+            <div className="relative">
+              <div className="absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-primary/30" />
+              <StepCard step={howItWorksSteps[1]} index={1} />
+            </div>
+            <div className="relative">
+              {/* Vertical line down */}
+              <div className="absolute -bottom-6 right-1/2 w-0.5 h-6 bg-gradient-to-b from-primary/50 to-primary/30" />
+              <StepCard step={howItWorksSteps[2]} index={2} />
+            </div>
+
+            {/* Row 2: Steps 4-6 (reversed order) */}
+            <div className="relative">
+              {/* Vertical line from above */}
+              <div className="absolute -top-6 left-1/2 w-0.5 h-6 bg-gradient-to-t from-primary/50 to-primary/30" />
+              <StepCard step={howItWorksSteps[5]} index={5} />
+            </div>
+            <div className="relative">
+              <div className="absolute top-1/2 -left-4 w-8 h-0.5 bg-gradient-to-l from-primary/50 to-primary/30" />
+              <StepCard step={howItWorksSteps[4]} index={4} />
+            </div>
+            <div className="relative">
+              <div className="absolute top-1/2 -left-4 w-8 h-0.5 bg-gradient-to-l from-primary/50 to-primary/30" />
+              <StepCard step={howItWorksSteps[3]} index={3} />
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile/Tablet: Vertical Trail */}
+        <div className="lg:hidden relative">
+          {/* Vertical connection line */}
+          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20" style={{ zIndex: 0 }} />
+          
+          <div className="space-y-4">
+            {howItWorksSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="relative flex gap-4"
+              >
+                {/* Number marker */}
+                <div className="relative z-10 w-14 h-14 rounded-full bg-primary text-white font-bold flex items-center justify-center text-lg flex-shrink-0 shadow-lg shadow-primary/30">
+                  {step.number}
+                </div>
+                {/* Content */}
+                <div className="flex-1 p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+                  <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
+                  <p className="text-sm text-white/60 leading-relaxed">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center mt-16"
         >
           <Button asChild size="lg" className="h-12 px-8">
             <Link href="#formulario">
@@ -635,11 +635,39 @@ function HowItWorksSection() {
   )
 }
 
-// Benefits Section
+// Step Card Component
+function StepCard({ step, index }: { step: typeof howItWorksSteps[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      className="relative p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-colors group h-full"
+    >
+      <span className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-primary/30">
+        {step.number}
+      </span>
+      <h3 className="text-lg font-semibold text-white mt-4 mb-3">{step.title}</h3>
+      <p className="text-sm text-white/60 leading-relaxed">{step.description}</p>
+    </motion.div>
+  )
+}
+
+// Benefits Section - Cybernetic Bento Grid
 function BenefitsSection() {
   return (
-    <section id="beneficios" className="py-20 lg:py-28 bg-[#0a0a0a]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="beneficios" className="py-20 lg:py-28 bg-[#0a0a0a] relative overflow-hidden">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(227, 6, 19, 0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(227, 6, 19, 0.03) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }} />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -647,11 +675,12 @@ function BenefitsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Mais do que substituir a portaria, é evoluir a gestão de acesso
+            Mais do que substituir a portaria, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-red-400">é evoluir a gestão de acesso</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {benefitsCards.map((card, index) => (
             <motion.div
               key={index}
@@ -659,13 +688,34 @@ function BenefitsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-6 rounded-2xl bg-white/[0.03] backdrop-blur-sm border border-white/10 hover:border-primary/40 hover:bg-white/[0.05] transition-all duration-300 group"
+              className={cn(
+                "group relative p-6 rounded-2xl overflow-hidden transition-all duration-500",
+                "bg-gradient-to-br from-white/[0.05] to-transparent",
+                "border border-white/[0.08]",
+                "hover:border-primary/40 hover:shadow-[0_0_30px_rgba(227,6,19,0.15)]",
+                // Make first and last items span 2 columns on larger screens
+                index === 0 && "lg:col-span-2",
+                index === benefitsCards.length - 1 && "lg:col-span-2"
+              )}
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                <card.icon className="h-7 w-7 text-primary" />
+              {/* Animated border glow on hover */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-[-1px] rounded-2xl bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 blur-sm" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">{card.title}</h3>
-              <p className="text-white/60 leading-relaxed">{card.description}</p>
+
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors border border-primary/20">
+                  <card.icon className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3">{card.title}</h3>
+                <p className="text-white/60 leading-relaxed">{card.description}</p>
+              </div>
+
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/10 to-transparent" />
+              </div>
             </motion.div>
           ))}
         </div>
@@ -696,16 +746,16 @@ function ComparisonSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="p-8 rounded-2xl bg-white border border-gray-200"
+            className="p-6 lg:p-8 rounded-2xl bg-white border border-gray-200"
           >
             <h3 className="text-xl font-semibold text-gray-500 mb-6">Portaria tradicional</h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {comparisonTraditional.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <li key={i} className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
                     <span className="w-2 h-2 rounded-full bg-gray-400" />
                   </div>
-                  <span className="text-gray-600">{item}</span>
+                  <span className="text-gray-600 text-sm lg:text-base whitespace-nowrap">{item}</span>
                 </li>
               ))}
             </ul>
@@ -716,14 +766,14 @@ function ComparisonSection() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="p-8 rounded-2xl bg-[#070707] border border-primary/20"
+            className="p-6 lg:p-8 rounded-2xl bg-[#070707] border border-primary/20"
           >
             <h3 className="text-xl font-semibold text-primary mb-6">Portaria Virtual SOS</h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {comparisonSOS.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">{item}</span>
+                <li key={i} className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-white text-sm lg:text-base whitespace-nowrap">{item}</span>
                 </li>
               ))}
             </ul>
@@ -748,64 +798,123 @@ function ComparisonSection() {
   )
 }
 
-// Structure Section
+// Structure Section - Same style as "Quem Atendemos"
 function StructureSection() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  const structureItems = [
+    {
+      id: "central",
+      title: "Central de Segurança SOS",
+      description: "Operação 24h com equipe treinada e ambiente estruturado para atendimento.",
+      image: "/images/hero/portaria-virtual-bg.png"
+    },
+    {
+      id: "equipe",
+      title: "Equipe técnica própria",
+      description: "Instalação, manutenção e suporte com profissionais da SOS.",
+      image: "/images/hero/hero-monitoramento.jpg"
+    },
+    {
+      id: "experiencia",
+      title: "Experiência regional",
+      description: "Mais de 40 anos atuando em segurança em Americana e região.",
+      image: "/images/hero/hero-cftv.jpg"
+    },
+    {
+      id: "solucoes",
+      title: "Soluções integradas",
+      description: "CFTV, alarmes, controle de acesso, monitoramento, portaria virtual e internet.",
+      image: "/images/hero/hero-alarmes.jpg"
+    },
+    {
+      id: "atendimento",
+      title: "Atendimento próximo",
+      description: "A SOS entende a realidade de condomínios e empresas da região.",
+      image: "/images/hero/hero-portaria.jpg"
+    },
+  ]
+
   return (
-    <section id="estrutura" className="relative py-20 lg:py-28 bg-[#070707] overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero/portaria-virtual-bg.png"
-          alt="Central de Segurança SOS"
-          fill
-          className="object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#070707] via-[#070707]/80 to-[#070707]/60" />
-      </div>
+    <section id="estrutura" className="py-20 lg:py-28 bg-[#070707]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
+          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+            Estrutura SOS
+          </span>
+          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white text-balance">
+            A sua portaria conectada a uma central de segurança de verdade
+          </h2>
+          <p className="mt-4 text-white/60 text-lg">
+            A SOS Segurança Inteligente conta com uma estrutura própria de atendimento, monitoramento e suporte, preparada para operar rotinas de controle de acesso com segurança, agilidade e proximidade.
+          </p>
+        </motion.div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              A sua portaria conectada a uma central de segurança de verdade
-            </h2>
-            <p className="text-lg text-white/70 leading-relaxed mb-8">
-              A SOS Segurança Inteligente conta com uma estrutura própria de atendimento, monitoramento e suporte, preparada para operar rotinas de controle de acesso com segurança, agilidade e proximidade.
-            </p>
-            <Button asChild size="lg" variant="outline" className="h-12 px-8 border-white/20 text-white hover:bg-white/10">
-              <Link href="#formulario">
-                Agendar visita à Central SOS
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </motion.div>
-
-          <div className="grid gap-4">
-            {structureBlocks.map((block, index) => (
+        {/* Interactive Image Accordion */}
+        <div className="flex flex-col lg:flex-row gap-2 h-[400px] lg:h-[500px]">
+          {structureItems.map((item, index) => {
+            const isActive = activeIndex === index
+            
+            return (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-primary/30 transition-colors"
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="relative overflow-hidden rounded-2xl cursor-pointer group"
+                style={{
+                  flex: isActive ? 4 : 1,
+                  transition: "flex 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+                onMouseEnter={() => setActiveIndex(index)}
+                onMouseLeave={() => setActiveIndex(null)}
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                    <block.icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white mb-1">{block.title}</h3>
-                    <p className="text-sm text-white/60">{block.description}</p>
-                  </div>
+                {/* Background Image */}
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 25vw"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                
+                {/* Red Accent Line */}
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-1 bg-primary transform origin-left transition-transform duration-500"
+                  style={{ transform: isActive ? "scaleX(1)" : "scaleX(0)" }}
+                />
+                
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 
+                    className="text-white font-bold text-xl lg:text-2xl transition-all duration-500"
+                  >
+                    {item.title}
+                  </h3>
+                  
+                  <p 
+                    className="text-white/80 text-sm lg:text-base mt-2 transition-all duration-500 overflow-hidden"
+                    style={{ 
+                      maxHeight: isActive ? "100px" : "0",
+                      opacity: isActive ? 1 : 0,
+                    }}
+                  >
+                    {item.description}
+                  </p>
                 </div>
               </motion.div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -1238,48 +1347,6 @@ function FormSection() {
   )
 }
 
-// Final CTA Section
-function FinalCTASection() {
-  return (
-    <section className="py-20 lg:py-28 bg-[#070707] relative overflow-hidden">
-      {/* Gradient glow */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-            Quer saber se a Portaria Virtual funciona para o seu condomínio ou empresa?
-          </h2>
-          <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto">
-            Fale com a SOS e solicite uma análise personalizada. Nossa equipe avalia a estrutura atual, entende sua rotina e indica o melhor caminho para modernizar o controle de acesso.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="h-14 px-10 text-base">
-              <Link href="#formulario">
-                Solicitar análise da portaria
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-14 px-10 text-base border-white/20 text-white hover:bg-white/10">
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Falar pelo WhatsApp
-              </a>
-            </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
 // Mobile Fixed CTA
 function MobileFixedCTA() {
   return (
@@ -1322,7 +1389,6 @@ export function PortariaVirtualContent() {
       <TestimonialsSection />
       <FAQSection />
       <FormSection />
-      <FinalCTASection />
       <MobileFixedCTA />
     </>
   )
