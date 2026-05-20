@@ -30,7 +30,6 @@ import {
 } from "lucide-react"
 import { services, type IconName } from "@/lib/data"
 import { Button } from "@/components/ui/button"
-import { ShimmerText } from "@/components/ui/shimmer-text"
 
 const iconMap: Record<IconName, LucideIcon> = {
   Monitor,
@@ -139,10 +138,8 @@ export function ServicesSection() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-4xl mx-auto mb-14"
         >
-          <h2 className="text-[clamp(2.5rem,7vw,5rem)] font-bold text-white tracking-tight leading-[1.05] whitespace-nowrap py-2">
-            <ShimmerText shimmerColor="rgba(255, 255, 255, 0.5)" duration={3}>
-              SOLUÇÕES INTELIGENTES
-            </ShimmerText>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+            SOLUÇÕES INTELIGENTES
           </h2>
         </motion.div>
 
