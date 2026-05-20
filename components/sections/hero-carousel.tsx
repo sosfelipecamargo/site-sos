@@ -27,8 +27,10 @@ interface AnimatedSlide extends SlideBase {
 interface StaticSlide extends SlideBase {
   line1: string
   line1Bold?: string[]
+  line1BoldColor?: string
   line2: string
   line2Bold?: string[]
+  line2BoldColor?: string
 }
 
 type Slide = AnimatedSlide | StaticSlide
@@ -53,14 +55,13 @@ const slides: Slide[] = [
   {
     id: 2,
     badge: "MONITORAMENTO SOS",
-    line1Before: "Resposta",
-    animatedWords: ["inteligente", "rápida", "humana"],
-    line1After: "",
+    line1: "Resposta inteligente",
+    line1Bold: ["inteligente"],
     line2: "em cada disparo",
     cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
     image: "/images/hero/monitoramento-bg.png",
     objectPosition: "left center",
-    overlayOpacity: 0.7,
+    overlayOpacity: 0.75,
   },
   {
     id: 3,
@@ -69,8 +70,9 @@ const slides: Slide[] = [
     line1Bold: ["46 anos"],
     line2: "do que realmente importa",
     line2Bold: ["realmente importa"],
+    line2BoldColor: "text-primary",
     cta: { text: "Saiba mais", href: "/grupo-sos" },
-    image: "/images/hero/grupo-sos-bg.png",
+    image: "/images/hero/sos-telecom-bg.png",
     objectPosition: "center center",
     overlayOpacity: 0.55,
   },
@@ -81,10 +83,11 @@ const slides: Slide[] = [
     line1Bold: ["rápida"],
     line2: "suporte de qualidade",
     line2Bold: ["qualidade"],
+    line2BoldColor: "text-primary",
     cta: { text: "Saiba mais", href: "/solucoes/sos-telecom" },
-    image: "/images/hero/sos-telecom-bg.png",
+    image: "/images/hero/grupo-sos-bg.png",
     objectPosition: "center center",
-    overlayOpacity: 0.65,
+    overlayOpacity: 0.75,
   },
 ]
 
@@ -107,7 +110,7 @@ const textVariants = {
 }
 
 // Helper function to bold specific words in a line
-function renderLineWithBold(text: string, boldWords?: string[]) {
+function renderLineWithBold(text: string, boldWords?: string[], boldColor?: string) {
   if (!boldWords || boldWords.length === 0) {
     return <span className="font-extralight">{text}</span>
   }
@@ -127,9 +130,9 @@ function renderLineWithBold(text: string, boldWords?: string[]) {
           </span>
         )
       }
-      // Add the bold word
+      // Add the bold word with optional color
       parts.push(
-        <span key={`bold-${word}`} className="font-extrabold">
+        <span key={`bold-${word}`} className={cn("font-extrabold", boldColor)}>
           {result.substring(index, index + word.length)}
         </span>
       )
@@ -298,11 +301,11 @@ export function HeroCarousel() {
                   <>
                     {/* Line 1 with bold keywords */}
                     <span className="block whitespace-nowrap">
-                      {renderLineWithBold(slide.line1, slide.line1Bold)}
+                      {renderLineWithBold(slide.line1, slide.line1Bold, slide.line1BoldColor)}
                     </span>
                     {/* Line 2 with bold keywords */}
                     <span className="block whitespace-nowrap">
-                      {renderLineWithBold(slide.line2, slide.line2Bold)}
+                      {renderLineWithBold(slide.line2, slide.line2Bold, slide.line2BoldColor)}
                     </span>
                   </>
                 )}
