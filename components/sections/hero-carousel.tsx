@@ -18,13 +18,17 @@ interface SlideBase {
 }
 
 interface AnimatedSlide extends SlideBase {
-  titleBefore: string
+  line1Before: string
   animatedWords: string[]
-  titleAfter: string
+  line1After: string
+  line2: string
 }
 
 interface StaticSlide extends SlideBase {
-  title: string
+  line1: string
+  line1Bold?: string[]
+  line2: string
+  line2Bold?: string[]
 }
 
 type Slide = AnimatedSlide | StaticSlide
@@ -37,9 +41,10 @@ const slides: Slide[] = [
   {
     id: 1,
     badge: "PORTARIA VIRTUAL SOS",
-    titleBefore: "MAIS",
-    animatedWords: ["SEGURANÇA", "EFICIÊNCIA", "ECONOMIA"],
-    titleAfter: "PARA\nA SUA PORTARIA",
+    line1Before: "Mais",
+    animatedWords: ["segurança", "eficiência", "economia"],
+    line1After: "para",
+    line2: "a sua portaria",
     cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
     image: "/images/hero/portaria-virtual-bg.png",
     objectPosition: "center center",
@@ -48,9 +53,10 @@ const slides: Slide[] = [
   {
     id: 2,
     badge: "MONITORAMENTO SOS",
-    titleBefore: "RESPOSTA",
-    animatedWords: ["INTELIGENTE", "RÁPIDA", "HUMANA"],
-    titleAfter: "EM CADA DISPARO",
+    line1Before: "Resposta",
+    animatedWords: ["inteligente", "rápida", "humana"],
+    line1After: "",
+    line2: "em cada disparo",
     cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
     image: "/images/hero/monitoramento-bg.png",
     objectPosition: "left center",
@@ -59,7 +65,10 @@ const slides: Slide[] = [
   {
     id: 3,
     badge: "GRUPO SOS",
-    title: "HÁ 46 ANOS CUIDANDO DO QUE\nREALMENTE IMPORTA",
+    line1: "Há 46 anos cuidando",
+    line1Bold: ["46 anos"],
+    line2: "do que realmente importa",
+    line2Bold: ["realmente importa"],
     cta: { text: "Saiba mais", href: "/grupo-sos" },
     image: "/images/hero/grupo-sos-bg.png",
     objectPosition: "center center",
@@ -68,7 +77,10 @@ const slides: Slide[] = [
   {
     id: 4,
     badge: "SOS TELECOM",
-    title: "INTERNET RÁPIDA COM\nSUPORTE DE QUALIDADE",
+    line1: "Internet rápida com",
+    line1Bold: ["rápida"],
+    line2: "suporte de qualidade",
+    line2Bold: ["qualidade"],
     cta: { text: "Saiba mais", href: "/solucoes/sos-telecom" },
     image: "/images/hero/sos-telecom-bg.png",
     objectPosition: "center center",
@@ -94,6 +106,49 @@ const textVariants = {
   },
 }
 
+// Helper function to bold specific words in a line
+function renderLineWithBold(text: string, boldWords?: string[]) {
+  if (!boldWords || boldWords.length === 0) {
+    return <span className="font-extralight">{text}</span>
+  }
+
+  let result = text
+  const parts: React.ReactNode[] = []
+  let lastIndex = 0
+
+  boldWords.forEach((word) => {
+    const index = result.toLowerCase().indexOf(word.toLowerCase())
+    if (index !== -1) {
+      // Add text before the bold word
+      if (index > lastIndex) {
+        parts.push(
+          <span key={`before-${word}`} className="font-extralight">
+            {result.substring(lastIndex, index)}
+          </span>
+        )
+      }
+      // Add the bold word
+      parts.push(
+        <span key={`bold-${word}`} className="font-extrabold">
+          {result.substring(index, index + word.length)}
+        </span>
+      )
+      lastIndex = index + word.length
+    }
+  })
+
+  // Add remaining text
+  if (lastIndex < result.length) {
+    parts.push(
+      <span key="remaining" className="font-extralight">
+        {result.substring(lastIndex)}
+      </span>
+    )
+  }
+
+  return <>{parts}</>
+}
+
 export function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [parallaxY, setParallaxY] = useState(0)
@@ -108,8 +163,9 @@ export function HeroCarousel() {
     setCurrentSlide(index)
   }, [])
 
+  // 10 seconds per slide
   useEffect(() => {
-    const timer = setInterval(nextSlide, 6000)
+    const timer = setInterval(nextSlide, 10000)
     return () => clearInterval(timer)
   }, [nextSlide])
 
@@ -213,34 +269,42 @@ export function HeroCarousel() {
                 </span>
               </motion.div>
 
-              {/* Title */}
+              {/* Title - Always 2 lines */}
               <motion.h1
                 custom={1}
                 variants={textVariants}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[0.95] tracking-tight max-w-5xl"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[0.95] tracking-tight max-w-5xl"
               >
                 {isAnimatedSlide(slide) ? (
                   <>
-                    {slide.titleBefore}{' '}
-                    <AnimatedTextCycle 
-                      words={slide.animatedWords} 
-                      interval={3000}
-                      className="text-primary"
-                    />
-                    {' '}{slide.titleAfter.split('\n').map((line, i) => (
-                      <span key={i}>
-                        {i > 0 && <br />}
-                        {line}
-                      </span>
-                    ))}
+                    {/* Line 1 with animated word */}
+                    <span className="block whitespace-nowrap">
+                      <span className="font-extralight">{slide.line1Before} </span>
+                      <AnimatedTextCycle 
+                        words={slide.animatedWords} 
+                        interval={2500}
+                        className="font-extrabold text-primary"
+                      />
+                      {slide.line1After && (
+                        <span className="font-extralight"> {slide.line1After}</span>
+                      )}
+                    </span>
+                    {/* Line 2 */}
+                    <span className="block whitespace-nowrap font-extralight">
+                      {slide.line2}
+                    </span>
                   </>
                 ) : (
-                  slide.title.split('\n').map((line, i) => (
-                    <span key={i}>
-                      {i > 0 && <br />}
-                      {line}
+                  <>
+                    {/* Line 1 with bold keywords */}
+                    <span className="block whitespace-nowrap">
+                      {renderLineWithBold(slide.line1, slide.line1Bold)}
                     </span>
-                  ))
+                    {/* Line 2 with bold keywords */}
+                    <span className="block whitespace-nowrap">
+                      {renderLineWithBold(slide.line2, slide.line2Bold)}
+                    </span>
+                  </>
                 )}
               </motion.h1>
 

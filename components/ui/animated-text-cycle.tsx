@@ -11,10 +11,13 @@ interface AnimatedTextCycleProps {
 
 export function AnimatedTextCycle({
   words,
-  interval = 3000,
+  interval = 2500,
   className = "",
 }: AnimatedTextCycleProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+
+  // Calculate min-width based on longest word to prevent layout shift
+  const longestWord = words.reduce((a, b) => (a.length > b.length ? a : b), "")
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,7 +28,12 @@ export function AnimatedTextCycle({
   }, [words.length, interval])
 
   return (
-    <span className={`relative inline-block ${className}`}>
+    <span className={`relative inline-flex justify-center whitespace-nowrap ${className}`}>
+      {/* Invisible longest word to reserve space */}
+      <span className="invisible" aria-hidden="true">
+        {longestWord}
+      </span>
+      {/* Animated word positioned absolutely over the space */}
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
@@ -36,7 +44,7 @@ export function AnimatedTextCycle({
             duration: 0.4,
             ease: "easeInOut",
           }}
-          className="inline-block text-primary"
+          className="absolute inset-0 flex items-center justify-center"
         >
           {words[currentIndex]}
         </motion.span>
