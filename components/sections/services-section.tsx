@@ -137,20 +137,13 @@ export function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-4xl mx-auto mb-14"
         >
-          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white">
-            Soluções
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+          <h2 className="text-[clamp(2.5rem,7vw,5rem)] font-bold text-white tracking-tight leading-[1.05] whitespace-nowrap py-2">
             <ShimmerText shimmerColor="rgba(255, 255, 255, 0.5)" duration={3}>
               SOLUÇÕES INTELIGENTES
             </ShimmerText>
           </h2>
-          <p className="mt-4 text-lg text-white/70 text-pretty">
-            Do monitoramento à conectividade, oferecemos um portfólio completo 
-            para proteger o que importa para você.
-          </p>
         </motion.div>
 
         {/* Cards Grid */}
