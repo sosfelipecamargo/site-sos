@@ -1,75 +1,74 @@
 "use client"
 
+import { useCallback, useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import useEmblaCarousel from "embla-carousel-react"
 import { 
-  Shield,
-  Clock,
-  HeartHandshake,
-  Settings,
-  Wrench,
   Award,
-  CheckCircle,
-  Zap,
-  Lock,
+  Clock,
+  Cpu,
+  ShieldCheck,
+  HeartHandshake,
+  Wrench,
+  Wifi,
+  Users,
+  Car,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Define differentials data directly with icon components
+// 9 Differentials data
 const differentialsData = [
   {
     Icon: Award,
     title: "Mais de 46 anos de mercado",
-    description: "Tradição e experiência acumulada desde 1980 em segurança e tecnologia."
+    description: "Experiência construída ao longo de décadas, acompanhando a evolução da segurança e das necessidades dos clientes."
   },
   {
     Icon: Clock,
-    title: "Operação 24/7 estruturada",
-    description: "Central de monitoramento com equipe treinada e processos definidos."
+    title: "Central de Segurança 24 horas",
+    description: "Operação ativa todos os dias, com equipe treinada para acompanhar eventos, acessos e ocorrências em tempo real."
   },
   {
-    Icon: Settings,
+    Icon: Cpu,
     title: "Tecnologia confiável",
-    description: "Equipamentos de qualidade e infraestrutura redundante para sua segurança."
+    description: "Soluções integradas de câmeras, alarmes, controle de acesso e sistemas inteligentes para uma segurança mais eficiente."
   },
   {
-    Icon: Lock,
-    title: "Portfólio completo",
-    description: "Segurança eletrônica, portaria, vigilância, monitoramento e telecom."
+    Icon: ShieldCheck,
+    title: "Hub de Segurança",
+    description: "Uma estrutura centralizada que conecta monitoramento, portaria virtual, pronta-resposta, manutenção e suporte operacional."
   },
   {
     Icon: HeartHandshake,
     title: "Atendimento humano",
-    description: "Suporte próximo e comunicação direta com nossa equipe."
+    description: "Tecnologia com proximidade: nossa equipe acompanha, orienta e atende com clareza em cada etapa da operação."
   },
   {
     Icon: Wrench,
     title: "Projetos sob medida",
-    description: "Cada solução é desenhada conforme a realidade do cliente."
+    description: "Cada solução é desenhada conforme a realidade do cliente, considerando rotina, riscos, estrutura e necessidade operacional."
   },
   {
-    Icon: CheckCircle,
-    title: "Conformidade e estrutura",
-    description: "Empresa regularizada com processos operacionais definidos."
+    Icon: Wifi,
+    title: "Monitoramento de links",
+    description: "Acompanhamento da conectividade para manter a operação estável e reduzir riscos de falhas na comunicação dos sistemas."
   },
   {
-    Icon: Zap,
-    title: "Eficiência operacional",
-    description: "Redução de custos com aumento de controle e padronização."
-  }
+    Icon: Users,
+    title: "Equipe própria de manutenção",
+    description: "Mais agilidade e controle técnico com profissionais próprios para instalação, suporte e manutenção dos sistemas."
+  },
+  {
+    Icon: Car,
+    title: "Viaturas de pronta-resposta",
+    description: "Apoio em campo para verificação de ocorrências, suporte à central e atendimento operacional quando necessário."
+  },
 ]
 
-// Bento Grid Item Component
-function BentoItem({ 
-  item, 
-  index,
-  className,
-  featured = false
-}: { 
-  item: typeof differentialsData[0]
-  index: number
-  className?: string
-  featured?: boolean
-}) {
+// Carousel Card Component
+function DifferentialCard({ item, index }: { item: typeof differentialsData[0]; index: number }) {
   const { Icon } = item
   
   return (
@@ -78,119 +77,149 @@ function BentoItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={cn(
-        "group relative bg-card border border-border/60 rounded-xl p-5 transition-all duration-300 hover:border-primary/20 hover:bg-card/80",
-        featured && "bg-gradient-to-br from-card to-muted/30",
-        className
-      )}
+      className="group h-full bg-white border border-gray-200/80 rounded-2xl p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
     >
-      <Icon className={cn(
-        "text-primary mb-3 transition-transform duration-300 group-hover:scale-110",
-        featured ? "h-6 w-6" : "h-5 w-5"
-      )} />
-      
-      <h3 className={cn(
-        "font-semibold text-foreground mb-1.5",
-        featured ? "text-lg" : "text-base"
-      )}>
-        {item.title}
-      </h3>
-      
-      <p className={cn(
-        "text-muted-foreground text-pretty leading-relaxed",
-        featured ? "text-sm" : "text-xs"
-      )}>
-        {item.description}
-      </p>
+      <div className="flex flex-col h-full">
+        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+          <Icon className="h-6 w-6 text-primary" />
+        </div>
+        
+        <h3 className="font-semibold text-[#070707] text-lg mb-2">
+          {item.title}
+        </h3>
+        
+        <p className="text-gray-600 text-sm leading-relaxed flex-1">
+          {item.description}
+        </p>
+      </div>
     </motion.div>
   )
 }
 
 export function DifferentialsSection() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+    skipSnaps: false,
+    dragFree: true,
+  })
+  
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(true)
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setCanScrollPrev(emblaApi.canScrollPrev())
+    setCanScrollNext(emblaApi.canScrollNext())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    onSelect()
+    emblaApi.on("select", onSelect)
+    emblaApi.on("reInit", onSelect)
+    return () => {
+      emblaApi.off("select", onSelect)
+      emblaApi.off("reInit", onSelect)
+    }
+  }, [emblaApi, onSelect])
+
   return (
-    <section className="py-20 lg:py-28 bg-background">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="py-20 lg:py-28 bg-[#f4f4f4]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-14"
+          className="flex items-end justify-between mb-10"
         >
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Diferenciais
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#070707]">
             Por que escolher a SOS?
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg text-pretty">
-            Combinamos tradição, tecnologia e operação estruturada para entregar 
-            segurança de verdade.
-          </p>
+          
+          {/* Navigation Arrows - Desktop */}
+          <div className="hidden sm:flex items-center gap-2">
+            <button
+              onClick={scrollPrev}
+              disabled={!canScrollPrev}
+              className={cn(
+                "p-2.5 rounded-full border border-gray-300 transition-all duration-200",
+                canScrollPrev 
+                  ? "hover:bg-primary hover:border-primary hover:text-white text-gray-700" 
+                  : "opacity-40 cursor-not-allowed text-gray-400"
+              )}
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={scrollNext}
+              disabled={!canScrollNext}
+              className={cn(
+                "p-2.5 rounded-full border border-gray-300 transition-all duration-200",
+                canScrollNext 
+                  ? "hover:bg-primary hover:border-primary hover:text-white text-gray-700" 
+                  : "opacity-40 cursor-not-allowed text-gray-400"
+              )}
+              aria-label="Próximo"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </motion.div>
 
-        {/* Bento Grid - Asymmetric Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {/* Row 1 */}
-          {/* Featured: 46 anos - spans 2 cols */}
-          <BentoItem 
-            item={differentialsData[0]} 
-            index={0} 
-            className="col-span-2 row-span-1"
-            featured
-          />
-          
-          {/* Featured: 24/7 - spans 2 cols */}
-          <BentoItem 
-            item={differentialsData[1]} 
-            index={1} 
-            className="col-span-2 row-span-1"
-            featured
-          />
-          
-          {/* Row 2 */}
-          {/* Tecnologia confiável */}
-          <BentoItem 
-            item={differentialsData[2]} 
-            index={2} 
-            className="col-span-1"
-          />
-          
-          {/* Portfólio completo - spans 2 cols */}
-          <BentoItem 
-            item={differentialsData[3]} 
-            index={3} 
-            className="col-span-2"
-          />
-          
-          {/* Atendimento humano */}
-          <BentoItem 
-            item={differentialsData[4]} 
-            index={4} 
-            className="col-span-1"
-          />
-          
-          {/* Row 3 */}
-          {/* Projetos sob medida - spans 2 cols */}
-          <BentoItem 
-            item={differentialsData[5]} 
-            index={5} 
-            className="col-span-2"
-          />
-          
-          {/* Conformidade */}
-          <BentoItem 
-            item={differentialsData[6]} 
-            index={6} 
-            className="col-span-1"
-          />
-          
-          {/* Eficiência */}
-          <BentoItem 
-            item={differentialsData[7]} 
-            index={7} 
-            className="col-span-1"
-          />
+        {/* Carousel */}
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex gap-4">
+            {differentialsData.map((item, index) => (
+              <div
+                key={item.title}
+                className="flex-none w-[85%] sm:w-[45%] lg:w-[31%]"
+              >
+                <DifferentialCard item={item} index={index} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation Arrows - Mobile */}
+        <div className="flex sm:hidden items-center justify-center gap-3 mt-6">
+          <button
+            onClick={scrollPrev}
+            disabled={!canScrollPrev}
+            className={cn(
+              "p-2.5 rounded-full border border-gray-300 transition-all duration-200",
+              canScrollPrev 
+                ? "hover:bg-primary hover:border-primary hover:text-white text-gray-700" 
+                : "opacity-40 cursor-not-allowed text-gray-400"
+            )}
+            aria-label="Anterior"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={scrollNext}
+            disabled={!canScrollNext}
+            className={cn(
+              "p-2.5 rounded-full border border-gray-300 transition-all duration-200",
+              canScrollNext 
+                ? "hover:bg-primary hover:border-primary hover:text-white text-gray-700" 
+                : "opacity-40 cursor-not-allowed text-gray-400"
+            )}
+            aria-label="Próximo"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </section>
