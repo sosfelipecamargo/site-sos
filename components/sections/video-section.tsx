@@ -20,8 +20,8 @@ export function VideoSection() {
     setIsPlaying(false)
   }
 
-  // YouTube video URL - placeholder for now
-  const videoId = "dQw4w9WgXcQ" // Replace with actual SOS video ID
+  // YouTube video URL
+  const videoId = "vj3kcusqROQ" // SOS video ID
   const thumbnailUrl = "/images/hero/hero-monitoramento.jpg"
 
   return (
