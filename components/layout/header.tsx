@@ -19,7 +19,7 @@ const services = [
 
 const navigation = [
   { name: "HOME", href: "/" },
-  { name: "GRUPO SOS", href: "/grupo-sos" },
+  { name: "GRUPO SOS", href: "/#sobre" },
   { name: "SOLUÇÕES", href: "#", hasDropdown: true },
   { name: "BLOG", href: "/blog" },
   { name: "CONTATO", href: "/contato" },

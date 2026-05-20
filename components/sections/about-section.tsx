@@ -123,7 +123,7 @@ function TimelineItem({ item, index, isLast }: { item: typeof timeline[0]; index
 
 export function AboutSection() {
   return (
-    <section className="relative py-16 lg:py-20 bg-[#f4f4f4] overflow-hidden">
+    <section id="sobre" className="relative py-16 lg:py-20 bg-[#f4f4f4] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
