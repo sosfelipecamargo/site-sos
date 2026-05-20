@@ -25,7 +25,7 @@ export function VideoSection() {
   const thumbnailUrl = "/images/hero/hero-monitoramento.jpg"
 
   return (
-    <section className="py-16 lg:py-24 bg-[#f4f4f4]">
+    <section className="py-12 lg:py-16 bg-[#f4f4f4]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
