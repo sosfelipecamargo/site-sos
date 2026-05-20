@@ -150,6 +150,9 @@ export function HeroCarousel() {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60 z-[2]" />
 
+      {/* Bottom gradient for smooth transition to next section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[45%] bg-gradient-to-t from-[#070707] via-[#070707]/70 to-transparent" />
+
       {/* Main Content - Centralized */}
       <div className="relative h-full flex items-center justify-center z-[3]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
