@@ -6,39 +6,73 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { AnimatedTextCycle } from "@/components/ui/animated-text-cycle"
 
-const slides = [
+interface SlideBase {
+  id: number
+  badge: string
+  cta: { text: string; href: string }
+  image: string
+  objectPosition?: string
+  overlayOpacity?: number
+}
+
+interface AnimatedSlide extends SlideBase {
+  titleBefore: string
+  animatedWords: string[]
+  titleAfter: string
+}
+
+interface StaticSlide extends SlideBase {
+  title: string
+}
+
+type Slide = AnimatedSlide | StaticSlide
+
+function isAnimatedSlide(slide: Slide): slide is AnimatedSlide {
+  return 'animatedWords' in slide
+}
+
+const slides: Slide[] = [
   {
     id: 1,
-    badge: "Mais segurança, eficiência e economia",
-    title: "O FUTURO DO CONTROLE DE ACESSO, HOJE.",
-    subtitle: "Portaria Virtual SOS para empresas e condomínios que querem mais controle, economia e segurança, com operação 24/7, atendimento humano e protocolos bem definidos.",
+    badge: "PORTARIA VIRTUAL SOS",
+    titleBefore: "MAIS",
+    animatedWords: ["SEGURANÇA", "EFICIÊNCIA", "ECONOMIA"],
+    titleAfter: "PARA\nA SUA PORTARIA",
     cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
-    image: "/images/hero/portaria-virtual.jpg",
+    image: "/images/hero/portaria-virtual-bg.png",
+    objectPosition: "center center",
+    overlayOpacity: 0.65,
   },
   {
     id: 2,
-    badge: "Atenção real para cada disparo",
-    title: "MONITORAMENTO INTELIGENTE DE VERDADE",
-    subtitle: "A central SOS acompanha eventos em tempo real, verifica imagens, segue protocolos definidos e aciona os responsáveis com agilidade.",
+    badge: "MONITORAMENTO SOS",
+    titleBefore: "RESPOSTA",
+    animatedWords: ["INTELIGENTE", "RÁPIDA", "HUMANA"],
+    titleAfter: "EM CADA DISPARO",
     cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
-    image: "/images/hero/monitoramento.jpg",
+    image: "/images/hero/monitoramento-bg.png",
+    objectPosition: "left center",
+    overlayOpacity: 0.7,
   },
   {
     id: 3,
-    badge: "+46 anos protegendo o que importa",
-    title: "A SEGURANÇA DA SUA ROTINA COMEÇA COM UMA OPERAÇÃO PREPARADA.",
-    subtitle: "A SOS une segurança eletrônica, central de monitoramento, portaria virtual, internet e atendimento humano para proteger casas, empresas e condomínios.",
-    cta: { text: "Conheça a SOS", href: "/grupo-sos" },
-    image: "/images/hero/institucional.jpg",
+    badge: "GRUPO SOS",
+    title: "HÁ 46 ANOS CUIDANDO DO QUE\nREALMENTE IMPORTA",
+    cta: { text: "Saiba mais", href: "/grupo-sos" },
+    image: "/images/hero/grupo-sos-bg.png",
+    objectPosition: "center center",
+    overlayOpacity: 0.55,
   },
   {
     id: 4,
-    badge: "Fibra de qualidade",
-    title: "INTERNET RÁPIDA, SUPORTE PRÓXIMO E CONEXÃO CONFIÁVEL.",
-    subtitle: "Internet fibra com velocidade, estabilidade e suporte para quem depende de uma conexão confiável todos os dias.",
-    cta: { text: "Conheça a SOS Telecom", href: "/solucoes/sos-telecom" },
-    image: "/images/hero/sos-telecom.jpg",
+    badge: "SOS TELECOM",
+    title: "INTERNET RÁPIDA COM\nSUPORTE DE QUALIDADE",
+    cta: { text: "Saiba mais", href: "/solucoes/sos-telecom" },
+    image: "/images/hero/sos-telecom-bg.png",
+    objectPosition: "center center",
+    overlayOpacity: 0.65,
   },
 ]
 
@@ -133,7 +167,7 @@ export function HeroCarousel() {
                 fill
                 className="object-cover"
                 style={{ 
-                  objectPosition: 'center',
+                  objectPosition: s.objectPosition || 'center',
                   // Scale up to allow parallax movement without showing edges
                   transform: isMobile ? 'none' : 'scale(1.3)',
                   transformOrigin: 'center top',
@@ -147,8 +181,11 @@ export function HeroCarousel() {
         ))}
       </div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60 z-[2]" />
+      {/* Dark overlay - dynamic per slide */}
+      <div 
+        className="absolute inset-0 z-[2] transition-opacity duration-1000"
+        style={{ backgroundColor: `rgba(0, 0, 0, ${slide.overlayOpacity || 0.6})` }}
+      />
 
       {/* Bottom gradient for smooth transition to next section */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[45%] bg-gradient-to-t from-[#070707] via-[#070707]/70 to-transparent" />
@@ -180,9 +217,31 @@ export function HeroCarousel() {
               <motion.h1
                 custom={1}
                 variants={textVariants}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[0.95] tracking-tight max-w-5xl text-balance"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[0.95] tracking-tight max-w-5xl"
               >
-                {slide.title}
+                {isAnimatedSlide(slide) ? (
+                  <>
+                    {slide.titleBefore}{' '}
+                    <AnimatedTextCycle 
+                      words={slide.animatedWords} 
+                      interval={3000}
+                      className="text-primary"
+                    />
+                    {' '}{slide.titleAfter.split('\n').map((line, i) => (
+                      <span key={i}>
+                        {i > 0 && <br />}
+                        {line}
+                      </span>
+                    ))}
+                  </>
+                ) : (
+                  slide.title.split('\n').map((line, i) => (
+                    <span key={i}>
+                      {i > 0 && <br />}
+                      {line}
+                    </span>
+                  ))
+                )}
               </motion.h1>
 
               {/* CTA */}
