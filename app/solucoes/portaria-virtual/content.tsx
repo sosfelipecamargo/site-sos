@@ -60,7 +60,7 @@ const trustItems = [
 const problemCards = [
   {
     icon: DollarSign,
-    title: "Custo operacional elevado",
+    title: "Custo elevado",
     description: "A portaria presencial pode representar uma das maiores despesas do condomínio."
   },
   {
@@ -70,7 +70,7 @@ const problemCards = [
   },
   {
     icon: Eye,
-    title: "Pouco controle sobre acessos",
+    title: "Pouco controle de acesso",
     description: "Visitantes, prestadores e entregas precisam de validação, registro e acompanhamento."
   },
   {
