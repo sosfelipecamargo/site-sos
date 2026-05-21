@@ -525,92 +525,116 @@ function SolutionSection() {
   )
 }
 
-// How It Works Section
+// How It Works Section - Cascading Timeline
 function HowItWorksSection() {
   return (
-    <section id="como-funciona" className="py-20 lg:py-28 bg-[#070707]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="como-funciona" className="py-20 lg:py-28 bg-[#070707] relative overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[200px] pointer-events-none" />
+      
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
             Como funciona a Portaria Virtual SOS
           </h2>
         </motion.div>
 
-        {/* Desktop: Horizontal Trail */}
+        {/* Desktop: Cascading Timeline */}
         <div className="hidden lg:block relative">
-          {/* Connection line - horizontal zigzag */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-            <defs>
-              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#E30613" stopOpacity="0.3" />
-                <stop offset="50%" stopColor="#E30613" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#E30613" stopOpacity="0.3" />
-              </linearGradient>
-            </defs>
-          </svg>
+          {/* Central vertical line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent -translate-x-1/2" />
+          
+          <div className="space-y-0">
+            {howItWorksSteps.map((step, index) => {
+              const isLeft = index % 2 === 0
+              
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={cn(
+                    "relative flex items-center",
+                    isLeft ? "justify-start" : "justify-end"
+                  )}
+                >
+                  {/* Content */}
+                  <div className={cn(
+                    "w-[45%] flex items-center gap-6",
+                    isLeft ? "flex-row" : "flex-row-reverse"
+                  )}>
+                    {/* Text block */}
+                    <div className={cn(
+                      "flex-1",
+                      isLeft ? "text-right" : "text-left"
+                    )}>
+                      <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                      <p className="text-white/50 leading-relaxed text-sm">{step.description}</p>
+                    </div>
+                  </div>
 
-          <div className="grid grid-cols-3 gap-x-8 gap-y-12">
-            {/* Row 1: Steps 1-3 */}
-            <div className="relative">
-              {/* Horizontal line to next */}
-              <div className="absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-primary/30" />
-              <StepCard step={howItWorksSteps[0]} index={0} />
-            </div>
-            <div className="relative">
-              <div className="absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-primary/30" />
-              <StepCard step={howItWorksSteps[1]} index={1} />
-            </div>
-            <div className="relative">
-              {/* Vertical line down */}
-              <div className="absolute -bottom-6 right-1/2 w-0.5 h-6 bg-gradient-to-b from-primary/50 to-primary/30" />
-              <StepCard step={howItWorksSteps[2]} index={2} />
-            </div>
+                  {/* Center marker */}
+                  <div className="absolute left-1/2 -translate-x-1/2 z-10">
+                    <div className="relative">
+                      {/* Outer glow ring */}
+                      <div className="absolute inset-0 w-14 h-14 rounded-full bg-primary/20 blur-md -translate-x-1 -translate-y-1" />
+                      {/* Number circle */}
+                      <div className="relative w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-primary/40">
+                        {step.number}
+                      </div>
+                    </div>
+                  </div>
 
-            {/* Row 2: Steps 4-6 (reversed order) */}
-            <div className="relative">
-              {/* Vertical line from above */}
-              <div className="absolute -top-6 left-1/2 w-0.5 h-6 bg-gradient-to-t from-primary/50 to-primary/30" />
-              <StepCard step={howItWorksSteps[5]} index={5} />
-            </div>
-            <div className="relative">
-              <div className="absolute top-1/2 -left-4 w-8 h-0.5 bg-gradient-to-l from-primary/50 to-primary/30" />
-              <StepCard step={howItWorksSteps[4]} index={4} />
-            </div>
-            <div className="relative">
-              <div className="absolute top-1/2 -left-4 w-8 h-0.5 bg-gradient-to-l from-primary/50 to-primary/30" />
-              <StepCard step={howItWorksSteps[3]} index={3} />
-            </div>
+                  {/* Horizontal connector line */}
+                  <div className={cn(
+                    "absolute top-1/2 -translate-y-1/2 h-px bg-gradient-to-r",
+                    isLeft 
+                      ? "right-1/2 mr-6 w-[calc(5%-24px)] from-primary/40 to-transparent" 
+                      : "left-1/2 ml-6 w-[calc(5%-24px)] from-transparent to-primary/40"
+                  )} />
+
+                  {/* Spacer for alternating layout */}
+                  <div className="w-[45%]" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
 
-        {/* Mobile/Tablet: Vertical Trail */}
+        {/* Mobile/Tablet: Vertical Timeline */}
         <div className="lg:hidden relative">
-          {/* Vertical connection line */}
-          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20" style={{ zIndex: 0 }} />
+          {/* Vertical line */}
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent" />
           
-          <div className="space-y-4">
+          <div className="space-y-8">
             {howItWorksSteps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative flex gap-4"
+                className="relative flex items-start gap-6 pl-2"
               >
                 {/* Number marker */}
-                <div className="relative z-10 w-14 h-14 rounded-full bg-primary text-white font-bold flex items-center justify-center text-lg flex-shrink-0 shadow-lg shadow-primary/30">
-                  {step.number}
+                <div className="relative z-10 flex-shrink-0">
+                  <div className="absolute inset-0 w-10 h-10 rounded-full bg-primary/20 blur-md" />
+                  <div className="relative w-9 h-9 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow-lg shadow-primary/30">
+                    {step.number}
+                  </div>
                 </div>
+                
                 {/* Content */}
-                <div className="flex-1 p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+                <div className="flex-1 pt-1">
                   <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-                  <p className="text-sm text-white/60 leading-relaxed">{step.description}</p>
+                  <p className="text-sm text-white/50 leading-relaxed">{step.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -621,7 +645,7 @@ function HowItWorksSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
           <Button asChild size="lg" className="h-12 px-8">
             <Link href="#formulario">
@@ -634,19 +658,6 @@ function HowItWorksSection() {
     </section>
   )
 }
-
-// Step Card Component
-function StepCard({ step, index }: { step: typeof howItWorksSteps[0]; index: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="relative p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-colors group h-full"
-    >
-      <span className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-primary/30">
-        {step.number}
       </span>
       <h3 className="text-lg font-semibold text-white mt-4 mb-3">{step.title}</h3>
       <p className="text-sm text-white/60 leading-relaxed">{step.description}</p>
