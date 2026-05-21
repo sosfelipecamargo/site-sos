@@ -658,12 +658,6 @@ function HowItWorksSection() {
     </section>
   )
 }
-      </span>
-      <h3 className="text-lg font-semibold text-white mt-4 mb-3">{step.title}</h3>
-      <p className="text-sm text-white/60 leading-relaxed">{step.description}</p>
-    </motion.div>
-  )
-}
 
 // Benefits Section - Cybernetic Bento Grid
 function BenefitsSection() {
