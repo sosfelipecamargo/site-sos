@@ -528,92 +528,82 @@ function SolutionSection() {
 // How It Works Section - Cascading Timeline
 function HowItWorksSection() {
   return (
-    <section id="como-funciona" className="py-20 lg:py-28 bg-[#070707] relative overflow-hidden">
+    <section id="como-funciona" className="py-24 lg:py-32 bg-[#070707] relative overflow-hidden">
       {/* Subtle background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[180px] pointer-events-none" />
       
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-[1100px] px-6 sm:px-8 lg:px-12">
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-20 lg:mb-24"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
             Como funciona a Portaria Virtual SOS
           </h2>
         </motion.div>
 
-        {/* Desktop: Cascading Timeline */}
+        {/* Desktop: Alternating Timeline */}
         <div className="hidden lg:block relative">
           {/* Central vertical line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent -translate-x-1/2" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/20 -translate-x-1/2" />
           
-          <div className="space-y-0">
+          <div className="flex flex-col gap-20">
             {howItWorksSteps.map((step, index) => {
               const isLeft = index % 2 === 0
               
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={cn(
-                    "relative flex items-center",
-                    isLeft ? "justify-start" : "justify-end"
-                  )}
+                  className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-8"
                 >
-                  {/* Content */}
-                  <div className={cn(
-                    "w-[45%] flex items-center gap-6",
-                    isLeft ? "flex-row" : "flex-row-reverse"
-                  )}>
-                    {/* Text block */}
-                    <div className={cn(
-                      "flex-1",
-                      isLeft ? "text-right" : "text-left"
-                    )}>
-                      <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
-                      <p className="text-white/50 leading-relaxed text-sm">{step.description}</p>
-                    </div>
+                  {/* Left content or empty */}
+                  <div className={cn("pr-8", isLeft ? "text-right" : "")}>
+                    {isLeft && (
+                      <>
+                        <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+                        <p className="text-white/50 leading-relaxed">{step.description}</p>
+                      </>
+                    )}
                   </div>
 
                   {/* Center marker */}
-                  <div className="absolute left-1/2 -translate-x-1/2 z-10">
-                    <div className="relative">
-                      {/* Outer glow ring */}
-                      <div className="absolute inset-0 w-14 h-14 rounded-full bg-primary/20 blur-md -translate-x-1 -translate-y-1" />
-                      {/* Number circle */}
-                      <div className="relative w-12 h-12 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-primary/40">
-                        {step.number}
-                      </div>
+                  <div className="relative flex items-center justify-center">
+                    {/* Glow effect */}
+                    <div className="absolute w-16 h-16 rounded-full bg-primary/25 blur-xl" />
+                    {/* Number circle */}
+                    <div className="relative w-14 h-14 rounded-full bg-primary text-white font-bold flex items-center justify-center text-base shadow-lg shadow-primary/50">
+                      {step.number}
                     </div>
                   </div>
 
-                  {/* Horizontal connector line */}
-                  <div className={cn(
-                    "absolute top-1/2 -translate-y-1/2 h-px bg-gradient-to-r",
-                    isLeft 
-                      ? "right-1/2 mr-6 w-[calc(5%-24px)] from-primary/40 to-transparent" 
-                      : "left-1/2 ml-6 w-[calc(5%-24px)] from-transparent to-primary/40"
-                  )} />
-
-                  {/* Spacer for alternating layout */}
-                  <div className="w-[45%]" />
+                  {/* Right content or empty */}
+                  <div className={cn("pl-8", !isLeft ? "text-left" : "")}>
+                    {!isLeft && (
+                      <>
+                        <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+                        <p className="text-white/50 leading-relaxed">{step.description}</p>
+                      </>
+                    )}
+                  </div>
                 </motion.div>
               )
             })}
           </div>
         </div>
 
-        {/* Mobile/Tablet: Vertical Timeline */}
+        {/* Mobile/Tablet: Simple Vertical Timeline */}
         <div className="lg:hidden relative">
           {/* Vertical line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent" />
+          <div className="absolute left-5 top-2 bottom-2 w-px bg-primary/20" />
           
-          <div className="space-y-8">
+          <div className="flex flex-col gap-10">
             {howItWorksSteps.map((step, index) => (
               <motion.div
                 key={index}
@@ -621,12 +611,12 @@ function HowItWorksSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative flex items-start gap-6 pl-2"
+                className="relative flex items-start gap-6"
               >
                 {/* Number marker */}
-                <div className="relative z-10 flex-shrink-0">
-                  <div className="absolute inset-0 w-10 h-10 rounded-full bg-primary/20 blur-md" />
-                  <div className="relative w-9 h-9 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow-lg shadow-primary/30">
+                <div className="relative flex-shrink-0">
+                  <div className="absolute inset-0 w-10 h-10 rounded-full bg-primary/20 blur-lg" />
+                  <div className="relative w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-primary/40">
                     {step.number}
                   </div>
                 </div>
@@ -634,18 +624,19 @@ function HowItWorksSection() {
                 {/* Content */}
                 <div className="flex-1 pt-1">
                   <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-                  <p className="text-sm text-white/50 leading-relaxed">{step.description}</p>
+                  <p className="text-white/50 leading-relaxed">{step.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-20"
+          className="text-center mt-20 lg:mt-24 pb-4"
         >
           <Button asChild size="lg" className="h-12 px-8">
             <Link href="#formulario">
