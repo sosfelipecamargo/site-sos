@@ -63,7 +63,7 @@ const duplicatedClients = [...clients, ...clients]
 
 export function ClientsSection() {
   return (
-    <section className="py-16 lg:py-20 bg-[#f4f4f4] overflow-hidden">
+    <section className="pt-16 lg:pt-20 pb-6 bg-[#f4f4f4] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +76,7 @@ export function ClientsSection() {
             Clientes
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">
-            Empresas que confiam na SOS
+            Quem confia na SOS
           </h2>
         </motion.div>
       </div>

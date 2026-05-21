@@ -70,24 +70,8 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 lg:py-24 bg-[#f4f4f4]">
+    <section className="pt-6 pb-16 lg:pb-24 bg-[#f4f4f4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto mb-12"
-        >
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Depoimentos
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">
-            O que nossos clientes dizem
-          </h2>
-        </motion.div>
-
         {/* Grid of Testimonials */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((testimonial, index) => (
