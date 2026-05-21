@@ -76,7 +76,7 @@ export function ClientsSection() {
             Clientes
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">
-            Quem confia na SOS
+            Empresas que confiam na SOS
           </h2>
         </motion.div>
       </div>

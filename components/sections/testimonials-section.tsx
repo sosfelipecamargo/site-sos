@@ -84,7 +84,7 @@ export function TestimonialsSection() {
             Depoimentos
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">
-            Quem confia na SOS
+            O que nossos clientes dizem
           </h2>
         </motion.div>
 
