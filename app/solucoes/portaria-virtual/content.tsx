@@ -568,7 +568,7 @@ function HowItWorksSection() {
                     {isLeft && (
                       <>
                         <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
-                        <p className="text-white/50 leading-relaxed">{step.description}</p>
+                        <p className="text-white/50 leading-snug">{step.description}</p>
                       </>
                     )}
                   </div>
@@ -588,7 +588,7 @@ function HowItWorksSection() {
                     {!isLeft && (
                       <>
                         <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
-                        <p className="text-white/50 leading-relaxed">{step.description}</p>
+                        <p className="text-white/50 leading-snug">{step.description}</p>
                       </>
                     )}
                   </div>
@@ -624,7 +624,7 @@ function HowItWorksSection() {
                 {/* Content */}
                 <div className="flex-1 pt-1">
                   <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-                  <p className="text-white/50 leading-relaxed">{step.description}</p>
+                  <p className="text-white/50 leading-snug">{step.description}</p>
                 </div>
               </motion.div>
             ))}
