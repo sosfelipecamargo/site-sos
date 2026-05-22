@@ -4,14 +4,17 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Custom CardStack styles for Structure Section */
-.structure-card-stack button {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-.structure-card-stack button:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-.structure-card-stack .bg-foreground {
+.structure-card-stack .bg-foreground,
+.structure-card-stack-mobile .bg-foreground {
   background-color: #E30613;
+}
+.structure-card-stack .bg-foreground\/30,
+.structure-card-stack-mobile .bg-foreground\/30 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.structure-card-stack .bg-foreground\/30:hover,
+.structure-card-stack-mobile .bg-foreground\/30:hover {
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 :root {

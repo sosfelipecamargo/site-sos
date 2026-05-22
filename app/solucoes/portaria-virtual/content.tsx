@@ -831,21 +831,22 @@ function StructureSection() {
   ]
 
   return (
-    <section id="estrutura" className="py-20 lg:py-28 bg-[#070707]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[40%_60%] gap-12 lg:gap-8 items-center">
+    <section id="estrutura" className="py-20 lg:py-28 bg-[#070707] overflow-hidden">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        {/* Desktop: Two columns */}
+        <div className="hidden lg:grid lg:grid-cols-[36%_64%] lg:gap-16 items-center">
           {/* Left Column - Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center lg:text-left"
+            className="relative z-10"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary uppercase tracking-wide mb-6">
+            <h2 className="text-[48px] xl:text-[56px] font-bold text-primary uppercase tracking-wide leading-tight mb-6">
               Estrutura SOS
             </h2>
-            <p className="text-white/70 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+            <p className="text-white/70 text-lg leading-relaxed max-w-[390px]">
               A SOS Segurança Inteligente conta com uma estrutura própria de atendimento, monitoramento e suporte, preparada para operar rotinas de controle de acesso com segurança, agilidade e proximidade.
             </p>
           </motion.div>
@@ -856,29 +857,30 @@ function StructureSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full"
+            className="w-full flex justify-center"
           >
             <CardStack
               items={structureCards}
               initialIndex={0}
               autoAdvance={true}
-              intervalMs={3500}
+              intervalMs={4000}
               pauseOnHover={true}
               showDots={true}
               loop={true}
-              cardWidth={420}
-              cardHeight={520}
-              overlap={0.5}
-              spreadDeg={35}
-              perspectivePx={1200}
-              depthPx={100}
-              tiltXDeg={8}
-              activeLiftPx={20}
-              activeScale={1.02}
-              inactiveScale={0.92}
+              cardWidth={340}
+              cardHeight={480}
+              maxVisible={5}
+              overlap={0.65}
+              spreadDeg={18}
+              perspectivePx={1000}
+              depthPx={60}
+              tiltXDeg={4}
+              activeLiftPx={12}
+              activeScale={1}
+              inactiveScale={0.88}
               className="structure-card-stack"
               renderCard={(item, { active }) => (
-                <div className="relative h-full w-full">
+                <div className="relative h-full w-full rounded-xl overflow-hidden">
                   {/* Image */}
                   <div className="absolute inset-0">
                     <img
@@ -886,8 +888,96 @@ function StructureSection() {
                       alt={item.title}
                       className={cn(
                         "h-full w-full object-cover",
-                        item.id === "solucoes" && "object-[center_20%]",
-                        item.id === "equipe" && "object-[center_25%]"
+                        item.id === "solucoes" && "object-center",
+                        item.id === "equipe" && "object-center",
+                        item.id === "atendimento" && "object-[right_center]"
+                      )}
+                      draggable={false}
+                      loading="eager"
+                    />
+                  </div>
+
+                  {/* Gradient overlay - only visible on active */}
+                  <div className={cn(
+                    "pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300",
+                    active ? "opacity-100" : "opacity-50"
+                  )} />
+
+                  {/* Content - only on active card */}
+                  {active && (
+                    <div className="relative z-10 flex h-full flex-col justify-end p-5">
+                      <div className="text-lg font-bold text-white mb-1">
+                        {item.title}
+                      </div>
+                      {item.description && (
+                        <div className="text-sm text-white/80 leading-snug">
+                          {item.description}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            />
+          </motion.div>
+        </div>
+
+        {/* Mobile/Tablet: Stacked layout */}
+        <div className="lg:hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary uppercase tracking-wide mb-4">
+              Estrutura SOS
+            </h2>
+            <p className="text-white/70 text-base leading-relaxed max-w-md mx-auto">
+              A SOS Segurança Inteligente conta com uma estrutura própria de atendimento, monitoramento e suporte, preparada para operar rotinas de controle de acesso com segurança, agilidade e proximidade.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full flex justify-center"
+          >
+            <CardStack
+              items={structureCards}
+              initialIndex={0}
+              autoAdvance={true}
+              intervalMs={4000}
+              pauseOnHover={true}
+              showDots={true}
+              loop={true}
+              cardWidth={280}
+              cardHeight={400}
+              maxVisible={3}
+              overlap={0.7}
+              spreadDeg={12}
+              perspectivePx={800}
+              depthPx={40}
+              tiltXDeg={3}
+              activeLiftPx={8}
+              activeScale={1}
+              inactiveScale={0.85}
+              className="structure-card-stack-mobile"
+              renderCard={(item, { active }) => (
+                <div className="relative h-full w-full rounded-xl overflow-hidden">
+                  {/* Image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={item.imageSrc}
+                      alt={item.title}
+                      className={cn(
+                        "h-full w-full object-cover",
+                        item.id === "solucoes" && "object-center",
+                        item.id === "equipe" && "object-center",
+                        item.id === "atendimento" && "object-[right_center]"
                       )}
                       draggable={false}
                       loading="eager"
@@ -895,22 +985,24 @@ function StructureSection() {
                   </div>
 
                   {/* Gradient overlay */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className={cn(
+                    "pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300",
+                    active ? "opacity-100" : "opacity-50"
+                  )} />
 
-                  {/* Red accent line at bottom */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-primary" />
-
-                  {/* Content */}
-                  <div className="relative z-10 flex h-full flex-col justify-end p-6">
-                    <div className="text-xl font-bold text-white mb-2">
-                      {item.title}
-                    </div>
-                    {item.description && (
-                      <div className="text-sm text-white/80 leading-relaxed">
-                        {item.description}
+                  {/* Content - only on active card */}
+                  {active && (
+                    <div className="relative z-10 flex h-full flex-col justify-end p-4">
+                      <div className="text-base font-bold text-white mb-1">
+                        {item.title}
                       </div>
-                    )}
-                  </div>
+                      {item.description && (
+                        <div className="text-xs text-white/80 leading-snug">
+                          {item.description}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             />
