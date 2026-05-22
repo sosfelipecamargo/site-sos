@@ -3,6 +3,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Custom CardStack styles for Structure Section */
+.structure-card-stack button {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.structure-card-stack button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.structure-card-stack .bg-foreground {
+  background-color: #E30613;
+}
+
 :root {
   /* SOS Brand Colors */
   --background: #ffffff;

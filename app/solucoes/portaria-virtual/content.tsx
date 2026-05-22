@@ -876,7 +876,7 @@ function StructureSection() {
               activeLiftPx={20}
               activeScale={1.02}
               inactiveScale={0.92}
-              className="[&_button]:bg-white/30 [&_button]:hover:bg-white/50 [&_.bg-foreground]:bg-primary [&_.bg-foreground\\/30]:bg-white/30"
+              className="structure-card-stack"
               renderCard={(item, { active }) => (
                 <div className="relative h-full w-full">
                   {/* Image */}
