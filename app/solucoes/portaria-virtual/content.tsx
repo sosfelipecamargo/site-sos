@@ -39,6 +39,7 @@ import {
   Send
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CardStack } from "@/components/ui/card-stack"
 import { cn } from "@/lib/utils"
 
 // WhatsApp link
@@ -794,123 +795,126 @@ function ComparisonSection() {
   )
 }
 
-// Structure Section - Same style as "Quem Atendemos"
+// Structure Section - CardStack Layout
 function StructureSection() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
-
-  const structureItems = [
+  const structureCards = [
     {
       id: "central",
       title: "Central de Segurança SOS",
-      description: "Operação 24h com equipe treinada e ambiente estruturado para atendimento.",
-      image: "/images/hero/portaria-virtual-bg.png"
+      description: "Operação preparada para acompanhar acessos e ocorrências em tempo real.",
+      imageSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Central%20de%20Seguranc%CC%A7a%20SOS%201_Portaria%20Virtual-msm9zupTy1OGZZH9C02Yo0gyKBnqzV.jpg"
     },
     {
       id: "equipe",
       title: "Equipe técnica própria",
-      description: "Instalação, manutenção e suporte com profissionais da SOS.",
-      image: "/images/hero/hero-monitoramento.jpg"
+      description: "Implantação, suporte e acompanhamento com profissionais da SOS.",
+      imageSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Equipe-R1wnsuikml4ZM66DpbaBc95Aigvrp6.png"
     },
     {
       id: "experiencia",
       title: "Experiência regional",
-      description: "Mais de 40 anos atuando em segurança em Americana e região.",
-      image: "/images/hero/hero-cftv.jpg"
+      description: "Mais de 40 anos protegendo empresas, condomínios e residências na região.",
+      imageSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Experie%CC%82ncia-o0ay7vokfxNA6XEIkDZXEjoqpTfCbx.jpg"
     },
     {
       id: "solucoes",
       title: "Soluções integradas",
-      description: "CFTV, alarmes, controle de acesso, monitoramento, portaria virtual e internet.",
-      image: "/images/hero/hero-alarmes.jpg"
+      description: "Portaria Virtual conectada a monitoramento, câmeras, controle de acesso e conectividade.",
+      imageSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sistemas%20integrados-9lWBseoNbQC0aOiGgHfuQgrJFFZyF4.jpg"
     },
     {
       id: "atendimento",
       title: "Atendimento próximo",
-      description: "A SOS entende a realidade de condomínios e empresas da região.",
-      image: "/images/hero/hero-portaria.jpg"
+      description: "Suporte humano, ágil e presente em cada etapa da operação.",
+      imageSrc: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Atendimento%20Pro%CC%81ximo-HywKYdde9TpkqZjaGJOtlSPHlWvW6A.jpg"
     },
   ]
 
   return (
     <section id="estrutura" className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-12"
-        >
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Estrutura SOS
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white text-balance">
-            A sua portaria conectada a uma central de segurança de verdade
-          </h2>
-          <p className="mt-4 text-white/60 text-lg">
-            A SOS Segurança Inteligente conta com uma estrutura própria de atendimento, monitoramento e suporte, preparada para operar rotinas de controle de acesso com segurança, agilidade e proximidade.
-          </p>
-        </motion.div>
+        <div className="grid lg:grid-cols-[40%_60%] gap-12 lg:gap-8 items-center">
+          {/* Left Column - Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center lg:text-left"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary uppercase tracking-wide mb-6">
+              Estrutura SOS
+            </h2>
+            <p className="text-white/70 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+              A SOS Segurança Inteligente conta com uma estrutura própria de atendimento, monitoramento e suporte, preparada para operar rotinas de controle de acesso com segurança, agilidade e proximidade.
+            </p>
+          </motion.div>
 
-        {/* Interactive Image Accordion */}
-        <div className="flex flex-col lg:flex-row gap-2 h-[400px] lg:h-[500px]">
-          {structureItems.map((item, index) => {
-            const isActive = activeIndex === index
-            
-            return (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="relative overflow-hidden rounded-2xl cursor-pointer group"
-                style={{
-                  flex: isActive ? 4 : 1,
-                  transition: "flex 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-                }}
-                onMouseEnter={() => setActiveIndex(index)}
-                onMouseLeave={() => setActiveIndex(null)}
-              >
-                {/* Background Image */}
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 25vw"
-                />
-                
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                
-                {/* Red Accent Line */}
-                <div 
-                  className="absolute bottom-0 left-0 w-full h-1 bg-primary transform origin-left transition-transform duration-500"
-                  style={{ transform: isActive ? "scaleX(1)" : "scaleX(0)" }}
-                />
-                
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 
-                    className="text-white font-bold text-xl lg:text-2xl transition-all duration-500"
-                  >
-                    {item.title}
-                  </h3>
-                  
-                  <p 
-                    className="text-white/80 text-sm lg:text-base mt-2 transition-all duration-500 overflow-hidden"
-                    style={{ 
-                      maxHeight: isActive ? "100px" : "0",
-                      opacity: isActive ? 1 : 0,
-                    }}
-                  >
-                    {item.description}
-                  </p>
+          {/* Right Column - CardStack */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full"
+          >
+            <CardStack
+              items={structureCards}
+              initialIndex={0}
+              autoAdvance={true}
+              intervalMs={3500}
+              pauseOnHover={true}
+              showDots={true}
+              loop={true}
+              cardWidth={420}
+              cardHeight={520}
+              overlap={0.5}
+              spreadDeg={35}
+              perspectivePx={1200}
+              depthPx={100}
+              tiltXDeg={8}
+              activeLiftPx={20}
+              activeScale={1.02}
+              inactiveScale={0.92}
+              className="[&_button]:bg-white/30 [&_button]:hover:bg-white/50 [&_.bg-foreground]:bg-primary [&_.bg-foreground\\/30]:bg-white/30"
+              renderCard={(item, { active }) => (
+                <div className="relative h-full w-full">
+                  {/* Image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={item.imageSrc}
+                      alt={item.title}
+                      className={cn(
+                        "h-full w-full object-cover",
+                        item.id === "solucoes" && "object-[center_20%]",
+                        item.id === "equipe" && "object-[center_25%]"
+                      )}
+                      draggable={false}
+                      loading="eager"
+                    />
+                  </div>
+
+                  {/* Gradient overlay */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  {/* Red accent line at bottom */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-primary" />
+
+                  {/* Content */}
+                  <div className="relative z-10 flex h-full flex-col justify-end p-6">
+                    <div className="text-xl font-bold text-white mb-2">
+                      {item.title}
+                    </div>
+                    {item.description && (
+                      <div className="text-sm text-white/80 leading-relaxed">
+                        {item.description}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </motion.div>
-            )
-          })}
+              )}
+            />
+          </motion.div>
         </div>
       </div>
     </section>
