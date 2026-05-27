@@ -1,18 +1,25 @@
 import type { Metadata } from "next"
-import { services } from "@/lib/data"
-import { ServicePage } from "@/components/templates/service-page"
-
-const service = services.find(s => s.slug === "viaturas-pronta-resposta")!
+import { ViaturasContent } from "./content"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
-  title: `${service.name} | SOS Segurança Inteligente`,
-  description: service.heroDescription,
+  title: "Viaturas de Pronta Resposta | SOS Segurança Inteligente",
+  description: "Viaturas 24h para verificação presencial de alarmes e ocorrências em Americana e região. Resposta rápida integrada ao monitoramento da Central SOS.",
   openGraph: {
-    title: `${service.name} | SOS Segurança Inteligente`,
-    description: service.heroDescription,
+    title: "Viaturas de Pronta Resposta | SOS Segurança Inteligente",
+    description: "Viaturas 24h para verificação presencial de alarmes e ocorrências em Americana e região. Resposta rápida integrada ao monitoramento da Central SOS.",
   },
 }
 
 export default function ViaturasPage() {
-  return <ServicePage service={service} />
+  return (
+    <>
+      <Header />
+      <main>
+        <ViaturasContent />
+      </main>
+      <Footer />
+    </>
+  )
 }

@@ -1344,8 +1344,8 @@ function FormSection() {
                 </div>
                 <div>
                   <p className="text-white/60 text-sm">Telefone</p>
-                  <a href="tel:+551934713514" className="text-white font-medium hover:text-primary transition-colors">
-                    (19) 3471-3514
+                  <a href="tel:+551934714514" className="text-white font-medium hover:text-primary transition-colors">
+                    (19) 3471-4514
                   </a>
                 </div>
               </div>
