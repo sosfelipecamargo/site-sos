@@ -787,7 +787,7 @@ function FormSection() {
   }
 
   return (
-    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#0a0a0a]">
+    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left */}

@@ -280,7 +280,7 @@ function WhatIsSection() {
 // Benefits Section
 function BenefitsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-[#0a0a0a]">
+    <section className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -368,7 +368,7 @@ function ApplicationsSection() {
 // Differentials Section
 function DifferentialsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-[#0a0a0a]">
+    <section className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left - Content */}
@@ -383,7 +383,7 @@ function DifferentialsSection() {
             <p className="text-white/70 text-lg leading-relaxed mb-8">
               A vigilância patrimonial da SOS combina profissionais preparados, supervisão ativa e integração com tecnologia para garantir uma proteção mais eficiente.
             </p>
-            <Button asChild size="lg" className="transition-colors hover:bg-[#ab0000]">
+            <Button asChild size="lg" className="transition-colors hover:bg-[#AB0000]">
               <a href="#formulario">
                 Solicitar proposta
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -439,7 +439,7 @@ function FaqSection() {
             <p className="text-white/60 text-lg mb-6">
               Tire suas dúvidas sobre a vigilância patrimonial da SOS.
             </p>
-            <Button asChild size="lg" variant="outline" className="h-12 px-8 transition-colors hover:bg-[#ab0000] hover:text-white hover:border-[#ab0000]">
+            <Button asChild size="lg" variant="outline" className="h-12 px-8 transition-colors hover:bg-[#AB0000] hover:text-white hover:border-[#AB0000]">
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 h-5 w-5" />
                 Tire suas dúvidas
@@ -507,7 +507,7 @@ function FormSection() {
   }
 
   return (
-    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#0a0a0a] to-[#070707]">
+    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left */}
@@ -646,7 +646,7 @@ function FormSection() {
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full h-12 transition-colors hover:bg-[#ab0000]"
+                  className="w-full h-12 transition-colors hover:bg-[#AB0000]"
                 >
                   Solicitar contato
                 </Button>

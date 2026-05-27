@@ -250,7 +250,7 @@ function WhatIsSection() {
 // Benefits Section
 function BenefitsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-[#0a0a0a]">
+    <section className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -348,7 +348,7 @@ function DifferentialsSection() {
 // FAQ Section
 function FaqSection() {
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-[#0a0a0a]">
+    <section id="faq" className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16">
           {/* Left - Title */}
@@ -431,7 +431,7 @@ function FormSection() {
   }
 
   return (
-    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#0a0a0a]">
+    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left */}

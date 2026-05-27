@@ -658,12 +658,12 @@ function HowItWorksSection() {
 // Benefits Section - Cybernetic Bento Grid
 function BenefitsSection() {
   return (
-    <section id="beneficios" className="py-20 lg:py-28 bg-[#0a0a0a] relative overflow-hidden">
+    <section id="beneficios" className="py-20 lg:py-28 bg-[#070707] relative overflow-hidden">
       {/* Subtle grid background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(rgba(227, 6, 19, 0.03) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(227, 6, 19, 0.03) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(171, 0, 0, 0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(171, 0, 0, 0.03) 1px, transparent 1px)`,
           backgroundSize: '60px 60px'
         }} />
       </div>
@@ -693,7 +693,7 @@ function BenefitsSection() {
                 "group relative p-6 rounded-2xl overflow-hidden transition-all duration-500",
                 "bg-gradient-to-br from-white/[0.05] to-transparent",
                 "border border-white/[0.08]",
-                "hover:border-primary/40 hover:shadow-[0_0_30px_rgba(227,6,19,0.15)]",
+                "hover:border-primary/40 hover:shadow-[0_0_30px_rgba(171,0,0,0.15)]",
                 // Make first and last items span 2 columns on larger screens
                 index === 0 && "lg:col-span-2",
                 index === benefitsCards.length - 1 && "lg:col-span-2"
@@ -1174,7 +1174,7 @@ function AppSection() {
 // Testimonials Section
 function TestimonialsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-[#0a0a0a] relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-[#070707] relative overflow-hidden">
       {/* Subtle gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
 
@@ -1244,7 +1244,7 @@ function FAQSection() {
               <p className="text-gray-600 mb-8">
                 Tire suas dúvidas sobre como funciona a Portaria Virtual SOS e entenda se essa solução faz sentido para o seu condomínio ou empresa.
               </p>
-              <Button asChild size="lg" variant="outline" className="h-12 px-8 transition-colors hover:bg-[#ab0000] hover:text-white hover:border-[#ab0000] [&:hover_svg]:text-white">
+              <Button asChild size="lg" variant="outline" className="h-12 px-8 transition-colors hover:bg-[#AB0000] hover:text-white hover:border-[#AB0000] [&:hover_svg]:text-white">
                 <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 h-5 w-5 transition-colors" />
                   Tire suas dúvidas
@@ -1320,7 +1320,7 @@ function FormSection() {
   }
 
   return (
-    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#0a0a0a]">
+    <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left */}
@@ -1457,7 +1457,7 @@ function FormSection() {
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full h-12 transition-colors hover:bg-[#ab0000]"
+                  className="w-full h-12 transition-colors hover:bg-[#AB0000]"
                 >
                   Solicitar contato
                 </Button>
