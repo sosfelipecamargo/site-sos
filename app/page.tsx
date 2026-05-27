@@ -8,7 +8,6 @@ import { ServicesSection } from "@/components/sections/services-section"
 import { TargetAudienceSection } from "@/components/sections/target-audience-section"
 import { ClientsSection } from "@/components/sections/clients-section"
 import { TestimonialsSection } from "@/components/sections/testimonials-section"
-import { BlogSection } from "@/components/sections/blog-section"
 import { CtaSection } from "@/components/sections/cta-section"
 
 export default function HomePage() {
@@ -24,7 +23,6 @@ export default function HomePage() {
         <DifferentialsSection />
         <ClientsSection />
         <TestimonialsSection />
-        <BlogSection />
         <CtaSection />
       </main>
       <Footer />
