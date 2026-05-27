@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import { SegurancaEletronicaContent } from "./content"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Segurança Eletrônica | Grupo SOS",
@@ -17,5 +19,13 @@ export const metadata: Metadata = {
 }
 
 export default function SegurancaEletronicaPage() {
-  return <SegurancaEletronicaContent />
+  return (
+    <>
+      <Header />
+      <main>
+        <SegurancaEletronicaContent />
+      </main>
+      <Footer />
+    </>
+  )
 }

@@ -290,19 +290,19 @@ function HeroSection() {
 
           {/* H1 */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
-            Câmeras, alarmes e controle de acesso com monitoramento 24h
+            Tecnologia bem instalada para proteger o que importa
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-xl">
-            A SOS projeta, instala e monitora sistemas de segurança eletrônica para residências, condomínios e empresas. Equipamentos de qualidade conectados a uma central preparada para agir.
+            Projetos de câmeras, alarmes, sensores, cercas elétricas e controle de acesso dimensionados para a necessidade real do seu imóvel.
           </p>
 
           {/* Single CTA */}
           <Button asChild size="lg" className="h-14 px-10 text-base">
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Falar no WhatsApp
+            <a href="#formulario">
+              Solicitar avaliação técnica
+              <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
         </motion.div>

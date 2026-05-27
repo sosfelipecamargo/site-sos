@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import { VigilanciaPatrimonialContent } from "./content"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Vigilância Patrimonial | SOS Segurança Inteligente",
@@ -11,5 +13,13 @@ export const metadata: Metadata = {
 }
 
 export default function VigilanciaPatrimonialPage() {
-  return <VigilanciaPatrimonialContent />
+  return (
+    <>
+      <Header />
+      <main>
+        <VigilanciaPatrimonialContent />
+      </main>
+      <Footer />
+    </>
+  )
 }

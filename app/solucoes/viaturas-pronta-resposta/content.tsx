@@ -255,19 +255,19 @@ function HeroSection() {
 
           {/* H1 */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
-            Resposta rápida quando você mais precisa
+            Apoio em campo quando a operação precisa verificar de perto
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-xl">
-            As viaturas SOS complementam o monitoramento com verificação presencial, atendendo alarmes, ocorrências e emergências em Americana e região 24 horas por dia.
+            Viaturas conectadas à Central SOS para apoiar ocorrências previstas nos serviços monitorados, verificar o perímetro e ampliar a capacidade de resposta da operação.
           </p>
 
           {/* Single CTA */}
           <Button asChild size="lg" className="h-14 px-10 text-base">
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Falar no WhatsApp
+            <a href="#formulario">
+              Conhecer a Pronta-Resposta SOS
+              <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
         </motion.div>

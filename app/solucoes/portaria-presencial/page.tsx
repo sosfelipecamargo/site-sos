@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import { PortariaPresencialContent } from "./content"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Portaria Presencial | SOS Segurança Inteligente",
@@ -11,5 +13,13 @@ export const metadata: Metadata = {
 }
 
 export default function PortariaPresencialPage() {
-  return <PortariaPresencialContent />
+  return (
+    <>
+      <Header />
+      <main>
+        <PortariaPresencialContent />
+      </main>
+      <Footer />
+    </>
+  )
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { 
   Users, Shield, Clock, CheckCircle, ChevronDown,
@@ -128,71 +129,64 @@ export function PortariaPresencialContent() {
 // Hero Section
 function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-      {/* Background */}
+    <section className="relative min-h-screen bg-[#070707] overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/services/portaria-presencial.jpg')" }}
+        <Image
+          src="/images/services/portaria-presencial.jpg"
+          alt="Portaria Presencial SOS"
+          fill
+          className="object-cover"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070707]/95 via-[#070707]/85 to-[#070707]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-[#070707]/50" />
+        {/* Subtle red glow */}
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 lg:pt-40 lg:pb-28 flex items-center min-h-screen">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="max-w-3xl"
         >
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
-            <Users className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-white">Portaria Presencial</span>
-          </div>
+          {/* Eyebrow */}
+          <span className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 text-primary text-xs font-medium tracking-wider uppercase rounded-full mb-6">
+            Portaria Presencial
+          </span>
 
-          {/* Title */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
-            Presença que <span className="text-primary">protege</span>
+          {/* H1 */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
+            Presença profissional para organizar acessos e apoiar a rotina do local
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Profissionais treinados para atuar no controle de acesso, com postura preventiva, apoio da Central SOS e gestão completa de escalas.
+          <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-xl">
+            Profissionais preparados para atender visitantes, controlar entradas e saídas e seguir procedimentos alinhados às necessidades do condomínio ou empresa.
           </p>
 
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="h-14 px-8 text-base">
-              <a href="#formulario">
-                Solicitar proposta
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base bg-white/10 border-white/30 text-white hover:bg-white/20">
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Falar pelo WhatsApp
-              </a>
-            </Button>
-          </div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            <ChevronDown className="h-8 w-8 text-white/60" />
-          </motion.div>
+          {/* Single CTA */}
+          <Button asChild size="lg" className="h-14 px-10 text-base">
+            <a href="#formulario">
+              Solicitar proposta
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </Button>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <ChevronDown className="h-6 w-6 text-white/40 animate-bounce" />
+      </motion.div>
     </section>
   )
 }

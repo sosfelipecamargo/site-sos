@@ -265,19 +265,19 @@ function HeroSection() {
 
           {/* H1 */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
-            Sua segurança acompanhada 24 horas por dia
+            Proteção ativa para agir quando algo acontece
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-xl">
-            A Central SOS monitora alarmes, câmeras e sensores em tempo real, com equipe treinada para agir de forma rápida e eficiente quando você mais precisa.
+            Alarmes e câmeras conectados à Central SOS para acompanhar eventos, verificar situações e seguir protocolos com agilidade, todos os dias.
           </p>
 
           {/* Single CTA */}
           <Button asChild size="lg" className="h-14 px-10 text-base">
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Falar no WhatsApp
+            <a href="#formulario">
+              Quero proteger meu imóvel
+              <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
         </motion.div>
