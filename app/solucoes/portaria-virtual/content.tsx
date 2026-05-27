@@ -274,27 +274,31 @@ const testimonials = [
 const faqItems = [
   {
     question: "A rotina do condomínio muda muito?",
-    answer: "A rotina é adaptada de forma planejada. O objetivo não é complicar o dia a dia, mas organizar os acessos com procedimentos mais claros e seguros."
+    answer: "Não. A implantação é planejada para gerar o mínimo de impacto possível na rotina dos moradores, funcionários e visitantes. O objetivo é tornar o controle de acesso mais organizado, seguro e prático no dia a dia."
   },
   {
     question: "E se a internet cair?",
-    answer: "O projeto pode prever estrutura de comunicação e contingência conforme a necessidade do local. Na análise técnica, a SOS avalia a melhor configuração para manter a operação mais segura."
+    answer: "A operação utiliza dois links de internet independentes, garantindo redundância na comunicação com a Central SOS. Além disso, os links são monitorados continuamente: caso um deles apresente falha, nossa equipe é notificada para agir rapidamente, antes que a redundância seja comprometida."
   },
   {
-    question: "O morador precisa saber usar aplicativo?",
-    answer: "O aplicativo pode facilitar a rotina, mas a operação é desenhada para que o atendimento continue sendo conduzido pela central e pelos procedimentos definidos."
+    question: "O morador precisa saber usar o aplicativo?",
+    answer: "Não. O aplicativo oferece mais praticidade para liberar visitantes, acompanhar acessos e utilizar recursos do condomínio sem depender da central. Porém, nosso atendimento é preparado para operar normalmente mesmo quando o morador não utiliza o aplicativo."
   },
   {
     question: "A Portaria Virtual serve para qualquer condomínio?",
-    answer: "Nem sempre. Por isso, a SOS realiza uma análise da estrutura, dos acessos e da rotina antes de indicar o melhor modelo."
+    answer: "A Portaria Virtual pode ser adaptada a diferentes perfis de condomínio, desde que seja feita uma avaliação prévia da estrutura e da rotina do local. Quando o modelo totalmente virtual não é o mais indicado, a SOS também pode atuar com a portaria híbrida, mantendo atendimento presencial nos horários de maior movimento e operação remota nos períodos mais tranquilos."
   },
   {
-    question: "A portaria presencial deixa de existir?",
-    answer: "Depende do projeto. Em alguns casos, a Portaria Virtual substitui a portaria presencial. Em outros, pode funcionar em modelo híbrido."
+    question: "A Portaria Virtual reduz a segurança do condomínio?",
+    answer: "Não. A operação remota pode aumentar o controle de acesso ao centralizar os atendimentos em uma equipe treinada, seguindo procedimentos definidos e registrando os eventos. Isso reduz liberações informais, distrações e decisões fora do protocolo."
   },
   {
-    question: "É seguro abrir portão remotamente?",
-    answer: "Sim, desde que exista estrutura adequada, câmeras, procedimentos definidos, validação de acesso e operação profissional. Por isso, a implantação precisa ser feita com critério."
+    question: "E se faltar energia?",
+    answer: "Os equipamentos essenciais contam com nobreaks e, quando a estrutura do condomínio permite, podem ser integrados a um gerador. Assim, o controle de acesso pode continuar operando durante interrupções temporárias, respeitando a autonomia disponível dos equipamentos."
+  },
+  {
+    question: "E se acontecer algum problema técnico?",
+    answer: "Nossa operação conta com monitoramento constante e redundâncias técnicas para reduzir o risco de interrupções. Caso ainda assim ocorra alguma falha, atuamos primeiro de forma remota e, quando necessário, enviamos suporte técnico ao condomínio para restabelecer a operação e apoiar a continuidade segura dos acessos."
   },
 ]
 
@@ -1240,10 +1244,10 @@ function FAQSection() {
               <p className="text-gray-600 mb-8">
                 Tire suas dúvidas sobre como funciona a Portaria Virtual SOS e entenda se essa solução faz sentido para o seu condomínio ou empresa.
               </p>
-              <Button asChild size="lg" variant="outline" className="h-12 px-8">
+              <Button asChild size="lg" variant="outline" className="h-12 px-8 transition-colors hover:bg-[#ab0000] hover:text-white hover:border-[#ab0000] [&:hover_svg]:text-white">
                 <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  Fale com a SOS e tire suas dúvidas
+                  <MessageCircle className="mr-2 h-5 w-5 transition-colors" />
+                  Tire suas dúvidas
                 </a>
               </Button>
             </motion.div>
