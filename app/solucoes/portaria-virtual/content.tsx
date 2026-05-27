@@ -305,16 +305,16 @@ const faqItems = [
 const localTypes = [
   "Condomínio residencial",
   "Condomínio empresarial",
+  "Condomínio industrial / logística",
   "Empresa",
-  "Indústria",
   "Outro",
 ]
 
 const portariaTypes = [
-  "Sim, presencial 24h",
-  "Sim, presencial em horário parcial",
-  "Sim, virtual 24h",
-  "Não",
+  "Portaria presencial",
+  "Portaria híbrida",
+  "Portaria virtual",
+  "Sem portaria",
   "Não sei informar",
 ]
 
@@ -1293,16 +1293,29 @@ function FormSection() {
   const [formData, setFormData] = useState({
     name: "",
     whatsapp: "",
-    city: "",
+    address: "",
     localType: "",
-    hasPortaria: "",
+    currentPortaria: "",
     message: "",
   })
 
+  // Phone mask function
+  const formatPhone = (value: string) => {
+    const numbers = value.replace(/\D/g, "")
+    if (numbers.length <= 2) return numbers
+    if (numbers.length <= 7) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`
+    if (numbers.length <= 11) return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`
+  }
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhone(e.target.value)
+    setFormData({ ...formData, whatsapp: formatted })
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
-    const message = `Olá! Gostaria de uma análise para Portaria Virtual.%0A%0ANome: ${formData.name}%0AWhatsApp: ${formData.whatsapp}%0ACidade: ${formData.city}%0ATipo: ${formData.localType}%0APortaria atual: ${formData.hasPortaria}%0AMensagem: ${formData.message}`
+    const message = `Olá! Gostaria de saber mais sobre a Portaria Virtual da SOS.%0A%0ANome: ${formData.name}%0AWhatsApp: ${formData.whatsapp}%0AEndereço: ${formData.address}%0ATipo de local: ${formData.localType}%0APortaria atual: ${formData.currentPortaria}%0AMensagem: ${formData.message || "Não informada"}`
     window.open(`https://wa.me/5519994828201?text=${message}`, "_blank")
   }
 
@@ -1317,20 +1330,41 @@ function FormSection() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              Solicite uma análise para sua portaria
+              Fale com a SOS sobre Portaria Virtual
             </h2>
             <p className="text-lg text-white/70 leading-relaxed mb-8">
-              Preencha os dados e a equipe da SOS entrará em contato para entender sua estrutura, sua rotina e indicar o melhor caminho para modernizar o controle de acesso.
+              Conte como funciona o acesso do seu condomínio ou empresa hoje. Nossa equipe avalia o cenário e apresenta uma solução adequada para aumentar o controle, a organização e a segurança da sua rotina.
             </p>
-            <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                <Phone className="h-6 w-6 text-primary" />
+            
+            {/* Contact Info */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Phone className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm">Telefone</p>
+                  <a href="tel:+551934713514" className="text-white font-medium hover:text-primary transition-colors">
+                    (19) 3471-3514
+                  </a>
+                </div>
               </div>
-              <div>
-                <p className="text-white/60 text-sm">Prefere falar direto?</p>
-                <a href="tel:1934714515" className="text-white font-medium hover:text-primary transition-colors">
-                  19 3471-4515
-                </a>
+              
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                  <MessageCircle className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm">WhatsApp</p>
+                  <a 
+                    href="https://wa.me/5519994828201?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Portaria%20Virtual%20da%20SOS." 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white font-medium hover:text-primary transition-colors"
+                  >
+                    (19) 99482-8201
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -1351,7 +1385,7 @@ function FormSection() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="Seu nome completo"
+                    placeholder="Digite seu nome"
                   />
                 </div>
 
@@ -1361,21 +1395,21 @@ function FormSection() {
                     type="tel"
                     required
                     value={formData.whatsapp}
-                    onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                    onChange={handlePhoneChange}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="(00) 00000-0000"
+                    placeholder="(19) 99999-9999"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Endereço do local</label>
                   <input
                     type="text"
                     required
-                    value={formData.city}
-                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="Sua cidade"
+                    placeholder="Informe o endereço do condomínio ou empresa"
                   />
                 </div>
 
@@ -1387,7 +1421,7 @@ function FormSection() {
                     onChange={(e) => setFormData({ ...formData, localType: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
                   >
-                    <option value="">Selecione...</option>
+                    <option value="">Selecione uma opção</option>
                     {localTypes.map((type) => (
                       <option key={type} value={type}>{type}</option>
                     ))}
@@ -1395,14 +1429,14 @@ function FormSection() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Você já possui portaria hoje?</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Como é a sua portaria atualmente?</label>
                   <select
                     required
-                    value={formData.hasPortaria}
-                    onChange={(e) => setFormData({ ...formData, hasPortaria: e.target.value })}
+                    value={formData.currentPortaria}
+                    onChange={(e) => setFormData({ ...formData, currentPortaria: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
                   >
-                    <option value="">Selecione...</option>
+                    <option value="">Selecione uma opção</option>
                     {portariaTypes.map((type) => (
                       <option key={type} value={type}>{type}</option>
                     ))}
@@ -1410,30 +1444,22 @@ function FormSection() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Mensagem (opcional)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
                     rows={3}
-                    placeholder="Conte mais sobre sua necessidade..."
+                    placeholder="Conte brevemente o que você precisa ou quais são suas dúvidas"
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full h-12">
-                  <Send className="mr-2 h-5 w-5" />
-                  Quero receber uma análise
-                </Button>
-
-                <p className="text-center text-sm text-gray-500">
-                  Se preferir, fale diretamente pelo WhatsApp.
-                </p>
-
-                <Button asChild variant="outline" size="lg" className="w-full h-12">
-                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Chamar no WhatsApp
-                  </a>
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full h-12 transition-colors hover:bg-[#ab0000]"
+                >
+                  Solicitar contato
                 </Button>
               </div>
             </form>
