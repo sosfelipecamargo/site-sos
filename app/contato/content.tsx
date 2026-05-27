@@ -140,31 +140,15 @@ export function ContactPageContent() {
                     <MessageCircle className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="text-lg font-semibold text-foreground mb-3">WhatsApp</p>
-                    <div className="space-y-2">
-                      <div>
-                        <p className="text-sm text-muted-foreground">Portaria Virtual, Monitoramento, Viaturas, Vigilância e Portaria Presencial</p>
-                        <a 
-                          href="https://wa.me/5519994828201?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20com%20a%20SOS%20Seguran%C3%A7a%20Inteligente." 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-foreground hover:text-primary transition-colors font-medium"
-                        >
-                          (19) 99482-8201
-                        </a>
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Segurança Eletrônica</p>
-                        <a 
-                          href="https://wa.me/5519993476898?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20sobre%20Seguran%C3%A7a%20Eletr%C3%B4nica%20da%20SOS." 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-foreground hover:text-primary transition-colors font-medium"
-                        >
-                          (19) 99347-6898
-                        </a>
-                      </div>
-                    </div>
+                    <p className="text-sm text-muted-foreground">WhatsApp</p>
+                    <a 
+                      href="https://wa.me/5519994828201?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20com%20a%20SOS%20Seguran%C3%A7a%20Inteligente." 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
+                    >
+                      (19) 99482-8201
+                    </a>
                   </div>
                 </div>
                 
