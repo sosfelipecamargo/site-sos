@@ -163,7 +163,7 @@ function HeroSection() {
       <div className="absolute inset-0">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/services/vigilancia-patrimonial.jpg')" }}
+          style={{ backgroundImage: "url('/images/services/vigilancia.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
       </div>
@@ -242,7 +242,7 @@ function WhatIsSection() {
           >
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <img
-                src="/images/services/vigilancia-patrimonial.jpg"
+                src="/images/services/vigilancia.jpg"
                 alt="Vigilante em ronda"
                 className="w-full h-full object-cover"
               />

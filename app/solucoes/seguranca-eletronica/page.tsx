@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import SegurancaEletronicaContent from "./content"
+import { SegurancaEletronicaContent } from "./content"
 
 export const metadata: Metadata = {
   title: "Segurança Eletrônica | Grupo SOS",
