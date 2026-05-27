@@ -1,18 +1,31 @@
 import type { Metadata } from "next"
-import { services } from "@/lib/data"
-import { ServicePage } from "@/components/templates/service-page"
-
-const service = services.find(s => s.slug === "seguranca-eletronica")!
+import { SegurancaEletronicaContent } from "./content"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
-  title: `${service.name} | SOS Segurança Inteligente`,
-  description: service.heroDescription,
+  title: "Segurança Eletrônica | Grupo SOS",
+  description:
+    "Câmeras, alarmes, controle de acesso e cerca elétrica com projeto, instalação e manutenção da SOS Segurança Inteligente.",
   openGraph: {
-    title: `${service.name} | SOS Segurança Inteligente`,
-    description: service.heroDescription,
+    title: "Segurança Eletrônica | Grupo SOS",
+    description:
+      "Câmeras, alarmes, controle de acesso e cerca elétrica com projeto, instalação e manutenção da SOS Segurança Inteligente.",
+    type: "website",
+  },
+  alternates: {
+    canonical: "/solucoes/seguranca-eletronica",
   },
 }
 
 export default function SegurancaEletronicaPage() {
-  return <ServicePage service={service} />
+  return (
+    <>
+      <Header />
+      <main>
+        <SegurancaEletronicaContent />
+      </main>
+      <Footer />
+    </>
+  )
 }

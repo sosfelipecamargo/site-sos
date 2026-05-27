@@ -1,117 +1,88 @@
 "use client"
 
 import { Star } from "lucide-react"
-import { testimonials } from "@/lib/data"
+import { motion } from "framer-motion"
 
-// Duplicate testimonials multiple times for seamless infinite loop
-const row1Testimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials]
-const row2Testimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials]
+// New testimonials data
+const testimonials = [
+  {
+    name: "ANDREA RIGONATO",
+    role: "Proprietária da USICOMP",
+    quote: "A Portaria Virtual trouxe mais controle, padronização e segurança para o nosso acesso. A implantação foi simples, rápida e de fácil adaptação. Vale o investimento, pois facilita o fluxo de funcionários, fornecedores e clientes.",
+  },
+  {
+    name: "LIGIA",
+    role: "Gerente do Condomínio Empresarial Alvorada",
+    quote: "A SOS transmite tranquilidade e eficiência. Sempre que há uma ocorrência, a equipe se posiciona rapidamente e busca resolver da melhor forma. O atendimento é ágil, acessível e muito eficaz.",
+  },
+  {
+    name: "GUILHERME FONTES",
+    role: "Síndico do Condomínio Comercial American Park",
+    quote: "A implantação da Portaria Virtual foi rápida e muito positiva. A solução trouxe mais agilidade no atendimento, segurança no monitoramento e organização para o dia a dia, com um custo mais econômico e sem exigir uma estrutura complexa.",
+  },
+  {
+    name: "MARCIA",
+    role: "Síndica do Condomínio Residencial Sunset",
+    quote: "O que mais nos chamou a atenção foi o profissionalismo da equipe, a praticidade nos acessos e a qualidade dos equipamentos. A SOS Portaria Virtual trouxe mais segurança, facilidade para os moradores e rapidez nos atendimentos.",
+  },
+]
 
-function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
   return (
-    <div className="flex-shrink-0 w-[300px] mx-2">
-      <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 h-full">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
+    >
+      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full flex flex-col hover:shadow-md hover:border-gray-200 transition-all duration-300">
         {/* Stars */}
-        <div className="flex gap-0.5 mb-3">
+        <div className="flex gap-1 mb-4">
           {[...Array(5)].map((_, i) => (
             <Star 
               key={i} 
-              className="h-3 w-3 fill-amber-400 text-amber-400" 
+              className="h-5 w-5 fill-primary text-primary" 
             />
           ))}
         </div>
         
         {/* Quote */}
-        <blockquote className="mb-4">
-          <p className="text-foreground text-sm leading-relaxed line-clamp-3">
+        <blockquote className="flex-1 mb-6">
+          <p className="text-gray-700 text-base leading-relaxed">
             &ldquo;{testimonial.quote}&rdquo;
           </p>
         </blockquote>
         
-        {/* Author */}
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center flex-shrink-0">
-            <span className="text-primary font-semibold text-xs">
-              {testimonial.author.charAt(0)}
-            </span>
-          </div>
-          <div className="min-w-0">
-            <p className="font-medium text-foreground text-xs truncate">
-              {testimonial.author}
-            </p>
-            <p className="text-[11px] text-muted-foreground truncate">
-              {testimonial.role} · {testimonial.company}
-            </p>
-          </div>
+        {/* Author - Name above Role */}
+        <div className="pt-4 border-t border-gray-100">
+          <p className="font-bold text-gray-900 text-base">
+            {testimonial.name}
+          </p>
+          <p className="text-sm text-gray-500 mt-1">
+            {testimonial.role}
+          </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 lg:py-24 bg-background overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10">
-        <div className="text-center max-w-2xl mx-auto">
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Depoimentos
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">
-            O que dizem nossos clientes
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            A satisfação dos nossos clientes é o nosso maior reconhecimento.
-          </p>
-        </div>
-      </div>
-
-      {/* Two-row Marquee Container */}
-      <div className="relative space-y-4">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        
-        {/* Row 1 - Left to Right */}
-        <div className="flex animate-marquee-ltr hover:[animation-play-state:paused]">
-          {row1Testimonials.map((testimonial, index) => (
-            <TestimonialCard key={`row1-${testimonial.author}-${index}`} testimonial={testimonial} />
-          ))}
-        </div>
-        
-        {/* Row 2 - Right to Left */}
-        <div className="flex animate-marquee-rtl hover:[animation-play-state:paused]">
-          {row2Testimonials.map((testimonial, index) => (
-            <TestimonialCard key={`row2-${testimonial.author}-${index}`} testimonial={testimonial} />
+    <section className="pt-6 pb-16 lg:pb-24 bg-[#f4f4f4]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Grid of Testimonials */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <TestimonialCard 
+              key={testimonial.name} 
+              testimonial={testimonial} 
+              index={index}
+            />
           ))}
         </div>
       </div>
-
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes marquee-ltr {
-          0% {
-            transform: translateX(-25%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-        @keyframes marquee-rtl {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-25%);
-          }
-        }
-        .animate-marquee-ltr {
-          animation: marquee-ltr 35s linear infinite;
-        }
-        .animate-marquee-rtl {
-          animation: marquee-rtl 35s linear infinite;
-        }
-      `}</style>
     </section>
   )
 }

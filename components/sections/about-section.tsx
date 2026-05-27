@@ -2,11 +2,27 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion"
-import { timeline } from "@/lib/data"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 
+// Stats data
+const stats = [
+  { value: 46, suffix: "+", label: "Anos de história" },
+  { value: 24, suffix: "/7", label: "Central em operação", isStatic: true },
+  { value: 2000, suffix: "+", label: "Clientes atendidos" },
+]
+
+// Timeline data
+const timeline = [
+  { year: "1980", title: "Fundação em Americana", description: "O início de uma marca construída com proximidade, confiança e compromisso com a segurança." },
+  { year: "1993", title: "Monitoramento 24h", description: "A SOS amplia sua operação com uma central dedicada ao acompanhamento de alarmes." },
+  { year: "1998", title: "Portaria e vigilância", description: "Novas frentes passam a atender empresas e condomínios com soluções mais completas." },
+  { year: "2015", title: "Portaria Virtual e Telecom", description: "Segurança, controle de acesso e conectividade passam a trabalhar de forma integrada." },
+  { year: "2026", title: "Nova fase operacional", description: "A modernização da central reforça o foco em tecnologia, agilidade e eficiência no atendimento." },
+]
+
 // Animated Number Component
-function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
+function AnimatedNumber({ value, suffix = "", isStatic = false }: { value: number; suffix?: string; isStatic?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null)
   const motionValue = useMotionValue(0)
   const springValue = useSpring(motionValue, { duration: 2000, bounce: 0 })
@@ -14,17 +30,21 @@ function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string
   const [displayValue, setDisplayValue] = useState(0)
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !isStatic) {
       motionValue.set(value)
     }
-  }, [isInView, value, motionValue])
+  }, [isInView, value, motionValue, isStatic])
 
   useEffect(() => {
+    if (isStatic) {
+      setDisplayValue(value)
+      return
+    }
     const unsubscribe = springValue.on("change", (latest) => {
       setDisplayValue(Math.floor(latest))
     })
     return unsubscribe
-  }, [springValue])
+  }, [springValue, isStatic, value])
 
   return (
     <span ref={ref} className="tabular-nums">
@@ -33,186 +53,193 @@ function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string
   )
 }
 
-// Animated Text Reveal Component
-function AnimatedTextReveal({ children, className, delay = 0 }: { children: string; className?: string; delay?: number }) {
-  const words = children.split(" ")
+// Timeline Item Component - Line on the RIGHT (continuous line via parent)
+function TimelineItem({ item, index, isLast }: { item: typeof timeline[0]; index: number; isLast: boolean }) {
+  const [isHovered, setIsHovered] = useState(false)
   
   return (
-    <motion.span className={className}>
-      {words.map((word, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: delay + i * 0.05 }}
-          className="inline-block mr-[0.25em]"
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="relative flex items-start gap-4"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Content Card - LEFT side */}
+      <motion.div 
+        className={cn(
+          "flex-1 p-5 rounded-xl bg-white border transition-all duration-300",
+          isHovered 
+            ? "border-primary/30 shadow-lg shadow-primary/5" 
+            : "border-gray-200 shadow-sm",
+          isLast && "border-primary/40 bg-primary/[0.02]"
+        )}
+        animate={{ 
+          y: isHovered ? -2 : 0,
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        <span className={cn(
+          "text-xl font-bold",
+          isLast ? "text-primary" : "text-primary/80"
+        )}>
+          {item.year}
+        </span>
+        <h4 className="font-semibold text-[#070707] text-lg mt-1">{item.title}</h4>
+        <p className="text-sm text-gray-600 mt-2 leading-relaxed">{item.description}</p>
+      </motion.div>
+
+      {/* Marker only - line is rendered by parent */}
+      <div className="relative flex items-center justify-center w-4">
+        <motion.div 
+          className={cn(
+            "relative z-10 w-4 h-4 rounded-full border-2 transition-all duration-300",
+            isLast 
+              ? "bg-primary border-primary" 
+              : isHovered 
+                ? "bg-primary/20 border-primary" 
+                : "bg-white border-gray-300"
+          )}
+          animate={{
+            scale: isHovered ? 1.2 : 1,
+          }}
         >
-          {word}
-        </motion.span>
-      ))}
-    </motion.span>
+          {/* Glow effect */}
+          {(isHovered || isLast) && (
+            <motion.div
+              className="absolute inset-0 rounded-full bg-primary/30"
+              initial={{ scale: 1, opacity: 0.5 }}
+              animate={{ scale: 2, opacity: 0 }}
+              transition={{ duration: 1, repeat: Infinity }}
+            />
+          )}
+        </motion.div>
+      </div>
+    </motion.div>
   )
 }
 
 export function AboutSection() {
   return (
-    <section className="py-20 lg:py-28 bg-card overflow-hidden">
+    <section id="sobre" className="relative py-16 lg:py-20 bg-[#f4f4f4] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Block 1 - Text + Numbers (Full Width) */}
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-primary font-semibold text-sm uppercase tracking-wider inline-block"
-          >
-            Grupo SOS
-          </motion.span>
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
-            <AnimatedTextReveal delay={0.1}>
-              Hub de segurança, tecnologia e conectividade
-            </AnimatedTextReveal>
-          </h2>
-          
-          <div className="mt-8 space-y-4 text-muted-foreground text-lg">
-            <p className="text-pretty">
-              <AnimatedTextReveal delay={0.3}>
-                A SOS Segurança Inteligente é um grupo empresarial de Americana/SP com origem em 1980, que atua como hub integrado de soluções em segurança, tecnologia e conectividade.
-              </AnimatedTextReveal>
-            </p>
-            <p className="text-pretty">
-              <AnimatedTextReveal delay={0.5}>
-                Reunimos segurança eletrônica, monitoramento 24 horas, portaria virtual e presencial, vigilância patrimonial, viaturas de pronta resposta e telecom em uma operação conectada.
-              </AnimatedTextReveal>
-            </p>
+          {/* LEFT COLUMN - Institutional Content */}
+          <div className="flex flex-col">
+            {/* Eyebrow */}
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="text-primary font-semibold text-sm uppercase tracking-[0.2em] inline-block"
+            >
+              Grupo SOS
+            </motion.span>
+            
+            {/* Title */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#070707] leading-[1.15] max-w-lg"
+            >
+              Uma operação integrada para proteger, conectar e atender melhor.
+            </motion.h2>
+            
+            {/* Description */}
+            <div className="mt-6 space-y-4 text-gray-600 text-base max-w-lg">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="leading-relaxed"
+              >
+                A SOS nasceu em Americana/SP e cresceu acompanhando a evolução da segurança, da tecnologia e das necessidades dos clientes. O que começou com soluções de proteção se transformou em um grupo completo, preparado para atender residências, empresas, indústrias e condomínios.
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="leading-relaxed"
+              >
+                Hoje, reunimos segurança eletrônica, monitoramento 24 horas, portaria virtual, vigilância patrimonial e telecom em uma operação conectada.
+              </motion.p>
+            </div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-8 flex flex-wrap gap-4"
+            >
+              <Link
+                href="/solucoes"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors"
+              >
+                Conheça nossos serviços
+              </Link>
+              <Link
+                href="/contato"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-transparent border border-gray-300 text-[#070707] font-medium text-sm hover:border-gray-400 hover:bg-gray-50 transition-colors"
+              >
+                Fale com a SOS
+              </Link>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-12 flex flex-wrap gap-8 lg:gap-12"
+            >
+              {stats.map((stat, index) => (
+                <div key={index} className="flex flex-col">
+                  <p className="text-4xl lg:text-5xl font-bold text-primary">
+                    <AnimatedNumber value={stat.value} suffix={stat.suffix} isStatic={stat.isStatic} />
+                  </p>
+                  <p className="text-sm text-gray-500 mt-1">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Animated Stats */}
-          <div className="mt-14 flex flex-wrap justify-center gap-10 lg:gap-16">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+          {/* RIGHT COLUMN - Timeline */}
+          <div className="flex flex-col">
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-center"
+              transition={{ duration: 0.5 }}
+              className="text-xl font-semibold text-[#070707] mb-8"
             >
-              <p className="text-5xl sm:text-6xl font-bold text-primary">
-                <AnimatedNumber value={46} suffix="+" />
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">Anos de mercado</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="text-center"
-            >
-              <p className="text-5xl sm:text-6xl font-bold text-primary">24/7</p>
-              <p className="text-sm text-muted-foreground mt-2">Operação contínua</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="text-center"
-            >
-              <p className="text-5xl sm:text-6xl font-bold text-primary">
-                <AnimatedNumber value={2000} suffix="+" />
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">Clientes ativos</p>
-            </motion.div>
-          </div>
-        </div>
+              Nossa trajetória
+            </motion.h3>
 
-        {/* Block 2 - Timeline (Full Width - Aceternity Style) */}
-        <div className="relative">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl font-bold text-foreground text-center mb-12"
-          >
-            Nossa trajetória
-          </motion.h3>
-
-          <div className="relative max-w-5xl mx-auto">
-            {/* Center Line */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent hidden md:block" />
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent md:hidden" />
-
-            <div className="space-y-8 md:space-y-0">
-              {timeline.map((item, index) => {
-                const isEven = index % 2 === 0
-                const isLast = index === timeline.length - 1
-                
-                return (
-                  <motion.div
-                    key={item.year}
-                    initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={cn(
-                      "relative md:grid md:grid-cols-2 md:gap-8 items-center",
-                      !isEven && "md:flex-row-reverse"
-                    )}
-                  >
-                    {/* Content - Desktop */}
-                    <div className={cn(
-                      "hidden md:block",
-                      isEven ? "text-right pr-12" : "col-start-2 pl-12"
-                    )}>
-                      <div className={cn(
-                        "bg-card border border-border rounded-xl p-6 inline-block max-w-md",
-                        isLast && "border-primary/30 bg-primary/5"
-                      )}>
-                        <span className={cn(
-                          "text-sm font-bold",
-                          isLast ? "text-primary" : "text-muted-foreground"
-                        )}>
-                          {item.year}
-                        </span>
-                        <h4 className="font-semibold text-foreground mt-1">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-                      </div>
-                    </div>
-
-                    {/* Dot */}
-                    <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-6 md:top-1/2 md:-translate-y-1/2 z-10">
-                      <div className={cn(
-                        "w-4 h-4 rounded-full border-4 border-background",
-                        isLast ? "bg-primary" : "bg-muted-foreground/30"
-                      )} />
-                    </div>
-
-                    {/* Empty space for even items (desktop) */}
-                    {isEven && <div className="hidden md:block" />}
-
-                    {/* Content - Mobile */}
-                    <div className="md:hidden pl-10">
-                      <div className={cn(
-                        "bg-card border border-border rounded-xl p-4",
-                        isLast && "border-primary/30 bg-primary/5"
-                      )}>
-                        <span className={cn(
-                          "text-sm font-bold",
-                          isLast ? "text-primary" : "text-muted-foreground"
-                        )}>
-                          {item.year}
-                        </span>
-                        <h4 className="font-semibold text-foreground mt-1">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
+            {/* Timeline - Line on RIGHT */}
+            <div className="relative flex flex-col gap-4">
+              {/* Continuous vertical line - single element */}
+              <div className="absolute right-[7px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-gray-300 via-primary/30 to-primary/50" />
+              
+              {timeline.map((item, index) => (
+                <TimelineItem
+                  key={item.year}
+                  item={item}
+                  index={index}
+                  isLast={index === timeline.length - 1}
+                />
+              ))}
             </div>
           </div>
         </div>

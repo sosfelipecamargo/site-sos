@@ -47,7 +47,7 @@ export function TargetAudienceSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,13 +59,9 @@ export function TargetAudienceSection() {
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Quem Atendemos
           </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground text-balance">
+          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white text-balance">
             Soluções adaptadas ao seu contexto
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg text-pretty">
-            Cada perfil de cliente tem necessidades específicas. A SOS desenvolve 
-            projetos sob medida para cada realidade.
-          </p>
         </motion.div>
 
         {/* Interactive Image Accordion */}

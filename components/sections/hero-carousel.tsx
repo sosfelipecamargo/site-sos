@@ -6,31 +6,89 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { AnimatedTextCycle } from "@/components/ui/animated-text-cycle"
 
-const slides = [
+interface SlideBase {
+  id: number
+  badge: string
+  cta: { text: string; href: string }
+  image: string
+  objectPosition?: string
+  overlayOpacity?: number
+}
+
+interface AnimatedSlide extends SlideBase {
+  line1Before: string
+  animatedWords: string[]
+  line1After: string
+  line2: string
+}
+
+interface StaticSlide extends SlideBase {
+  line1: string
+  line1Bold?: string[]
+  line1BoldColor?: string
+  line2: string
+  line2Bold?: string[]
+  line2BoldColor?: string
+}
+
+type Slide = AnimatedSlide | StaticSlide
+
+function isAnimatedSlide(slide: Slide): slide is AnimatedSlide {
+  return 'animatedWords' in slide
+}
+
+const slides: Slide[] = [
   {
     id: 1,
-    title: "Segurança que resolve.",
-    subtitle: "Tecnologia confiável com atendimento humano.",
-    cta: { text: "Conheça o Grupo SOS", href: "/grupo-sos" },
-    ctaSecondary: { text: "Fale Conosco", href: "/contato" },
-    image: "/images/hero-slide-1.jpg",
+    badge: "PORTARIA VIRTUAL SOS",
+    line1Before: "Mais",
+    animatedWords: ["segurança", "eficiência", "economia"],
+    line1After: "para",
+    line2: "a sua portaria",
+    cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
+    image: "/images/hero/portaria-virtual-bg.png",
+    objectPosition: "center center",
+    overlayOpacity: 0.65,
   },
   {
     id: 2,
-    title: "Controle total de acesso.",
-    subtitle: "Portaria Virtual com operação 24h.",
-    cta: { text: "Saiba mais", href: "/solucoes/portaria-virtual" },
-    ctaSecondary: null,
-    image: "/images/hero/hero-monitoramento.jpg",
+    badge: "MONITORAMENTO SOS",
+    line1: "Resposta inteligente",
+    line1Bold: ["inteligente"],
+    line1BoldColor: "text-primary",
+    line2: "em cada disparo",
+    cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
+    image: "/images/hero/monitoramento-bg.png",
+    objectPosition: "left center",
+    overlayOpacity: 0.75,
   },
   {
     id: 3,
-    title: "Conectividade estável.",
-    subtitle: "Internet e telefonia para sua operação.",
-    cta: { text: "Conheça a SOS Telecom", href: "/solucoes/sos-telecom" },
-    ctaSecondary: null,
-    image: "/images/hero-slide-3.jpg",
+    badge: "GRUPO SOS",
+    line1: "Há 46 anos cuidando",
+    line1Bold: ["46 anos"],
+    line2: "do que realmente importa",
+    line2Bold: ["realmente importa"],
+    line2BoldColor: "text-primary",
+    cta: { text: "Saiba mais", href: "/grupo-sos" },
+    image: "/images/hero/sos-telecom-bg.png",
+    objectPosition: "center center",
+    overlayOpacity: 0.70,
+  },
+  {
+    id: 4,
+    badge: "SOS TELECOM",
+    line1: "Internet rápida com",
+    line1Bold: ["rápida"],
+    line2: "suporte de qualidade",
+    line2Bold: ["qualidade"],
+    line2BoldColor: "text-primary",
+    cta: { text: "Saiba mais", href: "/solucoes/sos-telecom" },
+    image: "/images/hero/grupo-sos-bg.png",
+    objectPosition: "center center",
+    overlayOpacity: 0.75,
   },
 ]
 
@@ -52,6 +110,49 @@ const textVariants = {
   },
 }
 
+// Helper function to bold specific words in a line
+function renderLineWithBold(text: string, boldWords?: string[], boldColor?: string) {
+  if (!boldWords || boldWords.length === 0) {
+    return <span className="font-extralight">{text}</span>
+  }
+
+  let result = text
+  const parts: React.ReactNode[] = []
+  let lastIndex = 0
+
+  boldWords.forEach((word) => {
+    const index = result.toLowerCase().indexOf(word.toLowerCase())
+    if (index !== -1) {
+      // Add text before the bold word
+      if (index > lastIndex) {
+        parts.push(
+          <span key={`before-${word}`} className="font-extralight">
+            {result.substring(lastIndex, index)}
+          </span>
+        )
+      }
+      // Add the bold word with optional color
+      parts.push(
+        <span key={`bold-${word}`} className={cn("font-extrabold", boldColor)}>
+          {result.substring(index, index + word.length)}
+        </span>
+      )
+      lastIndex = index + word.length
+    }
+  })
+
+  // Add remaining text
+  if (lastIndex < result.length) {
+    parts.push(
+      <span key="remaining" className="font-extralight">
+        {result.substring(lastIndex)}
+      </span>
+    )
+  }
+
+  return <>{parts}</>
+}
+
 export function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [parallaxY, setParallaxY] = useState(0)
@@ -66,8 +167,9 @@ export function HeroCarousel() {
     setCurrentSlide(index)
   }, [])
 
+  // 10 seconds per slide
   useEffect(() => {
-    const timer = setInterval(nextSlide, 6000)
+    const timer = setInterval(nextSlide, 10000)
     return () => clearInterval(timer)
   }, [nextSlide])
 
@@ -125,7 +227,7 @@ export function HeroCarousel() {
                 fill
                 className="object-cover"
                 style={{ 
-                  objectPosition: 'center',
+                  objectPosition: s.objectPosition || 'center',
                   // Scale up to allow parallax movement without showing edges
                   transform: isMobile ? 'none' : 'scale(1.3)',
                   transformOrigin: 'center top',
@@ -139,8 +241,14 @@ export function HeroCarousel() {
         ))}
       </div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60 z-[2]" />
+      {/* Dark overlay - dynamic per slide */}
+      <div 
+        className="absolute inset-0 z-[2] transition-opacity duration-1000"
+        style={{ backgroundColor: `rgba(0, 0, 0, ${slide.overlayOpacity || 0.6})` }}
+      />
+
+      {/* Bottom gradient for smooth transition to next section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[45%] bg-gradient-to-t from-[#070707] via-[#070707]/70 to-transparent" />
 
       {/* Main Content - Centralized */}
       <div className="relative h-full flex items-center justify-center z-[3]">
@@ -161,31 +269,52 @@ export function HeroCarousel() {
               >
                 <span className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium tracking-wide uppercase text-white/90 border border-white/20 rounded-full backdrop-blur-sm">
                   <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                  +46 anos protegendo o que importa
+                  {slide.badge}
                 </span>
               </motion.div>
 
-              {/* Title */}
+              {/* Title - Always 2 lines */}
               <motion.h1
                 custom={1}
                 variants={textVariants}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white leading-tight tracking-tight max-w-4xl"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[0.95] tracking-tight max-w-5xl"
               >
-                {slide.title}
+                {isAnimatedSlide(slide) ? (
+                  <>
+                    {/* Line 1 with animated word */}
+                    <span className="block whitespace-nowrap">
+                      <span className="font-extralight">{slide.line1Before} </span>
+                      <AnimatedTextCycle 
+                        words={slide.animatedWords} 
+                        interval={2500}
+                        className="font-extrabold text-primary"
+                      />
+                      {slide.line1After && (
+                        <span className="font-extralight"> {slide.line1After}</span>
+                      )}
+                    </span>
+                    {/* Line 2 */}
+                    <span className="block whitespace-nowrap font-extralight">
+                      {slide.line2}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    {/* Line 1 with bold keywords */}
+                    <span className="block whitespace-nowrap">
+                      {renderLineWithBold(slide.line1, slide.line1Bold, slide.line1BoldColor)}
+                    </span>
+                    {/* Line 2 with bold keywords */}
+                    <span className="block whitespace-nowrap">
+                      {renderLineWithBold(slide.line2, slide.line2Bold, slide.line2BoldColor)}
+                    </span>
+                  </>
+                )}
               </motion.h1>
 
-              {/* Subtitle */}
-              <motion.p
-                custom={2}
-                variants={textVariants}
-                className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl"
-              >
-                {slide.subtitle}
-              </motion.p>
-
-              {/* CTAs */}
+              {/* CTA */}
               <motion.div
-                custom={3}
+                custom={2}
                 variants={textVariants}
                 className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
               >
@@ -196,15 +325,6 @@ export function HeroCarousel() {
                   {slide.cta.text}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
-
-                {slide.ctaSecondary && (
-                  <Link
-                    href={slide.ctaSecondary.href}
-                    className="inline-flex items-center px-8 py-4 text-white text-sm font-medium border border-white/30 rounded-full hover:bg-white/10 transition-colors backdrop-blur-sm"
-                  >
-                    {slide.ctaSecondary.text}
-                  </Link>
-                )}
               </motion.div>
             </motion.div>
           </AnimatePresence>

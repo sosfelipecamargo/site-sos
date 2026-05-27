@@ -1,18 +1,25 @@
 import type { Metadata } from "next"
-import { services } from "@/lib/data"
-import { ServicePage } from "@/components/templates/service-page"
-
-const service = services.find(s => s.slug === "portaria-presencial")!
+import { PortariaPresencialContent } from "./content"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
-  title: `${service.name} | SOS Segurança Inteligente`,
-  description: service.heroDescription,
+  title: "Portaria Presencial | SOS Segurança Inteligente",
+  description: "Portaria presencial com profissionais treinados, apoio da Central SOS e gestão completa de escalas. Controle de acesso com presença física e supervisão ativa.",
   openGraph: {
-    title: `${service.name} | SOS Segurança Inteligente`,
-    description: service.heroDescription,
+    title: "Portaria Presencial | SOS Segurança Inteligente",
+    description: "Portaria presencial com profissionais treinados, apoio da Central SOS e gestão completa de escalas. Controle de acesso com presença física e supervisão ativa.",
   },
 }
 
 export default function PortariaPresencialPage() {
-  return <ServicePage service={service} />
+  return (
+    <>
+      <Header />
+      <main>
+        <PortariaPresencialContent />
+      </main>
+      <Footer />
+    </>
+  )
 }
