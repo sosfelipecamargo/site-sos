@@ -39,7 +39,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 // WhatsApp link
-const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Monitoramento%2024h."
+const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20Monitoramento%2024h."
 
 // ============================================
 // DATA
@@ -822,7 +822,7 @@ function FormSection() {
                 <div>
                   <p className="text-white/60 text-sm">WhatsApp</p>
                   <a 
-                    href="https://wa.me/5519994828201?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Monitoramento%2024h%20da%20SOS." 
+                    href="https://wa.me/5519994828201?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20Monitoramento%2024h." 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-white font-medium hover:text-primary transition-colors"

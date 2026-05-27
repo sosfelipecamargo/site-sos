@@ -11,7 +11,7 @@ import { AnimatedTextCycle } from "@/components/ui/animated-text-cycle"
 interface SlideBase {
   id: number
   badge: string
-  cta: { text: string; href: string }
+  cta: { text: string; href: string; external?: boolean }
   image: string
   objectPosition?: string
   overlayOpacity?: number
@@ -59,7 +59,7 @@ const slides: Slide[] = [
     line1Bold: ["inteligente"],
     line1BoldColor: "text-primary",
     line2: "em cada disparo",
-    cta: { text: "Saiba mais", href: "/solucoes/monitoramento" },
+    cta: { text: "Saiba mais", href: "/solucoes/monitoramento-de-alarmes" },
     image: "/images/hero/monitoramento-bg.png",
     objectPosition: "left center",
     overlayOpacity: 0.75,
@@ -72,7 +72,7 @@ const slides: Slide[] = [
     line2: "do que realmente importa",
     line2Bold: ["realmente importa"],
     line2BoldColor: "text-primary",
-    cta: { text: "Saiba mais", href: "/grupo-sos" },
+    cta: { text: "Saiba mais", href: "#sobre" },
     image: "/images/hero/sos-telecom-bg.png",
     objectPosition: "center center",
     overlayOpacity: 0.70,
@@ -85,7 +85,7 @@ const slides: Slide[] = [
     line2: "suporte de qualidade",
     line2Bold: ["qualidade"],
     line2BoldColor: "text-primary",
-    cta: { text: "Saiba mais", href: "/solucoes/sos-telecom" },
+    cta: { text: "Saiba mais", href: "https://sostelecom.net.br", external: true },
     image: "/images/hero/grupo-sos-bg.png",
     objectPosition: "center center",
     overlayOpacity: 0.75,
@@ -318,13 +318,25 @@ export function HeroCarousel() {
                 variants={textVariants}
                 className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
               >
-                <Link
-                  href={slide.cta.href}
-                  className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
-                >
-                  {slide.cta.text}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
+                {slide.cta.external ? (
+                  <a
+                    href={slide.cta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
+                  >
+                    {slide.cta.text}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </a>
+                ) : (
+                  <Link
+                    href={slide.cta.href}
+                    className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
+                  >
+                    {slide.cta.text}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                )}
               </motion.div>
             </motion.div>
           </AnimatePresence>

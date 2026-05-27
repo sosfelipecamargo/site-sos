@@ -43,7 +43,7 @@ import { CardStack } from "@/components/ui/card-stack"
 import { cn } from "@/lib/utils"
 
 // WhatsApp link
-const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Olá!%20Quero%20uma%20análise%20para%20Portaria%20Virtual."
+const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20Portaria%20Virtual."
 
 // ============================================
 // DATA
@@ -1357,7 +1357,7 @@ function FormSection() {
                 <div>
                   <p className="text-white/60 text-sm">WhatsApp</p>
                   <a 
-                    href="https://wa.me/5519994828201?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Portaria%20Virtual%20da%20SOS." 
+                    href="https://wa.me/5519994828201?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20Portaria%20Virtual." 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-white font-medium hover:text-primary transition-colors"

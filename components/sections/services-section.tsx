@@ -76,6 +76,10 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   const Icon = getIcon(service.icon)
   const imageUrl = serviceImages[service.slug] || "/images/services/portaria-virtual.jpg"
   
+  // SOS Telecom is an external link
+  const isExternal = service.slug === "sos-telecom"
+  const href = isExternal ? "https://sostelecom.net.br" : `/solucoes/${service.slug}`
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -84,51 +88,94 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.08 }}
       className="group relative"
     >
-      <Link
-        href={`/solucoes/${service.slug}`}
-        className="relative flex flex-col overflow-hidden rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-primary"
-        style={{ aspectRatio: '3/4' }}
-      >
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src={imageUrl}
-            alt={service.name}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          />
-        </div>
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
-        
-        {/* Content - positioned at bottom */}
-        <div className="relative mt-auto p-6 z-10">
-          {/* Icon */}
-          <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
-            <Icon className="h-5 w-5 text-white" />
+      {isExternal ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative flex flex-col overflow-hidden rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-primary"
+          style={{ aspectRatio: '3/4' }}
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src={imageUrl}
+              alt={service.name}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            />
           </div>
           
-          {/* Title */}
-          <h3 className="mb-3 text-xl font-bold text-white leading-tight">
-            {service.name}
-          </h3>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
           
-          {/* Link */}
-          <div className="flex items-center gap-2 text-sm font-medium text-white/90 transition-colors duration-300 group-hover:text-primary">
-            <span>Saiba mais</span>
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          {/* Content - positioned at bottom */}
+          <div className="relative mt-auto p-6 z-10">
+            {/* Icon */}
+            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+              <Icon className="h-5 w-5 text-white" />
+            </div>
+            
+            {/* Title */}
+            <h3 className="mb-3 text-xl font-bold text-white leading-tight">
+              {service.name}
+            </h3>
+            
+            {/* Link */}
+            <div className="flex items-center gap-2 text-sm font-medium text-white/90 transition-colors duration-300 group-hover:text-primary">
+              <span>Saiba mais</span>
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </div>
           </div>
-        </div>
-      </Link>
+        </a>
+      ) : (
+        <Link
+          href={href}
+          className="relative flex flex-col overflow-hidden rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-primary"
+          style={{ aspectRatio: '3/4' }}
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src={imageUrl}
+              alt={service.name}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            />
+          </div>
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
+          
+          {/* Content - positioned at bottom */}
+          <div className="relative mt-auto p-6 z-10">
+            {/* Icon */}
+            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+              <Icon className="h-5 w-5 text-white" />
+            </div>
+            
+            {/* Title */}
+            <h3 className="mb-3 text-xl font-bold text-white leading-tight">
+              {service.name}
+            </h3>
+            
+            {/* Link */}
+            <div className="flex items-center gap-2 text-sm font-medium text-white/90 transition-colors duration-300 group-hover:text-primary">
+              <span>Saiba mais</span>
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </div>
+          </div>
+        </Link>
+      )}
     </motion.div>
   )
 }
 
 export function ServicesSection() {
   return (
-    <section className="py-20 lg:py-28 bg-[#070707]">
+    <section id="solucoes" className="py-20 lg:py-28 bg-[#070707]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

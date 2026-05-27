@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/accordion"
 
 // Constants
-const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Vigil%C3%A2ncia%20Patrimonial%20da%20SOS."
+const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20Vigil%C3%A2ncia%20Patrimonial."
 
 // Data
 const benefits = [
