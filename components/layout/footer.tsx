@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Phone, Mail, Instagram, Linkedin, Facebook, Youtube } from "lucide-react"
+import { Phone, Mail, Instagram, Linkedin, Facebook, Youtube, MessageCircle, MapPin, Clock } from "lucide-react"
 
 const services = [
   { name: "Portaria Virtual", href: "/solucoes/portaria-virtual" },
@@ -26,12 +26,6 @@ const socialLinks = [
   { name: "LinkedIn", href: "#", Icon: Linkedin },
   { name: "Facebook", href: "#", Icon: Facebook },
   { name: "YouTube", href: "#", Icon: Youtube },
-]
-
-const contacts = [
-  { label: "Portaria Virtual", phone: "(19) 3471-4514", tel: "tel:+551934714514" },
-  { label: "Segurança Eletrônica", phone: "(19) 3471-4515", tel: "tel:+551934714515" },
-  { label: "Monitoramento", phone: "(19) 3471-4516", tel: "tel:+551934714516" },
 ]
 
 export function Footer() {
@@ -128,25 +122,71 @@ export function Footer() {
           {/* Contact Column */}
           <div className="lg:col-span-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-6">Contato</h3>
-            <ul className="space-y-4">
-              {contacts.map((contact) => (
-                <li key={contact.tel} className="flex items-start gap-3">
-                  <Phone className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div className="text-sm">
-                    <p className="text-accent-foreground/70">{contact.label}</p>
-                    <a href={contact.tel} className="text-accent-foreground hover:text-primary transition-colors font-medium">
-                      {contact.phone}
-                    </a>
+            <ul className="space-y-5">
+              {/* Telefones - um único bloco com um ícone */}
+              <li className="flex items-start gap-3">
+                <Phone className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <p className="text-accent-foreground font-medium mb-1">Telefones</p>
+                  <div className="space-y-0.5 text-accent-foreground/70">
+                    <p>Portaria Virtual: <a href="tel:+551934714514" className="hover:text-primary transition-colors">(19) 3471-4514</a></p>
+                    <p>Segurança Eletrônica: <a href="tel:+551934714515" className="hover:text-primary transition-colors">(19) 3471-4515</a></p>
+                    <p>Monitoramento: <a href="tel:+551934714516" className="hover:text-primary transition-colors">(19) 3471-4516</a></p>
                   </div>
-                </li>
-              ))}
+                </div>
+              </li>
+
+              {/* WhatsApp */}
+              <li className="flex items-start gap-3">
+                <MessageCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <p className="text-accent-foreground font-medium mb-1">WhatsApp</p>
+                  <a 
+                    href="https://wa.me/5519994828201" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-accent-foreground/70 hover:text-primary transition-colors"
+                  >
+                    (19) 99482-8201
+                  </a>
+                </div>
+              </li>
+
+              {/* E-mail */}
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <div className="text-sm">
-                  <p className="text-accent-foreground/70">E-mail</p>
-                  <a href="mailto:central@sosseguranca.com.br" className="text-accent-foreground hover:text-primary transition-colors font-medium">
+                  <p className="text-accent-foreground font-medium mb-1">E-mail</p>
+                  <a 
+                    href="mailto:central@sosseguranca.com.br" 
+                    className="text-accent-foreground/70 hover:text-primary transition-colors"
+                  >
                     central@sosseguranca.com.br
                   </a>
+                </div>
+              </li>
+
+              {/* Endereço */}
+              <li className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <p className="text-accent-foreground font-medium mb-1">Endereço</p>
+                  <p className="text-accent-foreground/70">
+                    Rua Dom Pedro II, 878 – Vila Galo<br />
+                    13.466-000, Americana/SP
+                  </p>
+                </div>
+              </li>
+
+              {/* Horários */}
+              <li className="flex items-start gap-3">
+                <Clock className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <p className="text-accent-foreground font-medium mb-1">Atendimento</p>
+                  <p className="text-accent-foreground/70">
+                    Comercial: 8h às 18h<br />
+                    Monitoramento e Portaria: 24h
+                  </p>
                 </div>
               </li>
             </ul>
