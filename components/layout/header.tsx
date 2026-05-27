@@ -13,9 +13,9 @@ const services = [
   { name: "Vigilância Patrimonial", href: "/solucoes/vigilancia-patrimonial" },
   { name: "Segurança Eletrônica", href: "/solucoes/seguranca-eletronica" },
   { name: "Viaturas", href: "/solucoes/viaturas-pronta-resposta" },
-  { name: "Internet Fibra Óptica", href: "/solucoes/sos-telecom" },
+  { name: "Internet Fibra Óptica", href: "https://sostelecom.net.br", external: true },
   { name: "Portaria Presencial", href: "/solucoes/portaria-presencial" },
-]
+] as const
 
 const navigation = [
   { name: "HOME", href: "/" },
@@ -121,13 +121,25 @@ export function Header() {
                                   <div className="flex-1">
                                     <div className="space-y-3">
                                       {services.slice(0, 4).map((service) => (
-                                        <Link
-                                          key={service.href}
-                                          href={service.href}
-                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
-                                        >
-                                          {service.name}
-                                        </Link>
+                                        'external' in service && service.external ? (
+                                          <a
+                                            key={service.href}
+                                            href={service.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                          >
+                                            {service.name}
+                                          </a>
+                                        ) : (
+                                          <Link
+                                            key={service.href}
+                                            href={service.href}
+                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                          >
+                                            {service.name}
+                                          </Link>
+                                        )
                                       ))}
                                     </div>
                                   </div>
@@ -139,13 +151,25 @@ export function Header() {
                                   <div className="flex-1">
                                     <div className="space-y-3">
                                       {services.slice(4).map((service) => (
-                                        <Link
-                                          key={service.href}
-                                          href={service.href}
-                                          className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
-                                        >
-                                          {service.name}
-                                        </Link>
+                                        'external' in service && service.external ? (
+                                          <a
+                                            key={service.href}
+                                            href={service.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                          >
+                                            {service.name}
+                                          </a>
+                                        ) : (
+                                          <Link
+                                            key={service.href}
+                                            href={service.href}
+                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                          >
+                                            {service.name}
+                                          </Link>
+                                        )
                                       ))}
                                     </div>
                                   </div>
@@ -261,14 +285,27 @@ export function Header() {
                               >
                                 <div className="pl-4 py-2 space-y-2 border-l border-gray-200">
                                   {services.map((service) => (
-                                    <Link
-                                      key={service.href}
-                                      href={service.href}
-                                      onClick={() => setIsMobileMenuOpen(false)}
-                                      className="block py-2 text-sm text-gray-600 hover:text-gray-900 hover:underline transition-colors"
-                                    >
-                                      {service.name}
-                                    </Link>
+                                    'external' in service && service.external ? (
+                                      <a
+                                        key={service.href}
+                                        href={service.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="block py-2 text-sm text-gray-600 hover:text-gray-900 hover:underline transition-colors"
+                                      >
+                                        {service.name}
+                                      </a>
+                                    ) : (
+                                      <Link
+                                        key={service.href}
+                                        href={service.href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="block py-2 text-sm text-gray-600 hover:text-gray-900 hover:underline transition-colors"
+                                      >
+                                        {service.name}
+                                      </Link>
+                                    )
                                   ))}
                                 </div>
                               </motion.div>
