@@ -1148,14 +1148,15 @@ function AppSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Mockup placeholder */}
+            {/* App Screenshot */}
             <div className="relative mx-auto max-w-[280px]">
               <div className="aspect-[9/19] rounded-[3rem] bg-gradient-to-b from-gray-800 to-gray-900 border-4 border-gray-700 p-2 shadow-2xl">
-                <div className="w-full h-full rounded-[2.5rem] bg-[#0a0a0a] flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <Smartphone className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <p className="text-white/60 text-sm">App Portaria Virtual</p>
-                  </div>
+                <div className="w-full h-full rounded-[2.5rem] overflow-hidden">
+                  <img 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Print%20Tela%20Inicial%20APP%20SOS%20Virtural-hfC2xR0TPRxfE1n9Dwg4FMR3Xpcwm4.jpg"
+                    alt="Tela inicial do App SOS Virtual mostrando funcionalidades como Meus dados, Acessos, Agendamentos e mais"
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
               </div>
             </div>
