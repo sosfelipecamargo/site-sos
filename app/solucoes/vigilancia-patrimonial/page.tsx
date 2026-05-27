@@ -1,18 +1,15 @@
 import type { Metadata } from "next"
-import { services } from "@/lib/data"
-import { ServicePage } from "@/components/templates/service-page"
-
-const service = services.find(s => s.slug === "vigilancia-patrimonial")!
+import { VigilanciaPatrimonialContent } from "./content"
 
 export const metadata: Metadata = {
-  title: `${service.name} | SOS Segurança Inteligente`,
-  description: service.heroDescription,
+  title: "Vigilância Patrimonial | SOS Segurança Inteligente",
+  description: "Vigilância patrimonial com profissionais treinados, rondas planejadas e integração com a Central SOS. Proteção ativa para condomínios, indústrias e empresas.",
   openGraph: {
-    title: `${service.name} | SOS Segurança Inteligente`,
-    description: service.heroDescription,
+    title: "Vigilância Patrimonial | SOS Segurança Inteligente",
+    description: "Vigilância patrimonial com profissionais treinados, rondas planejadas e integração com a Central SOS. Proteção ativa para condomínios, indústrias e empresas.",
   },
 }
 
 export default function VigilanciaPatrimonialPage() {
-  return <ServicePage service={service} />
+  return <VigilanciaPatrimonialContent />
 }
