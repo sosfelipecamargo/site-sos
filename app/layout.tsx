@@ -48,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={inter.variable} data-scroll-behavior="smooth">
-      <body className="font-sans antialiased">
+    <html lang="pt-BR" className={`${inter.variable} overflow-x-hidden bg-background`} data-scroll-behavior="smooth">
+      <body className="font-sans antialiased overflow-x-hidden">
         {children}
         <Analytics />
       </body>

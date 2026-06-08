@@ -756,7 +756,7 @@ function ComparisonSection() {
                   <div className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
                     <span className="w-2 h-2 rounded-full bg-gray-400" />
                   </div>
-                  <span className="text-gray-600 text-sm lg:text-base whitespace-nowrap">{item}</span>
+                  <span className="text-gray-600 text-sm lg:text-base">{item}</span>
                 </li>
               ))}
             </ul>
@@ -774,7 +774,7 @@ function ComparisonSection() {
               {comparisonSOS.map((item, i) => (
                 <li key={i} className="flex items-center gap-3">
                   <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-white text-sm lg:text-base whitespace-nowrap">{item}</span>
+                  <span className="text-white text-sm lg:text-base">{item}</span>
                 </li>
               ))}
             </ul>
@@ -1384,7 +1384,7 @@ function FormSection() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="Digite seu nome"
                   />
                 </div>
@@ -1396,7 +1396,7 @@ function FormSection() {
                     required
                     value={formData.whatsapp}
                     onChange={handlePhoneChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="(19) 99999-9999"
                   />
                 </div>
@@ -1408,7 +1408,7 @@ function FormSection() {
                     required
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="Informe o endereço do condomínio ou empresa"
                   />
                 </div>
@@ -1419,7 +1419,7 @@ function FormSection() {
                     required
                     value={formData.localType}
                     onChange={(e) => setFormData({ ...formData, localType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white appearance-none"
                   >
                     <option value="">Selecione uma opção</option>
                     {localTypes.map((type) => (
@@ -1434,7 +1434,7 @@ function FormSection() {
                     required
                     value={formData.currentPortaria}
                     onChange={(e) => setFormData({ ...formData, currentPortaria: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white appearance-none"
                   >
                     <option value="">Selecione uma opção</option>
                     {portariaTypes.map((type) => (
@@ -1448,7 +1448,7 @@ function FormSection() {
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
                     rows={3}
                     placeholder="Conte brevemente o que você precisa ou quais são suas dúvidas"
                   />
