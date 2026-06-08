@@ -851,7 +851,7 @@ function FormSection() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="Digite seu nome"
                   />
                 </div>
@@ -863,7 +863,7 @@ function FormSection() {
                     required
                     value={formData.whatsapp}
                     onChange={handlePhoneChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="(19) 99999-9999"
                   />
                 </div>
@@ -875,7 +875,7 @@ function FormSection() {
                     required
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="Informe o endereço"
                   />
                 </div>
@@ -886,7 +886,7 @@ function FormSection() {
                     required
                     value={formData.localType}
                     onChange={(e) => setFormData({ ...formData, localType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
                   >
                     <option value="">Selecione uma opção</option>
                     {localTypes.map((type) => (
@@ -900,7 +900,7 @@ function FormSection() {
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
                     rows={3}
                     placeholder="Câmeras, alarmes, controle de acesso..."
                   />
@@ -933,7 +933,7 @@ function MobileFixedCTA() {
             WhatsApp
           </a>
         </Button>
-        <Button asChild variant="outline" className="flex-1 h-12 border-white/20 text-white hover:bg-white/10">
+        <Button asChild variant="outline" className="flex-1 h-12 bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white">
           <Link href="#formulario">
             Solicitar avaliação
           </Link>
