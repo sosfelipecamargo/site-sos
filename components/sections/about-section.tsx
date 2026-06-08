@@ -183,7 +183,7 @@ export function AboutSection() {
               className="mt-8 flex flex-wrap gap-4"
             >
               <Link
-                href="/solucoes"
+                href="#solucoes"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors"
               >
                 Conheça nossos serviços

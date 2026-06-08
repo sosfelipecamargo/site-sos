@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/accordion"
 
 // Constants
-const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Portaria%20Presencial%20da%20SOS."
+const WHATSAPP_LINK = "https://wa.me/5519994828201?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20Portaria%20Presencial."
 
 // Data
 const benefits = [
@@ -494,7 +494,7 @@ function FormSection() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="Digite seu nome"
                   />
                 </div>
@@ -506,7 +506,7 @@ function FormSection() {
                     required
                     value={formData.whatsapp}
                     onChange={handlePhoneChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="(19) 99999-9999"
                   />
                 </div>
@@ -518,7 +518,7 @@ function FormSection() {
                     required
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                     placeholder="Informe o endereço do condomínio ou empresa"
                   />
                 </div>
@@ -529,7 +529,7 @@ function FormSection() {
                     required
                     value={formData.localType}
                     onChange={(e) => setFormData({ ...formData, localType: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
                   >
                     <option value="">Selecione uma opção</option>
                     {localTypes.map((type) => (
@@ -544,7 +544,7 @@ function FormSection() {
                     required
                     value={formData.shifts}
                     onChange={(e) => setFormData({ ...formData, shifts: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
                   >
                     <option value="">Selecione uma opção</option>
                     <option value="24 horas">24 horas</option>
@@ -560,7 +560,7 @@ function FormSection() {
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
                     rows={3}
                     placeholder="Conte brevemente o que você precisa ou quais são suas dúvidas"
                   />

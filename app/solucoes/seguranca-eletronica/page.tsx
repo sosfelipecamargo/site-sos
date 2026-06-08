@@ -26,6 +26,8 @@ export default function SegurancaEletronicaPage() {
         <SegurancaEletronicaContent />
       </main>
       <Footer />
+      {/* Espaçador para o CTA fixo mobile não cobrir o final do rodapé */}
+      <div className="h-20 lg:hidden" aria-hidden="true" />
     </>
   )
 }
