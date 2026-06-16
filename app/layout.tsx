@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({ 
@@ -49,6 +50,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${inter.variable} overflow-x-hidden bg-background`} data-scroll-behavior="smooth">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-V33EE8QSQC"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-V33EE8QSQC');
+          `}
+        </Script>
+      </head>
       <body className="font-sans antialiased overflow-x-hidden">
         {children}
         <Analytics />
