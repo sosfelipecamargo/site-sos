@@ -51,13 +51,8 @@ export default function QrCodePage() {
           style={{ height: "auto", width: 180 }}
         />
 
-        {/* Tagline */}
-        <p className="mt-8 text-[#f4f4f4]/80 text-base sm:text-lg leading-relaxed text-pretty">
-          Segurança inteligente, atendimento humano.
-        </p>
-
         {/* Buttons */}
-        <div className="mt-10 w-full flex flex-col gap-4">
+        <div className="mt-12 w-full flex flex-col gap-4">
           {buttons.map((btn) =>
             btn.external ? (
               <a
