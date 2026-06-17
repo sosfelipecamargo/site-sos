@@ -1,8 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, MessageCircle } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 function FloatingPaths({ position }: { position: number }) {
@@ -85,20 +84,13 @@ export function CtaSection() {
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-6 text-base"
             >
-              <Link href="/contato">
+              <a 
+                href="https://wa.me/5519994828201?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20uma%20proposta%20da%20SOS." 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 Solicitar proposta
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button 
-              asChild 
-              size="lg" 
-              variant="outline"
-              className="border-white text-white bg-transparent hover:bg-white/10 hover:text-white font-semibold px-8 py-6 text-base"
-            >
-              <a href="https://wa.me/5519994828201?text=Ol%C3%A1%21%20Gostaria%20de%20falar%20com%20um%20consultor%20da%20SOS." target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Falar com consultor
               </a>
             </Button>
           </div>
