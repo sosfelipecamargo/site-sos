@@ -45,10 +45,10 @@ export default function QrCodePage() {
         <Image
           src="/images/logo-sos-branco.png"
           alt="SOS Segurança Inteligente"
-          width={180}
-          height={72}
+          width={360}
+          height={180}
           priority
-          style={{ height: "auto", width: 180 }}
+          className="w-[180px] h-auto"
         />
 
         {/* Buttons */}

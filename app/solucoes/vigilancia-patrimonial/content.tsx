@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { 
@@ -131,16 +130,6 @@ const faqItems = [
   },
 ]
 
-const localTypes = [
-  "Condomínio residencial",
-  "Condomínio empresarial",
-  "Indústria",
-  "Centro logístico / galpão",
-  "Obra / canteiro",
-  "Propriedade rural",
-  "Outro",
-]
-
 // Main Component
 export function VigilanciaPatrimonialContent() {
   return (
@@ -200,7 +189,7 @@ function HeroSection() {
 
           {/* Single CTA */}
           <Button asChild size="lg" className="h-14 px-10 text-base">
-            <a href="#formulario">
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
               Solicitar avaliação
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
@@ -384,7 +373,7 @@ function DifferentialsSection() {
               A vigilância patrimonial da SOS combina profissionais preparados, supervisão ativa e integração com tecnologia para garantir uma proteção mais eficiente.
             </p>
             <Button asChild size="lg" className="transition-colors hover:bg-[#AB0000]">
-              <a href="#formulario">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 Solicitar proposta
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
@@ -478,182 +467,62 @@ function FaqSection() {
 
 // Form Section
 function FormSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    whatsapp: "",
-    address: "",
-    localType: "",
-    coverage: "",
-    message: "",
-  })
-
-  const formatPhone = (value: string) => {
-    const numbers = value.replace(/\D/g, "")
-    if (numbers.length <= 2) return numbers
-    if (numbers.length <= 7) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`
-    if (numbers.length <= 11) return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`
-    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`
-  }
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhone(e.target.value)
-    setFormData({ ...formData, whatsapp: formatted })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const message = `Olá! Gostaria de saber mais sobre a Vigilância Patrimonial da SOS.%0A%0ANome: ${formData.name}%0AWhatsApp: ${formData.whatsapp}%0AEndereço: ${formData.address}%0ATipo de local: ${formData.localType}%0ACobertura desejada: ${formData.coverage}%0AMensagem: ${formData.message || "Não informada"}`
-    window.open(`https://wa.me/5519994828201?text=${message}`, "_blank")
-  }
-
   return (
     <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#070707]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              Fale com a SOS sobre Vigilância Patrimonial
-            </h2>
-            <p className="text-lg text-white/70 leading-relaxed mb-8">
-              Conte sobre a estrutura, a rotina e os pontos de atenção do seu local. Nossa equipe avalia o cenário e apresenta uma proposta adequada para a proteção do seu patrimônio.
-            </p>
-            
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-white/60 text-sm">Telefone</p>
-                  <a href="tel:+551934714514" className="text-white font-medium hover:text-primary transition-colors">
-                    (19) 3471-4514
-                  </a>
-                </div>
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            Fale com a SOS sobre Vigilância Patrimonial
+          </h2>
+          <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-2xl mx-auto">
+            Conte sobre a estrutura, a rotina e os pontos de atenção do seu local. Nossa equipe avalia o cenário e apresenta uma proposta adequada para a proteção do seu patrimônio.
+          </p>
+
+          <div className="flex justify-center mb-10">
+            <Button asChild size="lg" className="h-14 px-10 text-base font-semibold">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Falar pelo WhatsApp
+              </a>
+            </Button>
+          </div>
+
+          {/* Contact Info */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 flex-1">
+              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <Phone className="h-6 w-6 text-primary" />
               </div>
-              
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <MessageCircle className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-white/60 text-sm">WhatsApp</p>
-                  <a 
-                    href={WHATSAPP_LINK}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-white font-medium hover:text-primary transition-colors"
-                  >
-                    (19) 99482-8201
-                  </a>
-                </div>
+              <div className="text-left">
+                <p className="text-white/60 text-sm">Telefone</p>
+                <a href="tel:+551934714514" className="text-white font-medium hover:text-primary transition-colors">
+                  (19) 3471-4514
+                </a>
               </div>
             </div>
-          </motion.div>
 
-          {/* Right - Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit} className="p-8 rounded-2xl bg-white">
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="Digite seu nome"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp</label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.whatsapp}
-                    onChange={handlePhoneChange}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="(19) 99999-9999"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Endereço do local</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="Informe o endereço"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de local</label>
-                  <select
-                    required
-                    value={formData.localType}
-                    onChange={(e) => setFormData({ ...formData, localType: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    {localTypes.map((type) => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Cobertura desejada</label>
-                  <select
-                    required
-                    value={formData.coverage}
-                    onChange={(e) => setFormData({ ...formData, coverage: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    <option value="24 horas">24 horas</option>
-                    <option value="12 horas diurno">12 horas (diurno)</option>
-                    <option value="12 horas noturno">12 horas (noturno)</option>
-                    <option value="Fins de semana e feriados">Fins de semana e feriados</option>
-                    <option value="Temporário / evento">Temporário / evento</option>
-                    <option value="Outro">Outro</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
-                  <textarea
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
-                    rows={3}
-                    placeholder="Conte brevemente o que você precisa ou quais são suas dúvidas"
-                  />
-                </div>
-
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full h-12 transition-colors hover:bg-[#AB0000]"
-                >
-                  Solicitar contato
-                </Button>
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 flex-1">
+              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="h-6 w-6 text-primary" />
               </div>
-            </form>
-          </motion.div>
-        </div>
+              <div className="text-left">
+                <p className="text-white/60 text-sm">WhatsApp</p>
+                <a 
+                  href={WHATSAPP_LINK}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white font-medium hover:text-primary transition-colors"
+                >
+                  (19) 99482-8201
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -16,7 +16,6 @@ const services = [
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "Grupo SOS", href: "/grupo-sos" },
   { name: "Contato", href: "/contato" },
   { name: "QRCode SOS", href: "/qrcode" },
   { name: "Política de Privacidade", href: "/privacidade" },
@@ -41,9 +40,9 @@ export function Footer() {
               <Image
                 src="/images/logo-sos-branco.png"
                 alt="SOS Segurança Inteligente"
-                width={120}
-                height={48}
-                style={{ height: 48, width: 'auto' }}
+                width={200}
+                height={100}
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-accent-foreground/70 text-sm leading-relaxed mb-6">

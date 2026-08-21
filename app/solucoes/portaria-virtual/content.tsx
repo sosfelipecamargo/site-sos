@@ -302,22 +302,6 @@ const faqItems = [
   },
 ]
 
-const localTypes = [
-  "Condomínio residencial",
-  "Condomínio empresarial",
-  "Condomínio industrial / logística",
-  "Empresa",
-  "Outro",
-]
-
-const portariaTypes = [
-  "Portaria presencial",
-  "Portaria híbrida",
-  "Portaria virtual",
-  "Sem portaria",
-  "Não sei informar",
-]
-
 // ============================================
 // COMPONENTS
 // ============================================
@@ -491,7 +475,7 @@ function SolutionSection() {
               A Portaria Virtual SOS permite que o acesso ao condomínio ou empresa seja atendido remotamente por uma central preparada, seguindo procedimentos definidos junto ao cliente. O objetivo é tornar a rotina mais segura, organizada e eficiente, sem perder o cuidado humano no atendimento.
             </p>
             <Button asChild size="lg" className="h-12 px-8">
-              <Link href="#formulario">
+              <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 Quero entender se funciona para o meu condomínio
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -644,7 +628,7 @@ function HowItWorksSection() {
           className="text-center mt-20 lg:mt-24 pb-4"
         >
           <Button asChild size="lg" className="h-12 px-8">
-            <Link href="#formulario">
+            <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
               Ver como seria no meu condomínio
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
@@ -788,7 +772,7 @@ function ComparisonSection() {
           className="text-center mt-12"
         >
           <Button asChild size="lg" className="h-12 px-8">
-            <Link href="#formulario">
+            <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
               Calcular possibilidade de economia
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
@@ -1074,7 +1058,7 @@ function ImplementationSection() {
               A implantação da Portaria Virtual SOS é feita de forma assistida, considerando a estrutura atual do local, os procedimentos necessários e a rotina dos moradores, colaboradores ou usuários.
             </p>
             <Button asChild size="lg" className="h-12 px-8">
-              <Link href="#formulario">
+              <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 Quero uma análise da minha portaria
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -1290,181 +1274,62 @@ function FAQSection() {
 
 // Form Section
 function FormSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    whatsapp: "",
-    address: "",
-    localType: "",
-    currentPortaria: "",
-    message: "",
-  })
-
-  // Phone mask function
-  const formatPhone = (value: string) => {
-    const numbers = value.replace(/\D/g, "")
-    if (numbers.length <= 2) return numbers
-    if (numbers.length <= 7) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`
-    if (numbers.length <= 11) return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`
-    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`
-  }
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhone(e.target.value)
-    setFormData({ ...formData, whatsapp: formatted })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const message = `Olá! Gostaria de saber mais sobre a Portaria Virtual da SOS.%0A%0ANome: ${formData.name}%0AWhatsApp: ${formData.whatsapp}%0AEndereço: ${formData.address}%0ATipo de local: ${formData.localType}%0APortaria atual: ${formData.currentPortaria}%0AMensagem: ${formData.message || "Não informada"}`
-    window.open(`https://wa.me/5519994828201?text=${message}`, "_blank")
-  }
-
   return (
     <section id="formulario" className="py-20 lg:py-28 bg-gradient-to-b from-[#070707] to-[#070707]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              Fale com a SOS sobre Portaria Virtual
-            </h2>
-            <p className="text-lg text-white/70 leading-relaxed mb-8">
-              Conte como funciona o acesso do seu condomínio ou empresa hoje. Nossa equipe avalia o cenário e apresenta uma solução adequada para aumentar o controle, a organização e a segurança da sua rotina.
-            </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-white/60 text-sm">Telefone</p>
-                  <a href="tel:+551934714514" className="text-white font-medium hover:text-primary transition-colors">
-                    (19) 3471-4514
-                  </a>
-                </div>
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            Fale com a SOS sobre Portaria Virtual
+          </h2>
+          <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-2xl mx-auto">
+            Conte como funciona o acesso do seu condomínio ou empresa hoje. Nossa equipe avalia o cenário e apresenta uma solução adequada para aumentar o controle, a organização e a segurança da sua rotina.
+          </p>
+
+          <div className="flex justify-center mb-10">
+            <Button asChild size="lg" className="h-14 px-10 text-base font-semibold">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Falar pelo WhatsApp
+              </a>
+            </Button>
+          </div>
+
+          {/* Contact Info */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 flex-1">
+              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <Phone className="h-6 w-6 text-primary" />
               </div>
-              
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <MessageCircle className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-white/60 text-sm">WhatsApp</p>
-                  <a 
-                    href="https://wa.me/5519994828201?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20Portaria%20Virtual." 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-white font-medium hover:text-primary transition-colors"
-                  >
-                    (19) 99482-8201
-                  </a>
-                </div>
+              <div className="text-left">
+                <p className="text-white/60 text-sm">Telefone</p>
+                <a href="tel:+551934714514" className="text-white font-medium hover:text-primary transition-colors">
+                  (19) 3471-4514
+                </a>
               </div>
             </div>
-          </motion.div>
 
-          {/* Right - Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit} className="p-8 rounded-2xl bg-white">
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="Digite seu nome"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp</label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.whatsapp}
-                    onChange={handlePhoneChange}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="(19) 99999-9999"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Endereço do local</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                    placeholder="Informe o endereço do condomínio ou empresa"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de local</label>
-                  <select
-                    required
-                    value={formData.localType}
-                    onChange={(e) => setFormData({ ...formData, localType: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white appearance-none"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    {localTypes.map((type) => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Como é a sua portaria atualmente?</label>
-                  <select
-                    required
-                    value={formData.currentPortaria}
-                    onChange={(e) => setFormData({ ...formData, currentPortaria: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors bg-white appearance-none"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    {portariaTypes.map((type) => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
-                  <textarea
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
-                    rows={3}
-                    placeholder="Conte brevemente o que você precisa ou quais são suas dúvidas"
-                  />
-                </div>
-
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full h-12 transition-colors hover:bg-[#AB0000]"
-                >
-                  Solicitar contato
-                </Button>
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 flex-1">
+              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="h-6 w-6 text-primary" />
               </div>
-            </form>
-          </motion.div>
-        </div>
+              <div className="text-left">
+                <p className="text-white/60 text-sm">WhatsApp</p>
+                <a 
+                  href={WHATSAPP_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white font-medium hover:text-primary transition-colors"
+                >
+                  (19) 99482-8201
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -1482,7 +1347,7 @@ function MobileFixedCTA() {
           </a>
         </Button>
         <Button asChild variant="outline" className="flex-1 h-12 bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white">
-          <Link href="#formulario">
+          <Link href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
             Solicitar análise
           </Link>
         </Button>

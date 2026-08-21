@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { 
   ArrowRight, 
@@ -101,10 +100,14 @@ export function ServicePage({ service }: ServicePageProps) {
                     size="lg" 
                     className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-base"
                   >
-                    <Link href="/contato">
+                    <a
+                      href={`https://wa.me/5519994828201?text=${encodeURIComponent(`Olá! Gostaria de solicitar uma proposta de ${service.name} da SOS.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Solicitar proposta
                       <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
+                    </a>
                   </Button>
                   
                   <Button 
@@ -474,10 +477,14 @@ export function ServicePage({ service }: ServicePageProps) {
                   size="lg" 
                   className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-base"
                 >
-                  <Link href="/contato">
+                  <a
+                    href={`https://wa.me/5519994828201?text=${encodeURIComponent(`Olá! Gostaria de solicitar uma proposta de ${service.name} da SOS.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Solicitar proposta
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+                  </a>
                 </Button>
                 
                 <Button 

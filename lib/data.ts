@@ -748,12 +748,3 @@ export const blogPosts = [
     date: "05 jan 2024"
   }
 ]
-
-export const clientLogos = [
-  { name: "Cliente 1", logo: "/images/clients/client-1.png" },
-  { name: "Cliente 2", logo: "/images/clients/client-2.png" },
-  { name: "Cliente 3", logo: "/images/clients/client-3.png" },
-  { name: "Cliente 4", logo: "/images/clients/client-4.png" },
-  { name: "Cliente 5", logo: "/images/clients/client-5.png" },
-  { name: "Cliente 6", logo: "/images/clients/client-6.png" },
-]
