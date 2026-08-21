@@ -44,6 +44,61 @@ const posts: Record<string, { title: string; excerpt: string; category: string; 
       <h2>Conclusão</h2>
       <p>A portaria virtual é uma excelente opção para quem busca redução de custos sem abrir mão da segurança. O segredo está em escolher um parceiro confiável, com estrutura operacional robusta e atendimento próximo.</p>
     `
+  },
+  "tendencias-seguranca-2024": {
+    title: "Tendências em segurança eletrônica para 2024",
+    excerpt: "Conheça as principais inovações e tecnologias que estão transformando o mercado de segurança.",
+    category: "Tecnologia",
+    date: "2024-01-10",
+    readTime: "6 min",
+    content: `
+      <p>O mercado de segurança eletrônica evolui rapidamente, impulsionado por inteligência artificial, conectividade e automação. Conhecer as tendências ajuda a tomar decisões mais inteligentes na hora de proteger o seu patrimônio.</p>
+
+      <h2>1. Inteligência artificial no monitoramento</h2>
+      <p>Câmeras com análise de vídeo por IA já conseguem diferenciar pessoas, veículos e animais, reduzindo alarmes falsos e permitindo respostas mais rápidas a eventos reais. A detecção de comportamento suspeito em tempo real é uma das maiores evoluções do setor.</p>
+
+      <h2>2. Integração e centralização</h2>
+      <p>A tendência é unificar CFTV, alarmes, controle de acesso e automação em uma única plataforma. Isso simplifica a operação, melhora a visibilidade e torna a resposta a incidentes muito mais ágil.</p>
+
+      <h2>3. Reconhecimento facial e biometria</h2>
+      <p>O controle de acesso por biometria e reconhecimento facial ganha espaço em condomínios e empresas, oferecendo mais conveniência e segurança, sem a necessidade de chaves ou cartões que podem ser perdidos ou clonados.</p>
+
+      <h2>4. Monitoramento em nuvem</h2>
+      <p>O armazenamento e a gestão de imagens em nuvem garantem acesso remoto seguro, redundância de dados e escalabilidade, sem depender exclusivamente de gravadores locais.</p>
+
+      <h2>Conclusão</h2>
+      <p>Investir em tecnologia atualizada é essencial para acompanhar a evolução das ameaças. Contar com um parceiro que domina essas soluções, como a SOS Segurança Inteligente, faz toda a diferença na proteção do seu patrimônio.</p>
+    `
+  },
+  "como-escolher-sistema-alarme": {
+    title: "Como escolher o sistema de alarme ideal para sua empresa",
+    excerpt: "Guia prático para entender os tipos de alarme e escolher a melhor opção para seu negócio.",
+    category: "Segurança Eletrônica",
+    date: "2024-01-05",
+    readTime: "5 min",
+    content: `
+      <p>Escolher o sistema de alarme certo é um passo fundamental para proteger a sua empresa. Com tantas opções disponíveis, entender os principais critérios evita gastos desnecessários e garante uma proteção eficiente.</p>
+
+      <h2>Avalie o tipo de imóvel e os riscos</h2>
+      <p>O primeiro passo é mapear vulnerabilidades: pontos de acesso, áreas de maior movimentação de valores e histórico de ocorrências na região. Cada empresa tem necessidades diferentes, e o projeto deve refletir isso.</p>
+
+      <h2>Tipos de sensores</h2>
+      <ul>
+        <li><strong>Sensores de presença (infravermelho):</strong> detectam movimento em ambientes internos.</li>
+        <li><strong>Sensores de abertura:</strong> instalados em portas e janelas, avisam quando são abertas.</li>
+        <li><strong>Sensores de barreira:</strong> protegem perímetros e áreas externas.</li>
+        <li><strong>Detecção por vídeo:</strong> combina alarme com verificação por imagem, reduzindo falsos disparos.</li>
+      </ul>
+
+      <h2>Monitoramento 24 horas faz diferença</h2>
+      <p>Um alarme que apenas dispara uma sirene tem eficácia limitada. Com monitoramento 24h conectado a uma central, cada disparo é verificado e, quando necessário, uma viatura de pronta resposta é acionada. Essa é a camada que realmente inibe e responde a ocorrências.</p>
+
+      <h2>Escolha um parceiro estruturado</h2>
+      <p>Mais importante que o equipamento é a empresa por trás dele. Verifique se há central de monitoramento própria, tempo de resposta, manutenção e suporte. A SOS Segurança Inteligente une equipamentos de qualidade a uma operação robusta e atendimento humano.</p>
+
+      <h2>Conclusão</h2>
+      <p>O sistema de alarme ideal é aquele projetado para a realidade da sua empresa e apoiado por um monitoramento confiável. Faça uma avaliação técnica antes de decidir e priorize segurança de verdade, não apenas o menor preço.</p>
+    `
   }
 }
 

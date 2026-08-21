@@ -16,7 +16,6 @@ const services = [
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "Grupo SOS", href: "/grupo-sos" },
   { name: "Contato", href: "/contato" },
   { name: "QRCode SOS", href: "/qrcode" },
   { name: "Política de Privacidade", href: "/privacidade" },
