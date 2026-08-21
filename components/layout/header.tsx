@@ -66,10 +66,9 @@ export function Header() {
               <Image
                 src={isScrolled ? "/images/logo-sos-preto.png" : "/images/logo-sos-branco.png"}
                 alt="SOS Segurança Inteligente"
-                width={100}
-                height={40}
-                className="object-contain"
-                style={{ height: 32, width: 'auto' }}
+                width={200}
+                height={100}
+                className="h-8 w-auto object-contain"
                 priority
               />
             </Link>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react"
 import { Header } from "@/components/layout/header"
@@ -46,6 +47,10 @@ const posts: Record<string, { title: string; excerpt: string; category: string; 
   }
 }
 
+export function generateStaticParams() {
+  return Object.keys(posts).map((slug) => ({ slug }))
+}
+
 export async function generateMetadata({ 
   params 
 }: { 
@@ -72,13 +77,10 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }> 
 }) {
   const { slug } = await params
-  const post = posts[slug] || {
-    title: "Artigo de exemplo",
-    excerpt: "Este é um artigo de exemplo do blog da SOS Segurança Inteligente.",
-    category: "Geral",
-    date: "2024-01-01",
-    readTime: "5 min",
-    content: "<p>Conteúdo do artigo em breve.</p>"
+  const post = posts[slug]
+
+  if (!post) {
+    notFound()
   }
 
   return (

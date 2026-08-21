@@ -11,28 +11,32 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.sosseguranca.com.br'),
   title: {
-    default: 'SOS Seguranca Inteligente | Seguranca, Tecnologia e Conectividade',
-    template: '%s | SOS Seguranca Inteligente',
+    default: 'SOS Segurança Inteligente | Segurança, Tecnologia e Conectividade',
+    template: '%s | SOS Segurança Inteligente',
   },
-  description: 'Desde 1980, a SOS oferece solucoes integradas em seguranca eletronica, monitoramento 24h, portaria virtual, vigilancia patrimonial e telecom para residencias, empresas e condominios.',
-  keywords: ['seguranca eletronica', 'portaria virtual', 'monitoramento 24h', 'vigilancia patrimonial', 'CFTV', 'alarmes', 'controle de acesso', 'telecom', 'Americana SP'],
-  authors: [{ name: 'SOS Seguranca Inteligente' }],
-  creator: 'SOS Seguranca Inteligente',
-  publisher: 'SOS Seguranca Inteligente',
+  description: 'Desde 1980, a SOS oferece soluções integradas em segurança eletrônica, monitoramento 24h, portaria virtual, vigilância patrimonial e telecom para residências, empresas e condomínios.',
+  keywords: ['segurança eletrônica', 'portaria virtual', 'monitoramento 24h', 'vigilância patrimonial', 'CFTV', 'alarmes', 'controle de acesso', 'telecom', 'Americana SP'],
+  authors: [{ name: 'SOS Segurança Inteligente' }],
+  creator: 'SOS Segurança Inteligente',
+  publisher: 'SOS Segurança Inteligente',
   robots: 'index, follow',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://sosseguranca.com.br',
-    siteName: 'SOS Seguranca Inteligente',
-    title: 'SOS Seguranca Inteligente | Seguranca, Tecnologia e Conectividade',
-    description: 'Desde 1980, a SOS oferece solucoes integradas em seguranca eletronica, monitoramento 24h, portaria virtual, vigilancia patrimonial e telecom.',
+    url: 'https://www.sosseguranca.com.br',
+    siteName: 'SOS Segurança Inteligente',
+    title: 'SOS Segurança Inteligente | Segurança, Tecnologia e Conectividade',
+    description: 'Desde 1980, a SOS oferece soluções integradas em segurança eletrônica, monitoramento 24h, portaria virtual, vigilância patrimonial e telecom.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SOS Seguranca Inteligente',
-    description: 'Seguranca que resolve. Tecnologia confiavel com atendimento humano.',
+    title: 'SOS Segurança Inteligente',
+    description: 'Segurança que resolve. Tecnologia confiável com atendimento humano.',
   },
 }
 
