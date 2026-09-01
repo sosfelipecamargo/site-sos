@@ -19,6 +19,18 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/portaria-virtual',
+        destination: 'https://remoteview-central.vercel.app/portaria-virtual',
+      },
+      {
+        source: '/assets/:path*',
+        destination: 'https://remoteview-central.vercel.app/assets/:path*',
+      },
+    ]
+  },
 }
 
 export default nextConfig
