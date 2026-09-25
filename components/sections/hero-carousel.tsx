@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AnimatedTextCycle } from "@/components/ui/animated-text-cycle"
@@ -158,6 +158,7 @@ export function HeroCarousel() {
   const [parallaxY, setParallaxY] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const heroRef = useRef<HTMLElement>(null)
+  const shouldReduceMotion = useReducedMotion()
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -185,7 +186,7 @@ export function HeroCarousel() {
 
   // Parallax scroll effect using JavaScript scroll event
   useEffect(() => {
-    if (isMobile) return
+    if (isMobile || shouldReduceMotion) return
 
     const handleScroll = () => {
       const scrollY = window.scrollY
@@ -368,8 +369,8 @@ export function HeroCarousel() {
         className="absolute bottom-10 right-10 hidden md:block z-[4]"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          animate={shouldReduceMotion ? { y: 0 } : { y: [0, 8, 0] }}
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex h-12 w-7 items-start justify-center rounded-full border-2 border-white/30 p-2"
         >
           <div className="h-2 w-1 rounded-full bg-white/60" />

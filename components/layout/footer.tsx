@@ -56,7 +56,7 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary transition-colors"
+                    className="focus-ring w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-primary transition-colors"
                     aria-label={social.name}
                   >
                     <social.Icon className="h-5 w-5" />
@@ -198,10 +198,10 @@ export function Footer() {
       <div className="border-t border-accent-foreground/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-accent-foreground/50 text-center md:text-left">
+            <p className="text-sm text-accent-foreground/70 text-center md:text-left">
               © 2026 Grupo SOS. Todos os direitos reservados.
             </p>
-            <p className="text-sm text-accent-foreground/50">
+            <p className="text-sm text-accent-foreground/70">
               CNPJ 66.839.838/0001-81
             </p>
           </div>

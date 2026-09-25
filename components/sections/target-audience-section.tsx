@@ -76,13 +76,25 @@ export function TargetAudienceSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="relative overflow-hidden rounded-2xl cursor-pointer group"
+                role="button"
+                tabIndex={0}
+                aria-expanded={isActive}
+                aria-label={`${audience.title}: ${audience.description}`}
+                className="focus-ring relative overflow-hidden rounded-2xl cursor-pointer group"
                 style={{
                   flex: isActive ? 4 : 1,
                   transition: "flex 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
                 }}
                 onMouseEnter={() => setActiveIndex(index)}
-                onMouseLeave={() => setActiveIndex(null)}
+                onMouseLeave={() => setActiveIndex((current) => (current === index ? null : current))}
+                onFocus={() => setActiveIndex(index)}
+                onClick={() => setActiveIndex((current) => (current === index ? null : index))}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault()
+                    setActiveIndex((current) => (current === index ? null : index))
+                  }
+                }}
               >
                 {/* Background Image */}
                 <Image

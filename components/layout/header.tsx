@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -28,6 +28,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +37,30 @@ export function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Close the desktop dropdown on outside click or Escape, so keyboard and
+  // mouse users both get a predictable way to dismiss it.
+  useEffect(() => {
+    if (!isDropdownOpen) return
+
+    function handlePointerDown(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown)
+    document.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown)
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [isDropdownOpen])
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -80,13 +105,19 @@ export function Header() {
                   <div key={item.name} className="relative">
                     {item.hasDropdown ? (
                       <div
+                        ref={dropdownRef}
                         className="relative"
                         onMouseEnter={() => setIsDropdownOpen(true)}
                         onMouseLeave={() => setIsDropdownOpen(false)}
                       >
                         <button
+                          type="button"
+                          onClick={() => setIsDropdownOpen((open) => !open)}
+                          aria-expanded={isDropdownOpen}
+                          aria-haspopup="true"
+                          aria-controls="solucoes-menu"
                           className={cn(
-                            "relative flex items-center gap-1 py-2 text-[13px] font-normal tracking-[0.1em] transition-colors duration-200 group",
+                            "focus-ring relative flex items-center gap-1 py-2 text-[13px] font-normal tracking-[0.1em] transition-colors duration-200 group",
                             isScrolled
                               ? "text-gray-600 hover:text-gray-900"
                               : "text-white/80 hover:text-white"
@@ -96,7 +127,8 @@ export function Header() {
                             {item.name}
                             <span className={cn(
                               "absolute -bottom-0.5 left-0 w-full h-px transition-transform duration-200 origin-left scale-x-0 group-hover:scale-x-100",
-                              isScrolled ? "bg-gray-900" : "bg-white"
+                              isScrolled ? "bg-gray-900" : "bg-white",
+                              isDropdownOpen && "scale-x-100"
                             )} />
                           </span>
                           <ChevronDown className={cn(
@@ -108,6 +140,9 @@ export function Header() {
                         <AnimatePresence>
                           {isDropdownOpen && (
                             <motion.div
+                              id="solucoes-menu"
+                              role="menu"
+                              aria-label="Soluções"
                               initial={{ opacity: 0, y: 8 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 8 }}
@@ -126,7 +161,8 @@ export function Header() {
                                             href={service.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                            role="menuitem"
+                                            className="focus-ring block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
                                           >
                                             {service.name}
                                           </a>
@@ -134,7 +170,9 @@ export function Header() {
                                           <Link
                                             key={service.href}
                                             href={service.href}
-                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                            role="menuitem"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                            className="focus-ring block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
                                           >
                                             {service.name}
                                           </Link>
@@ -156,7 +194,8 @@ export function Header() {
                                             href={service.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                            role="menuitem"
+                                            className="focus-ring block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
                                           >
                                             {service.name}
                                           </a>
@@ -164,7 +203,9 @@ export function Header() {
                                           <Link
                                             key={service.href}
                                             href={service.href}
-                                            className="block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+                                            role="menuitem"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                            className="focus-ring block text-lg font-semibold text-gray-900 hover:underline underline-offset-4 transition-colors whitespace-nowrap"
                                           >
                                             {service.name}
                                           </Link>
@@ -182,7 +223,7 @@ export function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          "relative py-2 text-[13px] font-normal tracking-[0.1em] transition-colors duration-200 group",
+                          "focus-ring relative py-2 text-[13px] font-normal tracking-[0.1em] transition-colors duration-200 group",
                           isScrolled
                             ? "text-gray-600 hover:text-gray-900"
                             : "text-white/80 hover:text-white"
@@ -207,7 +248,7 @@ export function Header() {
               <Link 
                 href="/contato"
                 className={cn(
-                  "inline-flex items-center px-5 py-2 text-[12px] font-normal tracking-[0.1em] uppercase border rounded-sm transition-colors duration-200",
+                  "focus-ring inline-flex items-center px-5 py-2 text-[12px] font-normal tracking-[0.1em] uppercase border rounded-sm transition-colors duration-200",
                   isScrolled
                     ? "border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
                     : "border-white text-white hover:bg-white hover:text-gray-900"
@@ -221,10 +262,11 @@ export function Header() {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
-                "lg:hidden relative z-10 p-2",
+                "focus-ring lg:hidden relative z-10 p-2",
                 isScrolled ? "text-gray-900" : "text-white"
               )}
               aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -264,7 +306,8 @@ export function Header() {
                         <div>
                           <button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="flex items-center justify-between w-full py-3 text-[13px] font-normal tracking-[0.1em] text-gray-900 transition-colors"
+                            aria-expanded={isDropdownOpen}
+                            className="focus-ring flex items-center justify-between w-full py-3 text-[13px] font-normal tracking-[0.1em] text-gray-900 transition-colors"
                           >
                             {item.name}
                             <ChevronDown className={cn(
@@ -328,7 +371,7 @@ export function Header() {
                   <Link 
                     href="/contato" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center w-full py-3 text-[12px] font-normal tracking-[0.1em] uppercase border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                    className="focus-ring flex items-center justify-center w-full py-3 text-[12px] font-normal tracking-[0.1em] uppercase border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
                   >
                     Fale Conosco
                   </Link>

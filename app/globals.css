@@ -159,3 +159,28 @@ html {
   0%, 100% { opacity: 0.5; transform: scale(1.05) translate(0, 0); }
   50% { opacity: 0.8; transform: scale(1) translate(-15px, 10px); }
 }
+
+/* Respect the user's motion preference. Covers CSS-driven animations
+   (marquee, pulse dots, keyframe fog) site-wide. JS-driven (Framer Motion)
+   infinite loops are additionally guarded per-component with useReducedMotion(). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Consistent, on-brand focus indication for custom-styled interactive
+   elements (links, disclosure buttons) that don't use the Button component. */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--sos-red);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
