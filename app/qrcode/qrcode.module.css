@@ -93,23 +93,24 @@
   }
 
   .logo {
-    top: 18.5%;
-    left: 50%;
+    top: 22%;
+    left: 52%;
     width: min(35vw, 340px);
     transform: translate(-50%, -50%);
   }
 
   .actions {
-    top: 40.4%;
-    width: min(65vw, 340px);
-    gap: 16px;
+    top: 36.8%;
+    left: 52%;
+    width: min(65.3vw, 340px);
+    gap: 1.74dvh;
     transform: translateX(-50%);
   }
 
   .action {
-    min-height: 74px;
+    min-height: 7.9dvh;
     border-radius: 16px;
-    font-size: 11px;
+    font-size: clamp(11px, 2.9vw, 14px);
     line-height: 1.25;
   }
 
