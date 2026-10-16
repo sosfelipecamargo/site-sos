@@ -87,7 +87,9 @@
 
 @media (max-width: 767px) {
   .background {
-    object-position: 80% center;
+    object-position: right center;
+    transform: scale(2.9);
+    transform-origin: 56% center;
   }
 
   .logo {
