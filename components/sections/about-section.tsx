@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion"
+import { motion, useInView, useMotionValue, useSpring, useReducedMotion } from "framer-motion"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -57,6 +57,8 @@ function AnimatedNumber({ value, suffix = "", isStatic = false }: { value: numbe
 function TimelineItem({ item, index, isLast }: { item: typeof timeline[0]; index: number; isLast: boolean }) {
   const [isHovered, setIsHovered] = useState(false)
   
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -107,7 +109,7 @@ function TimelineItem({ item, index, isLast }: { item: typeof timeline[0]; index
           }}
         >
           {/* Glow effect */}
-          {(isHovered || isLast) && (
+          {(isHovered || isLast) && !shouldReduceMotion && (
             <motion.div
               className="absolute inset-0 rounded-full bg-primary/30"
               initial={{ scale: 1, opacity: 0.5 }}

@@ -1,10 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 function FloatingPaths({ position }: { position: number }) {
+  const shouldReduceMotion = useReducedMotion()
   const paths = Array.from({ length: 36 }, (_, i) => ({
     id: i,
     d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
@@ -36,16 +37,24 @@ function FloatingPaths({ position }: { position: number }) {
             strokeWidth={path.strokeWidth}
             strokeOpacity={0.4 + path.id * 0.03}
             initial={{ pathLength: 0.3, opacity: 0.6 }}
-            animate={{
-              pathLength: 1,
-              opacity: [0.4, 0.8, 0.4],
-              pathOffset: [0, 1, 0],
-            }}
-            transition={{
-              duration: path.duration,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
+            animate={
+              shouldReduceMotion
+                ? { pathLength: 1, opacity: 0.6 }
+                : {
+                    pathLength: 1,
+                    opacity: [0.4, 0.8, 0.4],
+                    pathOffset: [0, 1, 0],
+                  }
+            }
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : {
+                    duration: path.duration,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "linear",
+                  }
+            }
           />
         ))}
       </svg>
