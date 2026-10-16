@@ -100,16 +100,16 @@
   }
 
   .actions {
-    top: 38%;
-    width: min(60vw, 310px);
-    gap: 10px;
+    top: 40.4%;
+    width: min(65vw, 340px);
+    gap: 16px;
     transform: translateX(-50%);
   }
 
   .action {
-    min-height: 52px;
-    border-radius: 14px;
-    font-size: 13px;
+    min-height: 74px;
+    border-radius: 16px;
+    font-size: 11px;
     line-height: 1.25;
   }
 
